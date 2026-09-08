@@ -1,0 +1,616 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{4.3 习题}
+\maketitle
+
+\begin{zgraytheorem}
+  \begin{zremark}
+    本节的证明过程中，用到了一些命题，在书中没有提到，这里提前列出，并证明它。
+
+    \textbf{A. 正有理数 $\geq$ 零 $\geq$ 负有理数}
+
+    证明：
+
+    不妨设$x,y$是任意有理数，并且$x$是正有理数，$y$是负有理数，
+    所以存在$a,b,c,d$正整数，使得$x=a/b,y=(-c)/d$，现在只需证明$x \geq 0 \geq y$。
+    \begin{align*}
+      x - 0 & = a/b - 0   \\
+            & = a/b - 0/1 \\
+            & = a1-b*0/b  \\
+            & = a / b     \\
+            & = x         \\
+    \end{align*}
+    由于$x$是正的，所以$x \geq 0$。
+
+    \begin{align*}
+      0 - y & = 0 - (-c)/d \\
+            & = 0 - (-c)/d \\
+            & = c/d        \\
+    \end{align*}
+    有$c/d$是正有理数，所以$0 \geq y$。
+
+    综上，命题成立。
+
+    \textbf{A推论1. 正有理数 $>$ 零 $>$ 负有理数}
+
+    证明：由于正有理数不等于零，且由命题A，可知正整数大于零；由于负有理数不等于零，且由命题A，可知负整数小于零。
+
+    \textbf{A推论2. 有理数$x>0$，那么$x$是正有理数；有理数$x < 0$，那么$x$是负有理数}。
+
+    证明：
+
+    由于$x>0$，所以$x-0$是正有理数，不妨设该正有理数是$k$，即：
+    \begin{align*}
+      x-0 & = k \\
+      x   & = k \\
+    \end{align*}
+    由于$k$是正有理数，所以$x$也是正有理数；
+
+    同理$x < 0$时，$x$是负有理数。
+
+
+    \textbf{B. 两个正有理数相加，是正有理数}
+
+    证明：不妨设$x,y$是任意正有理数，所以存在$a,b,c,d$正整数，使得$x=a/b,y=c/d$。
+    \begin{align*}
+      x + y & = a/b + c/d      \\
+            & = (ad + bc) / bd \\
+    \end{align*}
+    由于分子是正整数（命题2.2.8），分母是正整数（命题2.3.3），所以$x+y$是正有理数。
+
+    \textbf{C. 两个正有理数的乘积，是正有理数}
+
+    证明：不妨设$x,y$是任意正有理数，所以存在$a,b,c,d$正整数，使得$x=a/b,y=c/d$。
+    \begin{align*}
+      x * y & = a/b * c/d \\
+            & = (ac)/(bd) \\
+    \end{align*}
+
+    由于分子、分母都是正整数（命题2.3.3），所以$x*y$是正有理数。
+
+    \textbf{D. 两个有理数的乘积是0，当且仅当其中一个为零}
+
+    证明：
+
+    充分性：
+
+    不妨设$x,y$是任意有理数，有有理数的定义可知，存在整数$a,b,c,d$其中$b \neq 0, d \neq 0$，使得$x=a/b,y=c/d$。
+    又因为，
+    \begin{align*}
+      x * y & = a/b * c/d \\
+            & =  ac / bd  \\
+    \end{align*}
+    由命题4.1.8（整数没有零因子）可知$bd \neq 0$，又$x * y = 0$，所以$ac = 0$，那么$a=0$或$b=0$，也就是说$x$或$y$为零。
+
+    必要性： 略
+
+  \end{zremark}
+\end{zgraytheorem}
+
+\section*{4.3.1}
+
+\textbf{（a）（绝对值的非退化性）我们有$|x| \geq 0$。另外，$|x|=0$当且仅当$x$为零。}
+
+证明：
+
+$x$是有理数，由引理4.2.7（有理数的三歧性）可知，$x$有三种情况：
+
+（1）$x$是正有理数，此时，$|x|=x$，而正有理数$|x|-0=x-0=x$，由定义4.2.8（有理数的排序）可知$|x|>0$；
+
+（2）$x$是负有理数，此时，$|x|=-x$，$|x|-0=-x-0=-x$，而$-x$是正有理数，由定义4.2.8（有理数的排序）可知$|x|>0$；
+
+（3）$x$等于0，此时$|x|=0$，由定义4.2.8（有理数的排序）可知$|x| \geq 0$；
+
+综上，$|x| \geq 0$。另外，$|x|=0$当且仅当$x$为零。
+
+\textbf{（b）（绝对值的三角不等式）我们有$|x+y| \leq |x| + |y|$。}
+
+证明：
+
+可以通过有理数的三歧性证明，这里情况较多，只证明$x$是正有理数，$y$是负有理数的情况【偷个懒，哈哈哈】。
+
+设$x$是正有理数，$y$是负有理数，不妨设$x=a/b,y=(-c)/d$，其中$a,b,c,d$都是正整数。
+\begin{align*}
+  |x| + |y| & = a/b + c/d  \\
+            & = (ad+bc)/bd \\
+\end{align*}
+
+\begin{align*}
+  x + y & = a/b + (-c)/d \\
+        & = (ad-bc)/bd
+\end{align*}
+若$x + y$是负有理数，则:
+\begin{align*}
+  |x+y| & =-(x+y)        \\
+        & =[-(ad-bc)]/bd \\
+        & =(bc-ad)/bd
+\end{align*}
+
+\begin{align*}
+  |x|+|y| - (|x+y|) & = (ad+bc)/bd - (bc-ad)/bd    \\
+                    & = (ad+bc)/bd + (ad-bc)/bd    \\
+                    & = [(ad+bc)bd+(ad-bc)bd]/bdbd \\
+                    & = (adbc+adbc) / bdbd         \\
+\end{align*}
+
+由于分子是正整数（命题2.2.8），分母是正整数（命题2.3.3），可知$(adbc+adbc) / bdbd$是正的，
+所以$ |x| + |y| > |x+y|$。
+
+\textbf{（c）不等式$-y \leq x \leq y$成立，当且仅当$y \geq |x|$。特别地，$-|x| \leq x \leq |x|$。}
+
+证明：
+
+充分性：假设前提$-y \leq x \leq y$成立，该前提隐含$y$不是负有理数（见说明）。由有理数的三歧性，$x$的取值有3种情况：
+（1）$x$等于0，此时$|x|=0$，而$y$是正有理数，所以$y \geq 0$。
+
+（2）$x$等于正有理数，此时$|x|=x$，由前提可知$y \geq x$。
+
+（3）$x$等于负有理数，此时$|x|=-x$，不妨设$a,b,c,d$是正有理数，$x=(-a)/b,y=c/d$，
+由于$-y \leq x$，所有$-y-x$是负有理数，即：
+\begin{align*}
+  -y - x & = (-c)/d - (-a)/b \\
+         & = (-c)b + a/b     \\
+         & = a/b - c/d       \\
+         & = (ad - bc) / bd  \\
+\end{align*}
+由上且$-y-x$是负有理数，可知$(ad-bc)=-(bc-ad)$是负整数，所以$bc-ad$是正整数。
+
+\begin{align*}
+  y - (-x) & = c/d - \{-[(-a)/b]\} \\
+           & = c/d - a/b           \\
+           & = (bc - ad) / bd      \\
+\end{align*}
+由$bc-ad$是正整数和$bd$是正整数，可知$y-(-x)$是正有理数，所以$y \geq -x$。
+
+综合（1）（2）（3）可知$y \geq |x|$。
+
+必要性：假设$y \geq |x|$，由（a）可知$|x| \geq 0$，又序是可传递的（命题4.2.9），所以$y \geq 0$。由有理数的三歧性，
+$x$的取值有3种情况：
+（1）$x$等于0，此时$|x|=0$，由前提$y \geq |x|$可知$y \geq 0$，由此可知$y$是零或正有理数，所以$-y$是零或负有理数，
+进而$-y \leq 0$。
+
+（2）$x$是正有理数，此时$|x|=x$，由前提$y \geq |x|$可知$y \geq x$，此时$y$是正有理数，$x-(-y)=x+y$，两个正有理数相加是正有理数，所以$-y \leq x$。
+
+（3）$x$是负有理数，此时$|x|=-x$，不妨设$x=(-a)/b,y=c/d$，其中$a,b,c,d$是正整数。
+由前提$y \geq |x|$，可知$y \geq -x$，所以：
+\begin{align*}
+  y - (-x) & = c/d - \{-[(-a)/b]\} \\
+           & = c/d - a/b           \\
+           & = (bc - ad)/bd        \\
+\end{align*}
+由于$y \geq -x$，所以$(bc - ad)/bd$是正的。
+
+\begin{align*}
+  y - x & = c/d - (-a)/b   \\
+        & = c/d + a/b      \\
+        & = (ad + bc) / bd \\
+\end{align*}
+由于$a,b,c,d$都是正整数，由此可知$(ad + bc) / bd$是正的，所以$y > x$。
+
+\begin{align*}
+  x - (-y) & = x + y        \\
+           & = (-a)/b + c/d \\
+           & = (bc - ad)/bd \\
+\end{align*}
+由于$(bc - ad)/bd$是正的，所以$x \geq -y$。
+
+综上，（1）（2）（3）可知$-y \leq x \leq y$。
+
+特别地，把$y$替换为$|x|$，并且$|x| \geq x$，由必要性可知$-|x| \leq x \leq |x|$。
+
+\begin{zgraytheorem}
+  \begin{zremark}
+    因为$y$是负有理数，存在正整数$a,b$使得$y = (-a)/b$，现在证明$-y > y$。
+
+    证明：
+
+    由
+    \begin{align*}
+      (-y) - y & = a/b - [(-a)/b] \\
+               & = a/b + a/b      \\
+               & = (ab + ab)/bb   \\
+    \end{align*}
+
+    由于分子是正整数（命题2.2.8），分母是正整数（命题2.3.3），可知$(ab + ab)/bb$是正的，
+    所以$-y > y$。
+  \end{zremark}
+\end{zgraytheorem}
+
+\textbf{（d）（绝对值的可乘性）$|xy|=|x||y|$。特别地，$|-x|=|x|$}
+
+证明：
+
+由有理数的三歧性，证明过程可以按三种情况说明：
+
+（1）$x,y$有一个是0或都是0，此时，$|xy|=0,|x||y|=0$，所以$|xy|=|x||y|$。
+
+（2）$x,y$同号。如果$x,y$都是正有理数，存在正整数$a,b,c,d$使得$x=a/b,y=c/d$，此时：
+\begin{align*}
+  |xy| & = |(a/b) * (c/d)| \\
+       & = |(ac)/(bd)|     \\
+       & = ac/bd           \\
+\end{align*}
+又
+\begin{align*}
+  |x||y| & = |a/b||c/d|    \\
+         & = (a/b) * (c/d) \\
+         & = ac/bd         \\
+\end{align*}
+所以$|xy|=|x||y|$
+
+如果$x,y$都是负有理数，证明类似。
+
+（3）$x,y$是异号。
+如果$x$是正有理数，$y$是负有理数，存在正整数$a,b,c,d$使得$x=a/b,y=(-c)/d$，
+\begin{align*}
+  |xy| & = |(a/b) * [(-c)/d]| \\
+       & = |(-ac)/(bd)|       \\
+       & = ad/bd              \\
+\end{align*}
+又
+\begin{align*}
+  |x||y| & = |a/b||(-c)/d| \\
+         & = (a/b) * (c/d) \\
+         & = ac/bd         \\
+\end{align*}
+所以$|xy|=|x||y|$。
+如果$x$是负整数，$y$是正有理数，证明过程类似。
+
+综上，（1）（2）（3）可知$|xy|=|x||y|$。
+
+特别地，$-x=(-1)x$，所以
+\begin{align*}
+  |-x| & =|(-1)||x|                  \\
+       & =1|x|                       \\
+       & =|x|       & \text{命题4.2.4} \\
+\end{align*}。
+
+\textbf{（e）（距离的非退化性）$d(x,y) \geq 0$。另外，$d(x,y)=0$当且仅当$x=y$。 }
+
+证明：
+
+$d(x,y) = |x-y|$，由于$x-y$结果是有理数，由（a）可知$|x-y| \geq 0$，并且$|x-y|=0$当且仅当$x-y$等于零当且仅当$x=y$
+
+\textbf{（f）（距离的对称性）d(x,y) = d(y,x)。}
+
+证明：
+
+不妨设$z = x - y$，由于$d(x,y)=|z|,d(y,x)=|-z|$，由（d）可知$|-z|=|z|$，所以$d(x,y)=d(y,x)$
+
+\textbf{（g）（距离的三角不等式）$d(x,z) \leq d(x,y) + d(y,z)$。}
+
+证明：
+
+$d(x,z)=|x-z|,d(x,y)=|x-y|,d(y,z)=|y-z|$，由于$x-z = (x-y)+(y-z)$，
+由命题（b）可知$|x-z| \leq |x-y| + |y-z|$，所以$d(x,z) \leq d(x,y) + d(y,z)$。
+
+\section*{4.3.2}
+
+\textbf{（a）如果$x=y$，那么对任意的$\varepsilon > 0$，$x$都是$\varepsilon$- 接近于$y$的。
+  反过来，如果对于任意的$\varepsilon > 0$，$x$都是$\varepsilon$- 接近于$y$的，那么$x=y$。}
+
+证明：
+
+如果$x=y$，则：
+\begin{align*}
+  x-y & = y-y \\ &\text{有理数加法是定义明确的}
+  x-y & = 0   \\
+\end{align*}
+由此可知$d(x,y)=0$，所以任意$\varepsilon > 0$总有$\varepsilon > d(x,y)$。
+
+反过来，用反证法证明。不妨设$z=x-y$，由有理数的三歧性可知，$z$的取值有3种情况：
+
+（1）$z$是正有理数，此时$d(x,y)=|x-y|=|z|=z$，
+此时取$\varepsilon = (1/2) * z$，那么$d(x,y) > \varepsilon$，与前提矛盾，所以$z$不能是正有理数。
+
+（2）$z$是负有理数，此时$d(x,y)=|x-y|=|z|=-z$，
+此时也取$\varepsilon = (1/2) * z$，那么$d(x,y) > \varepsilon$，与前提矛盾，所以$z$不能是负有理数。
+
+由（1）（2）可知$z$只能是零，所以$z=x-y=0 \Rightarrow x=y$。
+
+\textbf{（b）设$\varepsilon > 0$，如果$x$是$\varepsilon$-接近于$y$的，那么$y$也是$\varepsilon$-接近于$x$的。}
+
+证明：
+
+由于$x$是$\varepsilon$-接近于$y$的，所以$d(x,y) \leq \varepsilon$。
+由命题4.3.3（f）可知$d(x,y)=d(y,x)$，所以$d(y,x) \leq \varepsilon$，所以$y$也是$\varepsilon$-接近于$x$的。
+
+\textbf{（c）设$\varepsilon,\delta>0$，如果$x$是$\varepsilon$- 接近于$y$的，
+  并且$y$是$\delta$- 接近于$z$的，那么$x$和$z$是$(\varepsilon+\delta)$- 接近的。}
+
+证明：
+
+由4.3.3（g）可知$d(x,z) \leq d(x,y) + d(y,z)$，所以$d(x,z) \leq \varepsilon + \delta$，
+那么$x$和$z$是$(\varepsilon+\delta)$- 接近的
+
+\textbf{（d）设$\varepsilon,\delta>0$，如果$x$和$y$是$\varepsilon$- 接近的，并且$z$和$w$是$\delta$- 接近的，
+  那么$x+z$和$y+w$是$(\varepsilon+\delta)$-接近的，并且$x-z$和$y-w$也是$(\varepsilon+\delta)$- 接近的。}
+
+证明：
+
+记$a:=y-x$，那么$y=x+a$且$|a| \leq \varepsilon$。
+类似地，定义$b:=w-z$，那么$w=z+b$且$|b| \leq \delta$。
+
+因为$y=x+a,w=z+b$，所以$d(x+z,y+w)=d(x+z,x+z+a+b)=|a+b|$，
+由4.3.3（b）可知$|a+b| \leq |a|+b$，即$d(x+z,y+w) \leq \varepsilon + \delta$，
+那么$x+z$和$y+w$是$(\varepsilon+\delta)$-接近的；
+
+因为$y=x+a,w=z+b$，所以$d(x-z,y-w)=d(x-z,x-z+a-b)=|a-b|=|a+(-b)|$，
+由4.3.3（b）（d）可知$|a+(-b)| \leq |a| + |b|$，即$d(x-z,y-w) \leq \varepsilon + \delta$，
+那么$x-z$和$y-w$也是$(\varepsilon+\delta)$- 接近的
+
+\textbf{（e）设$\varepsilon>0$，如果$x$和$y$是$\varepsilon$- 接近的，
+  那么对任意的$\varepsilon^\prime > \varepsilon$，$x$和$y$也是$\varepsilon^\prime$- 接近的。}
+
+证明：
+
+由题设可知$d(x,y) \leq \varepsilon$，又$\varepsilon < \varepsilon^\prime$，
+由命题4.2.9（c）（序是可传递的）可知$d(x,y) \leq \varepsilon^\prime$，
+那么$x$和$y$也是$\varepsilon^\prime$- 接近的。
+
+\textbf{（f）设$\varepsilon>0$，如果$y$和$z$都是$\varepsilon$- 接近于$x$的，
+  并且$w$位于$y$和$z$之间（即$y \leq w \leq z$或$z \leq w \leq y$），
+  那么$w$也是$\varepsilon$- 接近于$x$的。}
+
+证明：
+
+情况1：
+$w=x$、$w=y$和$w=z$时，显然$w$是$\varepsilon$- 接近于$x$的。
+
+情况2：
+$w \neq x, w \neq y, w \neq z$时，
+当$y < w < x$时，可知：
+\begin{align*}
+  d(y,x) & = d(y,w) + d(w,x) \\
+\end{align*}
+由于命题4.3.3（e）可知$d(y,w) \geq 0$，所以$d(w,x) \leq \varepsilon$，否则与题设矛盾。
+当$x<w<z$、$z<w<x$和$x<w<y$证明类似。
+
+综上，命题成立。【感觉证明有点麻烦，没想到好的思路】
+
+\textbf{（g）设$\varepsilon>0$，如果$x$和$y$是$\varepsilon$- 接近的，并且$z$不为零，
+  那么$xz$和$yz$是$\varepsilon|z|$- 接近的。}
+
+证明：
+
+记$a:=y-x$，那么$y=x+a$且$|a| \leq \varepsilon$。
+
+因为$y=x+a$，所以，
+\begin{align*}
+  yz & = (x+a)z = xz + az \\
+\end{align*}
+于是，
+\begin{align*}
+  |yz - xz| = |xz + az - xz| = |az| = |a||z|
+\end{align*}
+又因为$|a| \leq \varepsilon$，所以，
+\begin{align*}
+  |yz - xz| \leq \varepsilon|z|
+\end{align*}
+从而$xz$和$yz$是$\varepsilon|z|$- 接近的。
+
+\section*{4.3.3}
+
+\textbf{（a）我们有$x^n x^m = x^{n+m}, (x^n)^m = x^{nm}, (xy)^n = x^n y^n$。}
+
+证明：
+
+（1）$x^n x^m = x^{n+m}$
+
+对$m$进行归纳。当$m=0$时，
+\begin{align*}
+  x^n x^0 & = x^n * 1 \\
+          & = x^n     \\
+\end{align*}
+又因为，
+\begin{align*}
+  x^{n+m} & = x^{n+0} \\
+          & = x^n
+\end{align*}
+所以当$m=0$是命题成立。
+
+归纳假设$m=k$时，$x^n x^k = x^{n+k}$。
+
+现在只需证明$m=k++$时，命题成立。由定义4.3.9可知，
+\begin{align*}
+  x^n x^{k+1} & = x^n (x^k \times x^1) \\
+\end{align*}
+又由命题4.2.4（有理数的代数定律）可知，
+\begin{align*}
+  x^n x^{k+1} & = x^n (x^k \times x^1) \\
+              & = (x^n x^k) \times x^1 \\
+              & = x^{n+k} \times x^1   \\
+              & = x^{n+k++}
+\end{align*}
+综上，归纳完成。
+
+（2）$(x^n)^m = x^{nm}$
+
+对$m$进行归纳。当$m=0时$，由定义4.3.9可知，
+\begin{align*}
+  (x^n)^m & = (x^n)^0 \\
+          & = 1
+\end{align*}
+又
+\begin{align*}
+  x^{nm} & = x^{n \times 0} \\
+         & = x^0            \\
+         & = 1
+\end{align*}
+所以当$m=0$是命题成立。
+
+归纳假设$m=k$时，$(x^n)^k = x^{nk}$。
+
+现在只需证明$m=k++$时，命题成立。
+\begin{align*}
+  (x^n)^{k++} & = (x^n)^k \times x^n                                  \\
+              & = x^{nk} \times x^n                                   \\
+              & = x^{(nk) + n}       & \text{【利用$x^n x^m = x^{n+m}$】} \\
+              & = x^{n(k+1)}                                          \\
+              & = x^{n(k++)}                                          \\
+\end{align*}
+综上，归纳完成。
+
+（3）$(xy)^n = x^n y^n$
+
+对$n$进行归纳。当$n=0$时，
+\begin{align*}
+  (xy)^n & = (xy)^0 \\
+         & = 1
+\end{align*}
+又
+\begin{align*}
+  x^n y^n & = x^0 y^0    \\
+          & = 1 \times 1 \\
+          & = 1
+\end{align*}
+所以当$n=0$是命题成立。
+
+归纳假设$n=k$时$(xy)^k = x^k y^k$。
+
+现在只需证明$n=k++$时，命题成立。
+由于，
+\begin{align*}
+  (xy)^n & =(xy)^{k++}                            \\
+         & = (xy)^k \times xy                     \\
+         & = x^k y^k \times xy                    \\
+         & = (x^k \times x) \times (y^k \times y) \\
+         & = x^{k++} \times y^{k++}
+\end{align*}
+综上，归纳完成。
+
+\textbf{（b）假设$n>0$，那么$x^n = 0$当且仅当$x=0$。}
+
+证明：
+
+必要性：如果$x^n=0$，由命题4.3.3（a）可知$|x^n|=0$，
+又由4.3.3（d）可知$|x^n|=|x|^n$。
+如果$|x|$是正有理数，那么$|x|^n$是正有理数（可以通过归纳法证明，这里省略），
+所以$|x|=0$，于是$x=0$。
+
+充分性：当$x=0$时，$0^n=0$是显然的（任何有理数乘零结果都是零，该命题的证明省略）。
+
+\textbf{（c）如果$x \geq y \geq 0$，那么$x^n \geq y^n \geq 0$。
+  如果$x > y \geq 0$并且$n > 0$，那么$x^n > y^n \geq 0$。}
+
+证明：
+
+（1）如果$x \geq y \geq 0$，那么$x^n \geq y^n \geq 0$
+
+对$n$进行归纳。
+当$n=0$时，$x^0=1,y^0=1$，此时$x^0 \geq y^0 \geq 0$。
+
+归纳假设$n=k$时，$x^k \geq y^k \geq 0$。
+
+现在只需证明$n=k++$时，命题成立。由归纳假设$x^k \geq y^k$可知，$x^k = y^k + a$且$a \geq 0$。
+所以，
+\begin{align*}
+  x^{k++} & = x^k \times x              \\
+          & = (y^k + a) \times x        \\
+          & = y^k \times x + a \times x \\
+\end{align*}
+又因为，
+\begin{align*}
+  x^{k++} - y^{k++} & = y^k \times x + a \times x - y^k \times y \\
+                    & = y^k \times x - y^k \times y + a \times x \\
+                    & = y^k \times (x - y) + a \times x          \\
+\end{align*}
+
+由此可知$x^{k++} - y^{k++} \geq 0$，所以$x^{k++} \geq y^{k++}$。
+当$y=0$时，由D可知$y^n = 0$，此时$y^n \geq 0$。
+当$y>0$即$y$是正有理数时，由C可知$y^n$是正有理数，所以$y^n > 0$。
+所以，$x^{k++} \geq y^{k++} \geq 0$；
+
+综上，归纳完成。
+
+（2）如果$x > y \geq 0$并且$n > 0$，那么$x^n > y^n \geq 0$
+
+相比于（1）区别在于$x$不能是零了，而$y$还是可以取到零的。
+证明方式类似，还是对$n$进行归纳，只是归纳基始从$n=1$开始。
+
+\textbf{（d）我们有$|x^n|=|x|^n$。}
+
+证明：
+
+对$n$进行归纳。 使用命题4.3.3（d）。
+
+当$n=0$，$|x^0| = 1, |x|^0 =1$，所以$|x^0| = |x|^0$。
+
+归纳假设$n=k$时，$|x^k| = |x|^k$。
+
+现在只需证明$n=k++$时，$|x^{k++}|=|x|^{k++}$。
+因为：
+
+\begin{align*}
+  |x^{k++}| & = |x^k||x|         & \text{【命题4.3.3（d）】}  \\
+            & = |x|^k \times |x|                        \\
+            & = |x|^{k++}        & \text{【命题4.3.10（a）】} \\
+\end{align*}
+
+综上，归纳完成。
+
+\section*{4.3.4}
+
+证明：
+
+整数的三歧性说明整数是由负整数和自然数构成，而由定义4.3.11（负整数次幂的指数计算）可以把负整数次幂转换为自然数次幂。
+然后利用命题4.3.10就可以证明4.3.12中的命题，具体证明就省略的，有点炒剩饭的感觉。
+
+
+\section*{4.3.5}
+
+证明：
+
+按照正整数的定义可知，正整数就是正自然数。
+
+对$N$进行归纳。
+
+当$N=1$时，$2^1 = 2$，所以$2^1 \geq 0$。
+
+归纳假设$N=k$时，$2^k \geq k$。
+
+现在只需证明$N=k++$时，命题成立。
+
+由归纳假设可知$2^k = k + a$且$a \geq 0$，所以
+\begin{align*}
+  2^{k++} - (k++) & = 2^k \times 2 - (k++)   \\
+                  & = (k+a) \times 2 - (k++) \\
+                  & = k-1 + 2a               \\
+\end{align*}
+又因为$k-1 \geq 0, 2a \geq 0$，所以$2^{k++} \geq k++$。
+
+综上，归纳完成。
+
+\end{document}

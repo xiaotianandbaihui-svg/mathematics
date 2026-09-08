@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{5.5 为什么}
+\maketitle
+
+
+\textbf{1.$R^{+}$没有上界}
+
+证明：
+
+反证法。
+假设$M>0$是$R^{+}$的上界，又$M + 1 \in R^+$，但$M + 1 > M$，存在矛盾。
+
+\textbf{2.空集没有最小上界。}
+
+证明：
+
+假设空集存在$M$为其最小上界，由于任何实数都是空集的上界，
+所以$M - 1$也是空集的上界，但$M - 1 < M$，与最小上界的定义矛盾。
+
+\textbf{
+  3.因为$m_n/n$是$E$的上界而$(m_{n^\prime}-1)/n^\prime$不是，
+  所以一定有$m_n/n > (m_{n^\prime}-1)/n^\prime$。
+}
+
+证明：
+
+$(m_{n^\prime}-1)/n^\prime$不是$E$的上界，即：存在$x \in E$使得
+$x > (m_{n^\prime}-1)/n^\prime$。
+
+又$m_n/n$是$E$的上界，所以，$x \leq m_n/n$，所以，
+\begin{align*}
+  (m_{n^\prime}-1)/n^\prime < x \leq m_n/n \\
+  (m_{n^\prime}-1)/n^\prime < m_n/n
+\end{align*}
+
+\textbf{
+  4.定理5.5.9的证明过程中，“再次由阿基米德性质可知，存在一个整数$L$使得$L/n < x_0$”的证明。
+}
+
+证明：
+
+如果$x_0 > 0$，取$L = 0$即可；
+
+如果$x_0 = 0$，取$L = -1$即可；
+
+如果$x_0 < 0$。
+
+于是$-x_0 > 0$，所以由阿基米德性质可知，存在正整数$L^\prime$使得
+\begin{align*}
+  L^\prime / n >  - x_0 \\
+  \implies              \\
+  -L^\prime / n < x_0
+\end{align*}
+却$L = - L^\prime$即可；
+
+
+\end{document}

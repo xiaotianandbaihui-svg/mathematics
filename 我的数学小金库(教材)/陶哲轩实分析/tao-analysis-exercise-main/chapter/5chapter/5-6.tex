@@ -1,0 +1,363 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{5.6 习题}
+\maketitle
+
+\section*{5.6.1}
+
+证明：
+
+\textbf{（a）}
+
+仿照命题5.5.12 的证明过程。
+
+令$E=\{z \in R: z \geq 0 \text{且} z^n \leq x\}$，由定义5.6.4 可知$y = x^{1/n} := sup(E)$。
+
+利用反证法，我们要证明$y^n < x$和$y^n > x$都会导致矛盾。
+
+首先假设$y^n < x$，假设$0<\epsilon<1$是一个较小的正数。由于$\epsilon ^n < \epsilon$。
+
+如果$0< y \leq 1$，那么，
+\begin{align}
+  (y + \epsilon)^n & = \epsilon ^n + k_0y\epsilon^{n-1} + k_1y^2\epsilon^{n-2} + ... + y^n \\
+                   & < \epsilon + y^n + max(k_0,k_1,...,)y\epsilon                         \\
+                   & < y^n + \epsilon[1+max(k_0,k_1,...,)y]
+\end{align}
+
+设$\delta = x - y^n$，取$\epsilon < \delta / [1+max(k_0,k_1,...,)y]$，就可以保证$(y + \epsilon)^n < x$，
+所以$(y + \epsilon) \in E$，从而与$y$是$E$的上确界矛盾。
+
+如果$y>1$，那么，
+\begin{align}
+  (y + \epsilon)^n & = \epsilon ^n + k_0y\epsilon^{n-1} + k_1y^2\epsilon^{n-2} + ... + y^n \\
+                   & < \epsilon + y^n + max(k_0,k_1,...,)y^{n-1}\epsilon                   \\
+                   & < y^n + \epsilon[1+max(k_0,k_1,...,)y^{n-1}]
+\end{align}
+设$\delta = x - y^n$，取$\epsilon < \delta / [1+max(k_0,k_1,...,)y^{n-1}]$，就可以保证$(y + \epsilon)^n < x$，
+所以$(y + \epsilon) \in E$，从而与$y$是$E$的上确界矛盾。
+
+现在假设$y^n > x$，假设$0<\epsilon<1$是一个较小的正数。
+
+如果$0< y \leq 1$，那么，
+\begin{align}
+  (y - \epsilon)^n & > y^n - \epsilon^n - max(|k_0|,|k_1|,...,)y\epsilon \\
+                   & > y^n - \epsilon[1-max(|k_0|,|k_1|,...,)y]
+\end{align}
+
+设$\delta = y^n - x$，取$\epsilon < \delta / [1-max(|k_0|,|k_1|,...,)y]$，就可以保证$(y - \epsilon)^n > x$，
+所以$(y-\epsilon)$也是上界，这与$y$是$E$的最小上界矛盾。
+
+如果$y > 1$，那么，
+\begin{align}
+  (y - \epsilon)^n & > y^n - \epsilon^n - max(|k_0|,|k_1|,...,)y\epsilon \\
+                   & > y^n - \epsilon[1-max(|k_0|,|k_1|,...,)y^{n-1}]
+\end{align}
+
+设$\delta = y^n - x$，取$\epsilon < \delta / [1-max(|k_0|,|k_1|,...,)y^{n-1}]$，就可以保证$(y - \epsilon)^n > x$，
+所以$(y-\epsilon)$也是上界，这与$y$是$E$的最小上界矛盾。
+
+根据这两个矛盾，我们得到$y^n = x$，命题得证。
+
+证明过程中$k_n$具体的值是什么不重要，这里是定性分析。
+
+\textbf{（b）}
+
+该命题说明了$y$的唯一性，即：只有$y=x^{1/n}$，才能使得$y^n = x$。
+
+假设存在$y^\prime$使得$(y^\prime)^n = x$，那么$(y^\prime)^n = y^n$，对$n$进行归纳，可知$y^\prime = y$，
+存在矛盾，所以$y=y^\prime$，即$y=x^{1/n}$是唯一的。
+
+\textbf{（c）}
+
+定义5.6.4 就保证了任何$E=\{y \in R: y \geq 0 \text{且} y^n \leq x\}$的上界$M \geq 0$，
+因为上界要大于$E$中的任意元素。所以，$E$的最小上界$sup(E) \geq 0$，所以$x^{1/n}$是非负实数。
+
+\textbf{（d）}
+
+必要性：因为$x^{1/n} > y^{1/n}$，且由命题5.6.3（c）可知，
+\begin{align*}
+  (x^{1/n})^n   & > (y^{1/n})^n \\
+  \Rightarrow x & > y           \\
+\end{align*}
+
+充分性：反证法，假设$x > y$时，$x^{1/n} \leq y^{1/n}$。而通过5.6.3（c）可知，
+\begin{align*}
+  (x^{1/n})^n   & \leq (y^{1/n})^n \\
+  \Rightarrow x & \leq y           \\
+\end{align*}
+这与$x > y$矛盾。所以假设不成立，命题得证。
+
+\textbf{（e）}
+（1）$x>1$
+
+首先证明$x>1$时，$x^{1/n}>1$。由（d）可知，$x>1$于是$x^{1/n} > 1^{1/n}$，又因为$1^n=1$，由（b）可知$1=1^{1/n}$，
+于是，
+\begin{align*}
+  x^{1/n} & > 1^{1/n} = 1
+\end{align*}
+
+现在证明$x>1$时，$x^n$是严格递增的。只需证明对任意自然数$k, x^k < x^{k+1}$。由于，
+\begin{align*}
+  x^{k+1} - x^k & = x^k(x-1) > 0
+\end{align*}
+所以$x^n$是严格递增的。
+
+不妨设$k_0 < k_1$，由（a）可知，
+\begin{align}
+  (x^{1/k_0})^{k_0} & = x \\
+  (x^{1/k_1})^{k_1} & = x
+\end{align}
+由于$x>1, x^{1/k_1} > 1$，于是$(x^{1/k_1})^n$是严格递增的，且$k_0<k_1$，
+所以$(x^{1/k_1})^{k_0} < (x^{1/k_1})^{k_1}=x$，由此可知，
+\begin{align}
+  x = (x^{1/k_0})^{k_0} & > (x^{1/k_1})^{k_0}
+\end{align}
+由5.6.3（c）可知，$x^{1/k_0} > x^{1/k_1}$，所以$x^{1/k}$是关于$k$的减函数得证。
+
+（2）$x<1$ 证明略
+
+（3）$x=1$ 证明略
+
+\textbf{（f）}
+
+按照消去律，只需证明，等式两端的$n$次幂是相等的即可。
+
+由（a）可知
+\begin{align*}
+  [(xy)^{1/n}]^n = xy
+\end{align*}
+
+由命题5.6.3（a）可知，
+\begin{align*}
+  (x^{1/n}y^{1/n})^n & = (x^{1/n})^n  (y^{1/n})^n \\
+                     & = xy
+\end{align*}
+
+\textbf{（g）}
+
+按照消去律，只需证明，等式两端的$mn$次幂是相等的即可。
+
+由（a）可知
+\begin{align*}
+  [(x)^{1/mn}]^mn = x
+\end{align*}
+
+有5.6.3 （a）可知，
+
+\begin{align*}
+  [(x^{1/n})^{1/m}]^{mn} & = \{[(x^{1/n})^{1/m}]^m\}^n \\
+                         & = (x^{1/n})^n               \\
+                         & = x
+\end{align*}
+
+\section*{5.6.2}
+
+证明：
+
+记$q=a/b,r=c/d$，其中$a,c$是整数且$b,d$是正整数。
+
+\textbf{（a）}
+
+$x^q = (x^{1/b})^a$，由定义5.6.4 可知$x^{1/b} \geq 0$，现在只需证明$x^{1/b} \neq 0$，
+假设$x^{1/b}=0$，那么，
+\begin{align*}
+  x^{1/b}     & = 0   \\
+  (x^{1/b})^b & = 0^b \\
+  x           & = 0
+\end{align*}
+这与$x>0$矛盾，所以$x^{1/b} > 0$。
+
+$(x^{1/b})^a$的正实数性，通过对$a$进行讨论来完成证明。
+
+（1）$a \leq 0$时，可以对$a$进行归纳。
+
+$a=1$时，$(x^{1/b})^0=1 > 0$；
+
+归纳假设$a=k$时，$(x^{1/b})^k > 0$。
+
+$a=k+1$时，
+\begin{align*}
+  (x^{1/b})^{k+1} & = (x^{1/b})^k(x^{1/b})
+\end{align*}
+由命题5.4.4可知$(x^{1/b})^k(x^{1/b}) > 0$；
+
+至此，归纳完成。
+
+（2）$a < 0$时，由于$-a > 0$，所以$(x^{1/b})^a=1/[(x^{1/b})^{-a}]$，由于$[(x^{1/b})^{-a}]>0$，
+所以$1/[(x^{1/b})^{-a}]>0$，即：$(x^{1/b})^a > 0$。
+
+\textbf{（b）}
+
+（1.1）
+\begin{align*}
+  x^{q+r} = x^{(ad+bc)/bd} \\
+\end{align*}
+
+对$x^{(ad+bc)/bd}$进行$bd$次幂，
+\begin{align*}
+  (x^{(ad+bc)/bd})^{bd} & =(x^{1/bd})^{(ad+bc)bd} \\
+                        & = x^{ad+bc}
+\end{align*}
+
+（1.2）
+
+\begin{align*}
+  x^qx^r & = x^{a/b}x^{c/d}          \\
+         & = (x^{1/b})^a (x^{1/d})^c \\
+\end{align*}
+
+对$(x^{1/b})^a (x^{1/d})^c$进行$bd$次幂，
+\begin{align*}
+  [(x^{1/b})^a (x^{1/d})^c]^{bd}
+   & = (x^{1/b})^{abd}(x^{1/d})^{bcd}
+   & = x^{ad}x^{bc}
+   & = x^{ad+bc}
+\end{align*}
+
+由消去律可知，$x^{q+r}=x^qx^r$。
+
+相同方法可知$(x^q)^r = x^{qr}$
+
+\textbf{（c）}
+
+$q=0$时，$x^{-0}=1,1/x^0=1/1=1$，所以$x^{-q}=1/x^q$。
+
+$q > 0$时，此时$a>0$，$x^{-q} = (x^{1/b})^{-a}$，由于$-a < 0$，
+由定义5.6.2 可知，$(x^{1/b})^{-a} = 1/(x^{1/b})^{a} = 1/x^q$。
+
+$q < 0$时，$a < 0$，$x^{-q} = (x^{1/b})^{-a}$。
+$1/x^q = 1/(x^{1/b})^a$，由于$a<0$，由定义5.6.2 可知，
+$1/x^q = 1/(x^{1/b})^a=(x^{1/b})^{-a}=x^{-q}$。
+
+综上，命题得证。
+
+\begin{zgraytheorem}
+  \begin{zremark}
+    $1/(x^{1/b})^a=(x^{1/b})^{-a}$，利用了命题: $(x^{-1})^{-1}=x$，即：$x$倒数的倒数是$x$。
+
+    该命题不做说明了
+  \end{zremark}
+\end{zgraytheorem}
+
+\textbf{（d）}
+
+$x^q = (x^{1/b})^a$，$y^q=(y^{1/b})^a$，由命题5.6.3 （c）可知，我们只需证明$(x^{1/b})>(y^{1/b})$，
+因为$x>y$，由命题5.6.6 （d）可知，$(x^{1/b})>(y^{1/b})$。
+
+\textbf{（e）}
+
+\begin{align*}
+  (x^q)^{bd} & = (x^{a/b})^{bd}     \\
+             & = [(x^{1/b})^a]^{bd} \\
+             & = x^{ad}
+\end{align*}
+
+\begin{align*}
+  (x^r)^{bd} & = (x^{c/d})^{bd}     \\
+             & = [(x^{1/d})^c]^{bd} \\
+             & = x^{bc}
+\end{align*}
+
+（1）$x > 1$
+
+在习题5.6.1（e）的证明过程已说明$x>1, n \geq 0$时，$x^n$是严格递增。
+\begin{zgraytheorem}
+  在5.6.1（e）中只说明了$n \geq 0$，所以$n < 0$也需要证明下：
+  \textbf{设$x>1, n<0$，那么$x^n$是一个关于$n$的递增函数。}
+
+  设$-k_1 < -k_2 < 0$，现在要证明$x^{-k_1} < x^{-k_2}$。
+
+  反证法，假设$x^{-k_1} > x^{-k_2}$，则存在$\epsilon > 0$使得$x^{-k_1} = x^{-k_2} + \epsilon$。
+  由题设可知，存在$ \delta > 0$使得$x^{k_1} = x^{k_2} + \delta$，所以，
+  \begin{align*}
+    x^{k_1}x^{-k_1} & = (x^{k_2} + \delta)(x^{-k_2} + \epsilon)                               \\
+                    & = x^{k_2}x^{-k_2} + x^{k_2}\epsilon + \delta x^{-k_2} + \delta \epsilon \\
+                    & = 1 + x^{k_2}\epsilon + \delta x^{-k_2} + \delta \epsilon               \\
+                    & > 1
+  \end{align*}
+  这与$x^{k_1}x^{-k_1} = 1$矛盾。
+
+  反证法，假设$x^{-k_1} = x^{-k_2}$，此时$x^{k_1}x^{-k_1} = x^{k_2}x^{-k_2} = x^{k_2}x^{-k_1}$，
+  这与$x^{k_1} > x^{k_2}$，$x^{k_1}x^{-k_1} > x^{k_2}x^{-k_1}$矛盾。
+
+\end{zgraytheorem}
+
+（1.1）充分性：
+
+如果$x^q > x^r$，由引理5.6.9（d）可知$(x^q)^{bd} > (x^r)^{bd}$，于是，
+\begin{align*}
+  x^{ad} >  x^{bc}
+\end{align*}
+由$x^n$的严格递增性可知$ad > bc$，所以$q - r = (ad-bc)/bd > 0$，可得$q > r$。
+
+
+（1.2）必要性：
+
+$q>r$，则
+\begin{align*}
+  a/b - c/d           & = (ad-bc)/bd > 0 \\
+  \Rightarrow ad - bc & > 0
+  \Rightarrow ad      & > bc
+\end{align*}
+由于$ad > bc$可知，$(x^q)^{bd} > (x^r)^{bd}$，由引理5.6.9（d）可知，$x^q > x^r$。
+
+（2）$x < 1$
+证明类似略
+
+\section*{5.6.3}
+
+先证明$x^2 = |x|^2$。
+
+如果$x = 0$，显然成立；
+
+如果$x > 0$，由于$|x|=x$，所以$|x|^2 = x^2$；
+
+如果$x < 0$，不妨设$x = -y, |x|=y, y > 0$，则
+\begin{align*}
+  x^2 & = (-y)^2       \\
+      & = (-1)^2y^2    \\
+      & = 1 \times y^2 \\
+      & = y^2
+\end{align*}
+所以$|x|^2 = x^2 = y^2$。
+
+利用引理5.6.9（a）
+\begin{align*}
+  (x^2)^{1/2} & = (|x|^2)^{1/2}      \\
+              & = |x|^{2 \times (1/2)} \\
+              & = |x|
+\end{align*}
+
+\end{document}

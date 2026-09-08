@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{Theorem}
+
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+% 定义证明环境样式
+\newtheoremstyle{zproofstyle}% 证明环境样式的名称
+  {0.5em}% 上方间距
+  {0.5em}% 下方间距
+  {\itshape}% 证明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 证明标记的字体样式
+  {.\newline}% 证明标记和证明内容之间的标点
+  {1em}% 证明标记后的水平空间
+  {}% 证明标记后的垂直空间
+
+% 使用新定义的样式创建证明环境
+\theoremstyle{zproofstyle}
+\newtheorem*{zproof}{证明}
+
+\begin{document}
+\title{3.6 为什么}
+\maketitle
+
+\section*{注3.6.3}
+\textcircled{1}单射
+
+对任意$x_1 \in X, x_2 \in X, x_1 \neq x_2, f(x_1)=2x_1,f(x_2)=2x_2$，
+乘法是交换的（引理2.3.2）如果$f(x_1)=f(x_2)$则$2x_1=2x_2$，
+由乘法的消去律(推论2.3.7)可知，$x_1=x_2$，与题设矛盾，所以f是单射的。
+
+\textcircled{2}满射
+
+对任意$y \in Y$，由于Y是偶数集，所以Y总的元素都需要符合偶数的定义，
+即：对任意的Y中元素y，当且仅当y=2n，n是自然数。由此可得f是满射。
+
+\section*{注3.6.6}
+需要找到$X=\{i \in N: i<n\} \rightarrow Y=\{i \in N: 1\leq i \leq n \}$的双射函数f.
+我们定义$f: X \rightarrow Y, \{f(x): x \in X, f(x) = x ++\}$
+
+现在证明f是双射函数。
+
+\textcircled{1}单射
+
+对任意$i_1 \in X, i_2 \in X, i_1 \neq i_2, f(i_1) = i_1++, f(i_2) = i_2++$，
+若$f(i_1) = f(i_2)$，则$i_1++ = i_2++$，由洛必达公理2.4可知$i_1 = x_2$，与$i_1 \neq i_2$矛盾，
+所以$f(i_1) \neq f(i_2)$，所以f是单射的
+
+\textcircled{2}满射
+
+对任意$y \in Y$，可知y是正数，而正数可以由一个自然数加1得到，假设$y = b++$，
+又$y \leq n$，所以$b < n$，所以$b \in X$，所以f是满射
+
+至此，命题得证
+
+
+\section*{引理3.6.8}
+\textbf{证明：不存在从空集到一个非空集合的双射}
+
+由函数的满射定义可知，对值域中的任意元素y，定义域中都存在一个元素x，使得函数y=f(x)，
+而如果定义域是空集，那么x是不存在的，所以无法满足满射定义。
+
+\section*{引理3.6.9}
+\textbf{证明：定义的g函数是双射函数}
+
+\begin{zgraytheorem}
+  \begin{zremark}
+    g构造书中说的不够直观，其实就是比$f(x)$小的，保持不变，比$f(x)$大的，向左平移1下，也就是$f(x)-1$。
+    这样就能保证值域不超过n，且为$\{i \in N: 1 \leq i \leq n-1\}$
+  \end{zremark}
+\end{zgraytheorem}
+
+\begin{zproof}
+
+  不妨设$Z=X - \{x\}, Y_{n-1}=\{i \in N: 1 \leq i \leq n-1\},Y_{n}=\{i \in N: 1 \leq i \leq n\} $。
+
+  \textcircled{1}g是单射
+
+  对任意$x_1 \in Z, x_2 \in Z, x_1 \neq x_2$，假设$g(x_1) = g(x_2)$，
+  由函数g的构造方式可知，要么$g(x_1)=g(x_2)=f(x_1)=f(x_2)$，
+  要么$g(x_1)=g(x_2)=f(x_1)-1=f(x_2)-1$，这都与f是单射函数矛盾，所以$g(x_1) \neq g(x_2)$，
+  所以g是单射的。
+
+  \textcircled{2}g是满射
+
+  对任意$y \in Y_{n-1}$，$y \in Y_n$，由于f是满射的，则存在$a \in X$使得$y=f(a)$，
+  若$f(a) < f(x)$，那么$y=g(a)=f(a)$；
+  若$f(a) \geq f(x)$，则由于f是单射，所以存在$b \in X$使得$y++=f(b)$，
+  由$f(b) > f(a) \geq f(x)$可知$f(b) > f(x)$，所以$g(b)=f(b)-1=(y++)-1=y$；
+  由此可知，对任意y都会存在Z中的元素i，使得$y=g(i)$。
+  （特别说明下，y++不可能取到n++的，因为$y \in Y_{n-1}$）
+  至此，g是满射得证。
+
+  综上，命题得证。
+\end{zproof}
+\end{document}

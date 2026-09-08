@@ -1,0 +1,481 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+% 定义证明环境样式
+\newtheoremstyle{zproofstyle}
+  {0.5em}
+  {0.5em}
+  {\itshape}
+  {}
+  {\bfseries}
+  {.}
+  {\newline}
+  {}
+\theoremstyle{zproofstyle}
+\newtheorem*{zproof}{证明}
+\newcommand{\zsub}{\mathbin{\rule{1em}{0.5em}}}
+\begin{document}
+\title{4.1 习题}
+\maketitle
+
+\section*{4.1.1}
+\begin{zproof}
+  \textcircled{1} 自反性
+
+  设$a \zsub b$是任意整数，现证明$a \zsub b$ = $a \zsub b$。
+  由于$a+b=a+b$，所以$a \zsub b$ = $a \zsub b$
+
+  \textcircled{2} 对称性
+
+  设$a \zsub b = c \zsub d$，现证明$c \zsub d=a \zsub b$。
+  由于$a \zsub b = c \zsub d$，所以$a+d=c+b$，
+  由自然数相等的对称性可知$c+b=a+d$，所以$c \zsub d=a \zsub b$。
+\end{zproof}
+
+\section*{4.1.2}
+\begin{zproof}
+  $-(a \zsub b)=b \zsub a,-(a^\prime \zsub b^\prime)=b^\prime \zsub a^\prime$，
+  又$(a \zsub b)=(a^\prime \zsub b^\prime)$则$a+b^\prime = a^\prime + b$，
+  由于加法是可以交换的（命题2.2.4）所以$b^\prime + a = b + a^\prime$，
+  由此可得$-(a^\prime \zsub b^\prime)=-(a \zsub b)$，
+  又由整数相等的对称性可得$-(a \zsub b)=-(a^\prime \zsub b^\prime)$。
+\end{zproof}
+
+\section*{4.1.3}
+\begin{zproof}
+  因为a是整数，不妨设$a = x \zsub y$，其中$x, y$是自然数，则
+  \begin{align*}
+     & (-1) \times a                                               \\
+     & =(0 \zsub 1) \times (x \zsub y)                             \\
+     & = (0 \times x + 1 \times y) \zsub (0 \times y + 1 \times x) \\
+     & = (0 + y) \zsub (0 + x)                                     \\
+     & = y \zsub x                                                 \\
+     & = -a
+  \end{align*}
+\end{zproof}
+
+\section*{4.1.4}
+注意： 此时书中已经说明了$\zsub$与$-$的等价性，从此处开始证明中将不使用$\zsub$
+
+记$x = a - b, y = c - d, z = e - f$其中a、b、c、d、e、f是自然数
+
+\textcircled{1} $x + y = y + x$
+
+\begin{zproof}
+  \begin{align*}
+     & x + y           \\
+     & = (a-b)+(c-d)   \\
+     & = (a+c) - (b+d) \\
+     & y + x           \\
+     & =(c-d)+(a-b)    \\
+     & =(c+a) - (d+b)  \\
+  \end{align*}
+  由于加法是可交换（命题2.2.4）可知$a+c=c+a,b+d=d+b$，又由自然数相等的替换公理
+  可得$(a+c) + (d+b) = (c+a) + (b+d)$，由此可知$x + y = y + x$
+\end{zproof}
+
+\textcircled{2} $(x+y)+z=x+(y+z)$
+
+\begin{zproof}
+  \begin{align*}
+     & (x+y)+z               \\
+     & = [(a-b)+(c-d)]+(e-f) \\
+     & = [(a+c)-(b+d)]+(e-f) \\
+     & = (a+c+e) - (b+d+f)   \\
+     & x+(y+z)               \\
+     & = (a-b)+[(c-d)+(e-f)] \\
+     & = (a-b)+[(c+e)-(d+f)] \\
+     & = (a+c+e) - (b+d+f)   \\
+  \end{align*}
+  于是$(x+y)+z=x+(y+z)$
+
+\end{zproof}
+
+\textcircled{3} $x+0=0+x=x$
+
+\begin{zproof}
+  可以把$0$看做整数$0-0$，由\textcircled{1}可知$x+0=0+x$，
+  \begin{align*}
+     & 0+x           \\
+     & = (0-0)+(a-b) \\
+     & = (0+a)-(0+b) \\
+     & = a-b         \\
+     & = x
+  \end{align*}
+\end{zproof}
+
+\textcircled{4} $x+(-x)=(-x)+x=0$
+
+\begin{zproof}
+  由\textcircled{1}可知$x+(-x)=(-x)+x$，可以把$0$看做整数$0-0$，
+  现在证明整数$x+(-x)=0-0$
+  \begin{align*}
+              & x + (-x)        \\
+              & = (a-b) + (b-a) \\
+              & = (a+b) - (b+a) \\
+    (a+b) + 0 & = (b+a) + 0     \\
+    a + b     & = b + a
+  \end{align*}
+  于是$x+(-x)=(-x)+x=0$
+\end{zproof}
+
+\textcircled{5} $xy=yx$
+
+\begin{zproof}
+  \begin{align*}
+     & xy                  \\
+     & = (a-b)(c-d)        \\
+     & = (ac+bd) - (ad+bc) \\
+     & yx                  \\
+     & = (c-d)(a-b)        \\
+     & = (ca+db) - (cb+da) \\
+  \end{align*}
+  由于加法是可以交换的，乘法也是可以交换的，所以
+  \begin{align*}
+     & = (ca+db) - (cb+da) \\
+     & = (ac+bd) - (ad+bc) \\
+  \end{align*}
+  于是$xy = yx$
+\end{zproof}
+
+\textcircled{7} $x1=1x=x$
+
+\begin{zproof}
+  由\textcircled{5} 可知$x1=1x$，又
+  \begin{align*}
+     & x1                                                      \\
+     & = (a-b) \times (1-0)                                    \\
+     & = (a \times 1 + b \times 0) - (a \times 0 + b \times 1) \\
+     & = (a + 0) - (0 + b)                                     \\
+     & = a - b                                                 \\
+     & = x                                                     \\
+  \end{align*}
+\end{zproof}
+
+\textcircled{8} $x(y + z) = xy + xz$
+
+\begin{zproof}
+  \begin{align*}
+     & x(y + z)                                  \\
+     & = (a-b)[(c-d)+(e-f)]                      \\
+     & = (a-b)[(c+e)-(d+f)]                      \\
+     & = [a(c+e)+b(d+f)] - [a(d+f)+b(c+e)]       \\
+     & = (ac+ae+bd+bf) - (ad+af+bc+be)           \\
+     & xy + xz                                   \\
+     & = (a-b)(c-d) + (a-b)(e-f)                 \\
+     & = [(ac + bd)-(ad+bc)] + [(ae+bf)-(af+be)] \\
+     & = [(ac + bd)+(ae+bf)] - [(ad+bc)+(af+be)] \\
+     & = (ac+ae+bd+bf) - (ad+bc+af+be)           \\
+  \end{align*}
+  于是$x(y + z) = xy + xz$
+\end{zproof}
+
+\textcircled{9} $(y+z)x = yx+zx$
+
+\begin{zproof}
+  由\textcircled{5}可知$(y+z)x=x(y+z)$，
+  又由\textcircled{8}可知$x(y+z)=xy+xz$，
+  再次应用\textcircled{5}可得$xy+xz=yx+zx$，
+  于是等式成立
+\end{zproof}
+
+\section*{4.1.5}
+
+\begin{zproof}
+  由引理4.1.5（整数的三歧性）分多种情况讨论。
+
+  （1）如果$a,b$都是正自然数，
+  则由2.3.3可知$ab$是正自然数，则$ab \neq = 0$与题设矛盾；
+
+  （2）如果$a,b$都是正自然数的负数，假设分别为$-m,-n$，m、n都是正自然数。
+  \begin{align*}
+     & ab                                              \\
+     & = (-m) \times (-n)                              \\
+     & = (0-m) \times (0-n)                            \\
+     & = (0 \times 0 + mn) - (0 \times 0 + m \times 0) \\
+     & = mn                                            \\
+  \end{align*}
+  由于m,n都是正自然数，所以$ab=mn \neq 0$，与题设矛盾；
+
+  （3）如果$a=b=0$，$ab=0$，满足题设。
+
+  （4）如果$a=0,b=x-y$，x、y为任意自然数；
+  \begin{align*}
+     & ab                            \\
+     & = (0-0) \times (x-y)          \\
+     & = (0 \times x) - (0 \times y) \\
+     & = 0 - 0                       \\
+     & = 0                           \\
+  \end{align*}
+  所以$ab=0$，满足题设；
+
+  （5）如果$a=x-y,b=0$，x、y为任意自然数；
+  \begin{align*}
+     & ab                            \\
+     & = (x-y) \times (0-0)          \\
+     & = (x \times 0) - (y \times 0) \\
+     & = 0 - 0                       \\
+     & = 0                           \\
+  \end{align*}
+  于是$ab=0$，满足题设；
+
+  综上，命题得证。
+\end{zproof}
+
+\section*{4.1.6}
+
+\begin{zproof}
+  （1）方法一
+
+  由整数加法的替换性与命题4.1.6可知：
+  \begin{align*}
+    ac - bc & = 0 \\
+    (a-b) c & = 0 \\
+  \end{align*}
+  由命题4.1.8可知$a-b=0$，接下来要证$a=b$，以上等式才能成立。
+  \begin{align*}
+    a - b           & = 0     \\
+    a - b + b       & = 0 + b \\
+    a + (- b) + b   & = 0 + b \\
+    a + [(- b) + b] & = b     \\
+    a + 0           & = b     \\
+    a               & = b     \\
+  \end{align*}
+
+  \begin{zgraytheorem}
+    \begin{zremark}
+      上面的证明中用到了一个命题：a,b是整数且$a=b$，则$a+c=b+c$，c是整数。
+
+      该命题对自然数是成立的，但对于整数书中没有该命题，这里需要证明下。
+
+      记$a=x-y,b=p-q,c=w-z$，$x$、$y$、$p$、$q$、$w$、$z$是自然数。
+      由$a=b$可得：
+      \begin{align*}
+        a     & = b     \\
+        x - y & = p - q \\
+        x + q & = p + y \\
+      \end{align*}
+      又
+      \begin{align*}
+         & a + c               \\
+         & = (x - y) + (w - z) \\
+         & = (x + w) - (y + z) \\
+         & b + c               \\
+         & = (p - q) + (w - z) \\
+         & = (p + w) - (q + z) \\
+      \end{align*}
+      又由
+      \begin{align*}
+         & (x + w) + (q + z) \\
+         & = x + q + w + z   \\
+         & (p + w) + (y + z) \\
+         & = p + y + w + z   \\
+      \end{align*}
+      结合$x + q = p + y$于是$a+c=b+c$
+    \end{zremark}
+  \end{zgraytheorem}
+
+  （2）方法二
+
+  由引理4.1.5（整数的三歧性）分多种情况讨论。
+
+  （1）a、b、c都是正自然数，则
+  \begin{align*}
+    ac = bc
+  \end{align*}
+  由推论2.3.7可知$a=b$
+
+  其余的情况证明类似。（略）
+
+\end{zproof}
+
+\section*{4.1.7}
+
+（a）$a > b$当且仅当$a-b$是一个正的自然数。
+\begin{zproof}
+  \textcircled{1} 充分性
+
+  假设$a>b$，由引理4.1.5（整数的三歧性）对$a-b$分多种情况讨论。
+
+  （1）如果$a-b=0$，则$a=b$，与题设矛盾；
+
+  （2）$a-b$是正自然数n的负数-n，即
+  \begin{align*}
+    a - b     & = -n         \\
+    a - b + b & = -n + b     \\
+    a + 0     & = -n + b     \\
+    a         & = -n + b     \\
+    a + n     & = -n + b + n \\
+    a + n     & = b + -n + n \\
+    a + n     & = b          \\
+    b         & > a          \\
+  \end{align*}
+  与题设矛盾；
+
+  综上，$a-b$只能是正自然数
+
+  \textcircled{2} 必要性
+
+  假设$a-b$是一个正的自然数n，那么
+  \begin{align*}
+    a - b     & = n     \\
+    a - b + b & = n + b \\
+    a + 0     & = n + b \\
+    a         & = n + b \\
+  \end{align*}
+  于是$a \geq b$，又由于$n$是正自然数，那么$a \neq b$（其实这里需要引入一个额外的命题，下方有说明），所以$a > b$
+
+  \begin{zgraytheorem}
+    \begin{zremark}
+      整数$a,b$，如果$a \geq b$，c是正自然数，那么$a + c > b$
+
+      \begin{zproof}
+        不妨设$a=x-y,b=p-q$
+        因为$a \geq b$，那么存在一个自然数n使得$a = b + n$，
+        所以$a + c = b + n + c = b + (n + c)$，于是$a + c \geq b$，
+
+        若$a+c=b$，则
+        \begin{align*}
+          a + c            & = b        \\
+          b + n + c        & = b        \\
+          b + n + c + (-b) & = b + (-b) \\
+          n + c            & = 0        \\
+        \end{align*}
+        由推论2.2.9可知$c=0$，这与$c$是正自然数矛盾，所以$a+c \neq b$，所以$a + c > b$，命题得证。
+      \end{zproof}
+    \end{zremark}
+  \end{zgraytheorem}
+
+  综上，命题得证。
+\end{zproof}
+
+（b）（加法保持序不变）如果$a > b$，那么$a + c > b + c$
+
+\begin{zproof}
+  因为$a>b$，由（a）可知$a-b=n$，n是正自然数；
+  \begin{align*}
+     & (a+c) - (b+c)        \\
+     & =(a+c) + [-(b+c)]    \\
+     & =(a+c) + [(-c)+(-b)] \\
+     & =a + c + (-c) + (-b) \\
+     & =a + 0 + (-b)        \\
+     & =a - b
+  \end{align*}
+  由此可知$(a+c) - (b+c)=a - b$是正自然数，所以$a + c > b + c$。
+\end{zproof}
+
+\begin{zgraytheorem}
+  \begin{zremark}
+    以上的证明中$-(b+c)=(-b)+(-c)$，不是显然的，需要证明以下命题。
+
+    $a,b$是整数，则$-(a+b)=(-a)+(-b)$。
+    \begin{zproof}
+      由于a,b是整数，所以存在$a=x-y,b=p-q$，$x,y,p,q$是自然数。
+      \begin{align*}
+         & -(a+b)                \\
+         & =-[(x-y)+(p-q)]       \\
+         & =-[(x+p)-(y+q)]       \\
+         & =(y+p)-(x+p)          \\
+         & (-a)+(-b)             \\
+         & = [-(x-y)] + [-(p-q)] \\
+         & = (y-x) + (q-p)       \\
+         & = (y+q) - (x+p)       \\
+      \end{align*}
+      于是$-(a+b)=(-a)+(-b)$，命题得证。
+    \end{zproof}
+  \end{zremark}
+\end{zgraytheorem}
+
+（c）（正的乘法保持序不变）如果$a>b$并且c是正的，那么$ac > bc$。
+
+证明：
+
+因为$a>b$所以存在正自然数$x$使得$a=b+x$，此时
+\begin{align*}
+  ac & = (b+x) \times c          \\
+     & = b \times c + x \times c \\
+\end{align*}
+又
+\begin{align*}
+  ac - bc & = b \times c + x \times c - b \times c \\
+          & = x \times c                           \\
+\end{align*}
+由于$x,c$都是正的自然数，所以$ac-bc = x\times c > 0$，通过（a）可知$ac > bc$
+
+（d）（负运算反序）如果$a > b$，那么$-a < -b$。
+
+证明:
+
+不妨设$b = p - q$，$p$、$q$是自然数。由题设$a > b$可知存在正自然数c，使得$a = b + c$，
+\begin{align*}
+  -b - (-a) & = -b - (b + c)        \\
+            & = q-p - [(p - q) + c] \\
+            & = q-p - (p + c - q)   \\
+            & = q-p - [q - (p + c)] \\
+            & = q-p - q + p + c     \\
+            & = c                   \\
+\end{align*}
+（note: 上面把$p$，$q$，$c$既看做自然数也看做整数，这样自然数与整数的代数定律都可以使用）
+由于$c > 0$，所以$-a < -b$
+
+（e）(序是可以传递的) 如果$a > b$且$b > c$ ，那么 $a > c$。
+
+证明：
+
+不妨设
+\begin{align}
+  a & = x - y \\
+  b & = p - q \\
+  c & = w - z 
+\end{align}
+由$a>b,b>c$可知存在正自然数$c_0,c_1$使得：
+\begin{align*}
+  a & = (p - q) + c_0         \\
+    & = [(w - z) + c_1] + c_0 \\
+    & = (w - z) + (c_0 + c_1) \\
+\end{align*}
+所以$a > c$
+
+（f）（序的三歧性）命题$a>b$、$a<b$和$a=b$中恰好有一个为真。
+$a,b$是自然数，由整数的定义也可以把$a,b$看做整数。
+由整数的加法运算定义可知$a-b=a+(-b)$也是整数，又由引理4.1.5（整数的三歧性）
+可知序的三歧性。
+
+\section*{4.1.8}
+
+证明：
+
+归纳法原理覆盖的是自然数，或能把讨论的对象映射到自然数上。
+要证明命题4.1.8只要举一个反例即可。
+自然数n>=0是满足归纳法原理的。但推广到整数n时，n>=0就不成立了，
+比如n=-1，此时n<0。
+\end{document}

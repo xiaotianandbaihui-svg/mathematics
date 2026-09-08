@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{5.6 为什么}
+\maketitle
+
+
+\textbf{1.设$x \geq 0$是一个非负实数，$n \geq 1$是一个正整数，
+  集合$E:=\{y \in R : y \geq 0 \text{且} y^n \leq x\}$，
+  此时，集合$E$中包含0}
+
+证明：
+
+按照定义5.6.1 $0^n = 0$，所以$0^n \in E$。
+
+\textbf{2.如果$y > 1$，且$n \geq 1$是一个正整数，那么$y^n > 1$}
+
+证明：
+
+对$n$进行归纳。
+
+$n = 1$时，按照定义5.6.1 $y^n=y^1=y^0 \times y = 1 \times y = y$，因为$y > 1$，
+所以$y^n > 1$。
+
+归纳假设$n = k$时，$y^k > 1$。
+
+当$n = k+1$时，$y^{k+1} = y^k \times y$，于是由归纳假设可知，
+\begin{align*}
+  y^k          & > 1              \\
+  y^k \times y & > 1 \times y > 1
+\end{align*}
+
+综上，归纳完成。
+
+\textbf{3.如果$y > x$，且$y > 1, n \geq 1$，所以$y^n > x$}
+
+证明：
+
+对$n$进行归纳。
+
+当$n=1$时，$y^1 = y$，所以$y^n > x$。
+
+归纳假设，$n=k$时，$y^k > x$。
+
+当$n = k+1$时，$y^{k+1} = y^k \times y$，由归纳假设可知$y^k > x$，所以，
+\begin{align*}
+  y^k \times y & > xy
+\end{align*}
+又因为，
+\begin{align*}
+  y  & > 1 \\
+  yx & > x
+\end{align*}
+于是$y^k \times y > xy > x$。
+
+综上，归纳完成。
+
+\textbf{4.$x$是一个非负实数，证明$x^{1/1}=x=x^1$}
+
+证明：
+
+由定义5.6.1 可知，$x^1 = x^0 \times x = 1 \times x = x$。
+
+设$E=\{y \in R: y \geq 0 \text{且} y^1 \leq x\}$，由定义5.6.4 可知，$x^{1/1} = sup(E) = x$。
+
+\textbf{5.如果$y$和$z$是正的且$y^n=z^n$，那么$y=z$。}
+
+证明：
+
+假设$y^n = r$，由引理5.6.6（b） 可知$y = r^{1/n}$，
+
+同理$z = r^{1/n}$。
+
+相等的传递性可知$y=z$。
+
+\textbf{6.每一个有理数$q$不管是正的、负的还是零，都可以写成一个整数$a$和一个正整数$b$之比的形式$a/b$。}
+
+有理数的定义4.2.1 说明了其可以表示为$a/b$的形式，其中$a,b$是整数。
+结合有理数的三歧性（引理4.2.7）可以证明命题。
+
+\end{document}

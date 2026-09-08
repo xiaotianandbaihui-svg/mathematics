@@ -1,0 +1,504 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{Theorem}
+
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+% 定义证明环境样式
+\newtheoremstyle{zproofstyle}% 证明环境样式的名称
+  {0.5em}% 上方间距
+  {0.5em}% 下方间距
+  {\itshape}% 证明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 证明标记的字体样式
+  {.\newline}% 证明标记和证明内容之间的标点
+  {1em}% 证明标记后的水平空间
+  {}% 证明标记后的垂直空间
+
+% 使用新定义的样式创建证明环境
+\theoremstyle{zproofstyle}
+\newtheorem*{zproof}{证明}
+
+\begin{document}
+\title{3.6 习题}
+\maketitle
+
+\section*{3.6.1}
+\begin{zproof}
+  \textcircled{1}X和X有相等的基数。
+
+  构造一个从X到X的函数f，使得f(x)=x（$\{x \in X\}$）。函数f是双射函数，是显而易见的，
+  这里不做证明了。
+
+  \textcircled{2}如果X和Y有相等的基数，那么Y和X有相等的基数。
+
+  有X和Y有相等的基数，可知存在一个双射：$f: X \rightarrow Y$。
+  那么存在f的逆$f^{-1}: Y \rightarrow X$，由逆的定义可知$f^{-1}$是双射函数。
+
+  \textcircled{3}如果X和Y有相等的基数且Y和Z有相等的基数，那么X和Z有相等的基数。
+
+  由X和Y有相等的基数，可知存在一个双射：$f: X \rightarrow Y$。
+  由Y和Z有相等的基数，可知存在一个双射：$g: Y \rightarrow Z$。
+  那么g和f的复合函数为$g \circ f: X \rightarrow Z$。
+
+  由习题3.3.7可知$g \circ f$是双射函数。
+  由此可知存在一个双射：$g \circ f: X \rightarrow Z$，所以X和Z有相等的基数。
+\end{zproof}
+
+\subsection*{3.6.2}
+\begin{zproof}
+  \textcircled{1}充分性：一个集合X的基数为0，则X是空集。
+
+  那么存在从X到$\{i \in N: 1 \leq i \leq 0\}$的双射：$f: X \rightarrow \{i \in N: 1 \leq i \leq 0\}$。
+  而$\{i \in N: 1 \leq i \leq 0\}$是$\varnothing$，即$f: X \rightarrow \varnothing$。
+  如果X不是空集，那么则存在一个$x \in X$使得$f(x) \in \varnothing$，
+  这显然是不成立的，所以X是空集
+
+  \textcircled{2}必要性：X是空集，则X的基数为0。
+
+  若X是空集，由习题3.3.3知$f:\varnothing \rightarrow \varnothing$为双射，
+  而$\{i \in N : 1 \leq i \leq 0\}=\varnothing$，
+  即存在双射函数$f:\varnothing \rightarrow \{i \in N : 1 \leq i \leq 0\}$，
+  由定义3.6.5可知集合X基数为0.
+\end{zproof}
+
+\subsection*{3.6.3}
+\begin{zproof}
+  对n进行归纳：
+
+  n=0时，f是空函数，命题空成立。
+
+  归纳假设n=k时，命题成立。
+
+  下面我们证明该命题对于k++也为真。
+  设集合$N_k = \{i \in \mathsf{N}: 1 \leq i \leq k\}, N_{k++} = \{i \in \mathsf{N}: 1 \leq i \leq k++\}$。
+  函数$f_{k++}: N_{k++} \rightarrow N$是一个函数，
+  我们可以由$f_{k++}$定义出一个函数$f_k: N_k \rightarrow N$，对任意$i \in N_k, f_k(i) = f_{k++}(i)$。
+  由归纳假设可知，存在一个自然数M使得$f_k(i) \leq M, i \in N_k$，即$f_{k++}(i) \leq M, i \in N_k$，
+  此时我们可以取$f_{k++}(k++), M$中的较大值为$M^\prime$，
+  由此可知该$M^\prime$使得$f_{k++}(i) \leq M^\prime, i \in N_{k++}$。归纳法完成。
+\end{zproof}
+
+\subsection*{3.6.4}
+
+（a）设$X$是一个有限集，设$x$是一个对象并且$x$不是$X$中的元素。
+那么$X \cup \{x\}$是有限的，且$\# (X \cup \{x\}) = \# (X) + 1$
+\begin{zproof}
+  $X$是有限集，不妨设$X$的基数是自然数n。因此存在从$X$到$\{i \in N: 1 \leq i \leq n\}$的双射函数$f$。
+  定义出一个函数$g: X \cup \{x\} \rightarrow \{i \in N: 1 \leq i \leq n+1\}$，
+  使得$g(x) = n+1$，$g(i) = f(i), i \in X$。
+  由g的定义可知其是双射函数，且$X \cup \{x\}$的基数是n+1，
+  所以$X \cup \{x\}$是有限的，且$\# (X \cup \{x\}) = \# (X) + 1$
+\end{zproof}
+
+（b）设$X$和$Y$都是有限集，那么$X \cup Y$是有限的，且$\# (X \cup Y) \leq \# (X) + \# (Y)$。
+另外，如果$X$和$Y$是不相交的（即$X \cap Y = \varnothing$），那么$\# (X \cup Y) = \# (X) + \# (Y)$
+\begin{zproof}
+  $X$和$Y$都是有限集，不妨设$X$和$Y$的基数分别为m和n。
+  通过对n进行归纳，完成证明；
+
+  n=0时，即$Y$的基数是0，也就是说$Y = \varnothing$，$X \cup Y = X \cup \varnothing = X$，
+  此时（b）命题显然是成立的。
+
+  归纳假设n=k时，（b）命题成立。
+
+  现在需证明n=k++，任取$x \in Y, Z=Y \backslash \{x\}$，由引理3.6.9可知，$Z$的基数为k，
+  由归纳假设可知，$X$与$Z$满足命题（b），由此可知$X \cup Z$是有限的；
+
+  $X \cup Y = X \cup Z \cup \{x\}$。
+
+  \textcircled{1} $X \cap Y = \varnothing$，由此可知$x \not\in X \cup Z$，且由归纳假设知$\#(X \cup Z) = \#(X)+\#(Z)$。
+  由命题（a）可知$X \cup Z \cup \{x\}$是有限的，且$\#(X \cup Z \cup \{x\})=\#(X \cup Z)+1$，
+  即$X \cup Y$是有限的，且$\#(X \cup Y) = \#(X \cup Z)+1 = \#(X) + \#(Z) + 1 = \#(X) + \#(Y)$，
+  即$\#(X \cup Y) = \#(X) + \#(Y)$；
+
+  \textcircled{2} $X \cap Y \neq \varnothing$
+
+  如果$x \in X \cup Z$则$X \cup Y=X \cup Z \cup \{x\}=X \cup Z$，即$X \cup Y=X \cup Z$
+  由于同一集合只有一个基数，所以$\#(X \cup Y)=\#(X \cup Z)$，
+  又由归纳假设可知 $\#(X \cup Z) \leq \#(X) + \#(Z)$，所以$\#(X \cup Y) \leq \#(X)+ \#(Y)$。
+
+  如果$x \not\in X \cup Z$，（由$X \cap Y \neq \varnothing$，则必须$X \cap Z \neq \varnothing$否则与假设矛盾，
+  所以$\#(X \cup Z) \leq \#(X) + \#(Z)$）由命题（a）可知$\#(X \cup Z \cup \{x\})=\#(X \cup Z)+1$，
+  即$X \cup Y$是有限的，且$\#(X \cup Y) = \#(X \cup Z)+1 \leq \#(X) + \#(Z) + 1 = \#(X) + \#(Y)$，
+  即$\#(X \cup Y) \leq \#(X) + \#(Y)$；
+
+  综上，n=k++情况也成立，至此，（b）命题成立。
+\end{zproof}
+
+（c）设$X$是一个有限集，$Y$是$X$的一个子集。那么$Y$是有限的，且$\# (Y) \leq \# (X)$。
+另外，如果$Y \neq X$（即$Y$是$X$的一个真子集），那么我们有$\#(Y) < \#(X)$。
+
+\begin{zproof}
+  对$X$的基数进行归纳。
+
+  $X$的基数为0，即$X = \varnothing$，此时$Y$是$X$的子集，则$Y = \varnothing$，
+  很明显$Y$是有限的（基数是0），且$\# (Y) \leq \# (X)$。而命题的后半部分，因为空集不存在真子集，所以空成立。
+
+  归纳假设n=k时，$X$的基数为k，命题（c）成立。
+
+  现需证明n=k++，命题（c）成立。若$Y=X$显然$\#(Y) \leq \#(X)$；
+  若$Y \neq X$，则存在$x \in X$，使得$Y \subseteq (X \backslash {x})$，
+  由归纳假设可知$\#(Y) \leq \#(X \backslash x)$，由引理3.6.9可知$\#(Y) < \#(X)$。
+
+  综上命题（c）成立。
+\end{zproof}
+
+（d）如果$X$是一个有限集，并且$f: X \rightarrow Y$是一个函数，那么$f(X)$是一个有限集并且满足$\#(f(X)) \leq \#(X)$。
+另外，如果$f$是一对一的，那么$\#(f(X)) = \#(X)$。
+
+\begin{zproof}
+  对$X$的基数n进行归纳；
+
+  归纳基始n=0，即$X = \varnothing$，由定义3.4.1（集合的像）可知$f(X) = \varnothing$，
+  即$\#(f(X)) = 0$，此时命题（d）成立
+
+  n=k++时，设$X^\prime = X \backslash \{x\}$，
+  由归纳假设可知$\#(f(X^\prime)) \leq \#(X^\prime)$，
+
+  \textcircled{1} $f(X^\prime) = f(X)$，则$\#(f(X)) =\#(f(X^\prime)) \leq \#(X^\prime) < \#(X)$。
+  此时f不是双射，命题后半部分空成立。
+
+  \textcircled{2} $f(X^\prime) \subsetneq  f(X)$
+  则$f(x) \not \in f(X^\prime)$，且$f(X) = f(X^\prime) \cup f(x)$，
+  由命题（a）可知$\#(f(X))=\#(f(X^\prime)) + 1$，有$\#(X) = \#(X^\prime) + 1$，
+  所以由归纳假设$\#(f(X^\prime)) \leq \#(X^\prime)$可知$\#(f(X^\prime)) + 1 \leq \#(X^\prime) + 1$，
+  即$\#(f(X)) \leq \#(X)$；若$f$是一对一的，则$X^\prime \backslash \{x\} \rightarrow Y \backslash \{f(x)\}$也是一对一，
+  由归纳假设知$\#(f(X^\prime)) = \#(X^\prime)$，由此可知$\#(f(X^\prime)) + 1 = \#(X^\prime) + 1$，
+  $\#(f(X)) = \#(X)$。综上，n=k++时命题（d）成立。
+
+  至此，命题成立
+\end{zproof}
+
+（e）设$X$和$Y$都是有限集，那么笛卡尔积$X \times Y$是有限的并且$\#(X \times Y) = \#(X) \times \#(Y)$。
+\begin{zproof}
+  设$X,Y$的基数分别为n、m，对n进行归纳。
+
+  归纳基始n=0，即$X$是空集，有笛卡尔积的定义可知，$X \times Y = \varnothing$，
+  由此可知$\#(X \times Y) = 0$，且$X \times Y$是有限的。又$\#(X \times Y) = \#(X) \times \#(Y) = 0$，
+  所以n=0时，命题（e）成立。
+
+  n=k++时，设对任意$x \in X$，构造$X^\prime = X \backslash \{x\}$，
+  由习题3.5.5可知$X \times Y = (X^\prime \cup \{x\}) \times (Y \cup Y) = (X^\prime \times Y) \cup (\{x\} \times Y)$，
+  由笛卡尔积的定义可知$(X^\prime \times Y) \cap (\{x\} \times Y) = \varnothing$，
+  由（b）可知，$\#((X^\prime \times Y) \cup (\{x\} \times Y)) = \#(X^\prime \times Y) + \#(\{x\} \times Y)$
+  由归纳假设可知$\#(X^\prime \times Y) = \#(X^\prime) \times \#(Y)$，现在只需证明$\#(\{x\} \times Y)=\#(Y)$，
+  命题就能完成证明。
+  （在直觉上是显然的，但为了严谨性，还是需要证明），要想证明基数相同，
+  按照定义3.6.1只需找到从$(\{x\} \times Y)$到$Y$的一个双射函数$f: (\{x\} \times Y) \rightarrow Y$。
+  可以定义$f$如下：$f((x,y))=y, (x,y) \in (\{x\} \times Y)$，这里的f是双射性是显然的，为了简洁不做说明了。
+  由此可知$\#(X \times Y) = \#(X^\prime \times Y) + \#(\{x\} \times Y)=\#(X^\prime \times Y) + \#(Y)$
+  $=\#(X^\prime) \times \#(Y) + \#(Y)=(\#(X^\prime)++) \times \#(Y) = \#(X) \times \#(Y)$，
+  n=k++时命题（e）成立。
+
+  至此归纳完成，命题（e）得到证明。
+
+\end{zproof}
+
+（f）设$X$和$Y$都是有限集，那么集合$Y^X$（在公理3.10中被定义）是有限的，并且$\#(Y^X)=\#(Y)^{\#(X)}$
+\begin{zproof}
+  公理3.10中对幂集公理的定义，很难定量分析，我们使用其他公理对幂集公理重新定义。
+
+
+  $I$为一个集合，并对每一个元素$y_0 \in I$均有一个集合$A_{y_0}$，
+  $A_{y_0} = \{ \{f\text{是X到Y的函数}, f(x_0)=y_0\}: y_0 \in Y\}$
+  幂集定义如下：
+  $W=\bigcup\limits_{y \in I}A_{y} = \cup\{A_y : y \in I\}$
+
+  现在需要证明该定义和幂集公理的等价性。
+
+  $f \in W \Leftrightarrow \text{存在} y \in I \text{使得} f \in A_y$，
+  由此可知$f\text{是X到Y的函数}$，所以$f \in Y^X$。
+
+  $f \in Y^X$，由于$f$是X到Y的函数，则对$x_0 \in X$有$y=f(x_0)$，$y \in Y$，所以$f \in A_y$，
+  所以$f \in W$。
+
+  综上可证该定义和幂集公理的等价性。
+
+
+  设$X,Y$的基数分别为n、m，通过对n进行归纳，证明该命题。
+
+  归纳基始n=0，即$X = \varnothing$，而$f: \varnothing \rightarrow Y$的函数，由函数相等的定义可知是唯一的，
+  所以$\#(Y^X)=1,\#(Y)^{\#(X)}=m^0=1$，由此可知$\#(Y^X)=\#(Y)^{\#(X)}$，在n=0时命题（f）成立
+
+  n=k++时，设$X^\prime=X \backslash \{x_0\}, x_0 \in X$，
+  证明$\#(A_y)=\#(Y^{X^\prime})$，
+  函数$G: A_y \rightarrow Y^{X^\prime}$，
+  定义如下：$ g=G(f), x \in X^\prime, f(x)=g(x)$。
+
+  证明函数G的定义是合法，即证明g的唯一性，假设存在$g^\prime$满足定义，
+  即对任意$f \in A_y$，存在$g^\prime(x)=f(x)=g(x)$,由函数相等的定义可知$g=g^\prime$，g的唯一性得证。
+
+  证明G是双射的，先证明单射，如果G不是单射，则存在$f_1 \neq f_2$，有相同的函数值$g$，
+  由于$f_1 \neq f_2$所以存在$x \in X^\prime, f_1(x) \neq f_2(x)$，有G的定义可知$g(x)=f_1(x)=f_2(x)$，
+  这与$f_1(x) \neq f_2(x)$矛盾，所以G是单射。
+
+  证明G是满射的，对任意函数值$g \in Y^{X^\prime}$，可以定义出一个函数$f: X \rightarrow Y, f(x_0)=y, f(x)=g(x)$，
+  该函数$f \in A_y$，所以G是满射的。
+
+  由此可知$\#(A_y)=\#(Y^{X^\prime})=m^k$
+
+  由$A_y$的定义方式可知是不相交的，即对任意$y_0 \neq y_1, A_{y_0} \cap A_{y_1}=\varnothing$，
+  由（b）可知$\#(W)=\sum_{y \in I} \#(A_y) = m \times \#(Y^{X^\prime}) = m \times (m^k) = m^{k++} $，
+  由此可知n=k++命题（f）也成立。
+
+  至此命题（f）成立。
+\end{zproof}
+
+\section*{3.6.5}
+\begin{zproof}
+  \begin{align}
+    A \times B & = \{(a,b): a \in A, b \in B \} \\
+    B \times A & = \{(b,a): b \in B, a \in A \}
+  \end{align}
+  现在定义函数$f: A \times B \rightarrow B \times A, f(a, b):= (b, a)$。
+
+  接下来要证明f的双射性（为了简洁不做说明了）。
+
+  由命题3.6.14可知
+  \begin{align}
+    \#(A \times B) & = \#(A) \times \#(B) \\
+    \#(B \times A) & = \#(B) \times \#(A)
+  \end{align}
+  又因为$A \times B, B \times A$之间存在一个双射f，所以两个集合之间有相同的基数，
+  由此通过（3）（4）可知$\#(A) \times \#(B) = \#(B) \times \#(A)$
+\end{zproof}
+
+\section*{3.6.6}
+\begin{zproof}
+  \textcircled{1}构造双射
+
+  由公理3.10（幂集公理）可知，
+  \begin{align}
+    (A^B)^C        & = \{f: f\text{是一个定义域为}C,\text{值域为}A^B\text{的函数}\}        \\
+    A^{B \times C} & = \{g: g\text{是一个定义域为}B \times C,\text{值域为}A\text{的函数}\}
+  \end{align}
+  定义函数$G: (A^B)^C \rightarrow A^{B \times C}$如下：
+  $G(f):=g$，$f,g$满足以下性质：对任意$b \in B, c \in C$有$[f(c)](b)=g(b,c)$
+
+  现需证明G是满足函数定义的，对相同的输入只存在唯一的函数值。
+  函数f对任意$b \in B, c \in C$存在$g, g^\prime$使得$[f(c)](b)=g(b,c)=g^\prime(b,c)$，
+  对任意$b \in B, c \in C$，$g(b,c)=g^\prime(b,c)$通过函数相等的定义可知$g=g^\prime$。
+
+  现需证明G是双射函数。对任意$f \neq f^\prime$，
+  \begin{align}
+    [f(c)](b)        & = g(b,c)        \\
+    [f^\prime(c)](b) & = g^\prime(b,c)
+  \end{align}
+  由于$f \neq f^\prime$所以存在$(b^\prime, c^\prime)$使得$[f(c^\prime)](b^\prime) \neq [f^\prime(c^\prime)](b^\prime)$，
+  可得$g(b^\prime, c^\prime) \neq g^\prime(b^\prime, c^\prime)$，所以$g \neq g^\prime$，所以G是单射函数。
+
+  $g \in A^{B \times C}$，对某个$c_0\in C$我们定义函数$h_0: B\rightarrow A, h_0(b):=g(b, c_0);$
+  再对每个$c\in C$我们定义函数$f: C\rightarrow A^B, f(c):=h_c$。
+  此时对任意$c\in C,b\in B$有$[f(c)](b)=h_c(b)=g(b,c)$。 故$G(f)=g$。 故G是满射的
+
+  \textcircled{2} $(a^b)^c = a^{bc}$
+
+  设A、B、C的基数分别为a、b、c，由命题3.6.14可知
+  \begin{align}
+    \#((A^B)^C)        & = \#(A^B)^{\#(C)} = (\#(A)^{\#B})^{\#(C)} = (a^b)^c        \\
+    \#(A^{B \times C}) & = \#A^{\#(B \times C)} = \#A^{\#(B) \times \#(C)} = a^{bc}
+  \end{align}
+  又$(A^B)^C,A^{B \times C}$基数相同，所以$(a^b)^c = a^{bc}$
+
+  \textcircled{3} $a^b \times a^c = a^{b+c}$
+
+  通过构造明确的双射来证明：集合$A^B \times A^C$和集合$A^{B \cup C}$有相同的基数（$B \cap C = \varnothing$）。
+  由公理3.10（幂集公理）和定义3.5.4（笛卡尔积）可知
+  \begin{align}
+    A^B \times A^C & = \{(f, f^\prime): f \in A^B, f^\prime \in A^C\}        \\
+    A^{B \cup C}   & = \{g: g\text{是定义域为}B \cup C \text{值域为} A \text{的函数} \}
+  \end{align}
+  定义函数$G: A^B \times A^C \rightarrow A^{B \cup C}$如下：
+
+  $G(f,f^\prime):=g$，$f,f^\prime,g$满足如下性质：
+  对任意$b \in B, c \in C$有$f(b)=g(b),f^\prime(c)=g(c)$
+
+  现需证明G是满足函数定义的，对相同的输入只存在唯一的函数值。
+  函数$f,f^\prime$对任意$b \in B, c \in C$存在$g, g^\prime$
+  使得$f(b)=g(b),f^\prime(c)=g(c); f(b)=g^\prime(b),f^\prime(c)=g^\prime(c);$，
+  对任意$b \in B, c \in C$，$g(b)=g^\prime(b);g(c)=g^\prime(c)$通过函数相等的定义可知$g=g^\prime$。
+
+  现需证明G是双射函数。对任意$(f1,f2) \neq (f1^\prime,f2^\prime)$，
+  $g=G(f1,f2),g^\prime=G(f1^\prime,f2^\prime)$，
+  如果$g = g^\prime$，那么对任意$b \in B, c \in C$
+  有$g(b)=g^\prime(b)=f1(b)=f1\prime(b),g(c)=g^\prime(c)=f2(c)=f2\prime(c)$，
+  由此可知$f1=f1^\prime,f2=f2^\prime$，那么$(f1,f2) = (f1^\prime,f2^\prime)$，
+  这与前提$(f1,f2) \neq (f1^\prime,f2^\prime)$矛盾，$g \neq g^\prime$，所以G是单射。
+
+  任意$g \in A^{B \cup C}$，
+  对任意$b \in B, c \in C$定义$f1:B \rightarrow A, f1(b)=g(b); f2: C \rightarrow A, f2(c)=g(c)$，
+  $f1,f2$满足如下性质：对任意$b \in B, c \in C$有$f1(b)=g(b),f2(c)=g(c)$，
+  故$G(f1,f2)=g$。故G是满射。
+
+  设A、B、C的基数分别为a、b、c，由命题3.6.14可知
+  \begin{align}
+    \#(A^B \times A^C) & = \#(A^B) \times \#(A^C) = \#(A)^{\#B} \times \#(A)^{\#C} = a^b \times a^c \\
+    \#(A^{B \cup C})   & = \#(A)^{\#(B \cup C)} = \#(A)^{\#(B) + \#(C)} = a^{b+c}
+  \end{align}
+  又$A^B \times A^C,A^{B \cup C}$基数相同，所以$a^b \times a^c = a^{b+c}$
+\end{zproof}
+
+\section*{3.6.7}
+\begin{zproof}
+  \textcircled{1} 充分性
+
+  假设A的基数小于或等于B基数，则存在一个从A到B的单射$f: A \rightarrow B$，
+  由定义3.4.1（集合的像）可知$f(X) \subseteq B$；又由命题3.6.14（c）可知
+  \begin{align}
+    \#(f(X)) \leq \#(B)
+  \end{align}
+  定义函数$g: A \rightarrow f(X), g(x)=f(x)$，函数g是双射函数（证明略），
+  由此可知$\#(A) = \#(f(X))$。综上可知$\#(A) = \#(f(X)) \leq \#(B)$，必要性得证。
+
+  \textcircled{2} 必要性
+
+  假设$\#(A) \leq \#(B)$，基数分别为m、n（$m \leq n$），由定义3.6.5可知，
+  存在双射函数$f: A \rightarrow \{i \in N: 1 \leq i \leq m \}$。
+  存在双射函数$g: \{i \in N: 1 \leq i \leq n \} \rightarrow B$。
+  由此我们可以定义从A到B的单射$h: A \rightarrow B$如下：对任意$x \in A$，$h(x)=g(f(x))$。
+  现在证明h是单射函数，对任意$x_1 \neq x2$，由于$f$是单射函数，所以$f(x_1) \neq f(x_2)$，
+  又$g$是单射函数，所以$g(f(x_1)) \neq g(f(x_2))$，即$h(x_1) \neq h(x_2)$，所以$h$是单射函数。
+
+  综上命题得证
+
+\end{zproof}
+
+\section*{3.6.8}
+\begin{zproof}
+  定义函数$g: B \rightarrow A$
+  如下：对任意$b \in B$，存在$a \in A$使得$b=f(a)$则$g(b)=a$（f是单射的，保证了$a$的唯一性），
+  否则$g(b)=x_0$（$x_0$是A中的某个元素，引理3.1.6保证$x_0$是存在的）。
+
+  现需证明定义的g是满射函数。对任意$a \in A$，由定义3.4.1（集合的像）可知$f(X) \subseteq B$，
+  所以$f(a) \in f(X) \subseteq B, f(a) \in B$，此时由g的定义可知$g(f(a))=a$是存在的;g的满射性成立。
+\end{zproof}
+
+\section*{3.6.9}
+\begin{zproof}
+  \textcircled{1} $A \cup B$是一个有限集
+
+  设A、B的基数分别为n、m，对n进行归纳。
+
+  归纳基始n=0，即$A = \varnothing$，所以$A \cup B = B$，此时$\#(A \cup B) = \#(B) = m$，
+  归纳基始成立。
+
+  归纳假设n=k，命题$A \cup B$是有限集成立
+
+  假设n=k++，
+  某个$a \in A, A^\prime = A \backslash \{a\}$，由归纳假设可知$A^\prime \cup B$是有限集，
+  若$a \in B$则$A^\prime \cup B = A \cup B$，所以$A \cup B$也是有限集；
+  若$a \notin B$则$A^\prime \{a\} \cup B = A \cup B$，
+  由命题3.6.14可知（a）可知$\#(A^\prime \cup B)+1=\#(A \cup B)$，所以$A \cup B$也是有限集；
+
+  至此归纳完成，命题成立
+
+  \textcircled{2} $A \cap B$是一个有限集
+
+  设A、B的基数分别为n、m，对n进行归纳。
+
+  归纳基始n=0，即$A = \varnothing$，所以$A \cap B = \varnothing$，此时$\#(A \cup B) = \#(\varnothing) = 0$，
+  归纳基始成立。
+
+  归纳假设n=k，命题$A \cap B$是有限集成立
+
+  假设n=k++，
+  某个$a \in A, A^\prime = A \backslash \{a\}$，由归纳假设可知$A^\prime \cap B$是有限集，
+  若$a \notin B$则$A^\prime \cap B = A \cap B$，所以$A \cap B$也是有限集；
+  若$a \in B$则$A^\prime \cap B \cup \{a\} = A \cap B$，
+  由命题3.6.14可知（a）可知$\#(A^\prime \cap B)+1=\#(A \cap B)$，所以$A \cap B$也是有限集；
+
+  至此归纳完成，命题成立
+
+  \textcircled{3} $\#(A) + \#(B) = \#(A \cup B) + \#(A \cap B)$
+
+  设$A \cap B$的基数为n，对n进行归纳。
+
+  归纳基始n=0时，即$A \cap B = \varnothing$，由命题3.6.14可知$\#(A \cup B) = \#(A) + \#(B)$，
+  归纳基始成立。
+
+  归纳假设n=k时，命题成立。
+
+  假设n=k++，
+  某个$a \in A \cap B, A^\prime = A \backslash \{a\} $，
+  由3.6.14（a）可知$\#(A \cap B) = \#(A^\prime \cap B) + 1$，
+  由归纳假设可知$\#(A^\prime) + \#(B) = \#(A^\prime \cup B) + \#(A^\prime \cap B)$，
+  又$\#(A)=\#(A^\prime)+1$（引理3.6.9），
+  由于$a \in B$，所以$A \cup B = A^\prime \cup B$，所以$\#(A^\prime \cup B) = \#(A \cup B)$，
+  综合
+  \begin{align}
+    (A \cap B)           & = \#(A^\prime \cap B) + 1                   \\
+    \#(A^\prime) + \#(B) & = \#(A^\prime \cup B) + \#(A^\prime \cap B) \\
+    \#(A^\prime \cup B)  & = \#(A \cup B)                              \\
+    \#(A)                & = \#(A^\prime) + 1
+  \end{align}
+  得
+  \begin{align*}
+     & \#(A \cup B) + \#(A \cap B)                     \\
+     & = \#(A^\prime \cup B) + \#(A \cap B)            \\
+     & = \#(A^\prime \cup B) + \#(A^\prime \cap B) + 1 \\
+     & = \#(A^\prime) + \#(B) + 1                      \\
+     & = \#(A^\prime) + 1 + \#(B)                      \\
+     & = \#(A) + \#(B)
+  \end{align*}
+
+  命题得证。
+\end{zproof}
+
+\section*{3.6.10}
+\begin{zproof}
+  对n进行归纳
+
+  n=0，此时$\{1,...,n\} = \varnothing$，所以命题空成立。
+
+  （之前的命题有类似的n=0空成立，其实都要改为n=1为起始点）
+
+  归纳基始n=1，$\bigcup\limits_{i \in \{1,...,n\}}=A_1$，
+  即$\#(A_1) > 1$，所以$\#(A_1) \geq 2$（命题2.2.12（e）保证的）
+
+  归纳假设n=k时，命题成立。
+
+  假设n=k++，
+  若$\#(A_{k++}) \geq 2$，命题成立；
+  若$\#(A_{k++}) < 2$，所以$\#(A_{k++})=0 $或$ \#(A_{k++})=1$。
+  若$\#(A_{k++})=0$，则$A_{k++} = \varnothing$，所以
+  $\bigcup\limits_{i \in \{1,...,k++\}}A_i = \bigcup\limits_{i \in \{1,...,k\}}A_i > k++$，
+  由归纳假设可知存在$i \in \{1,...,k\}$使得$\#(A_i) \geq 2$；
+  若$\#(A_{k++})=1$，则$A_{k++}$是单元素集合，不妨设$a \in A_{k++}$且$a$是其中的唯一元素，
+  如果$a \in \bigcup\limits_{i \in \{1,...,k\}}A_i$，此时
+  $\bigcup\limits_{i \in \{1,...,k++\}}A_i = \bigcup\limits_{i \in \{1,...,k\}}A_i$，命题成立前面已说明。
+  如果$a \notin \bigcup\limits_{i \in \{1,...,k\}}A_i$，
+  由命题3.6.14可知$\#(\bigcup\limits_{i \in \{1,...,k++\}}A_i) = \#(\bigcup\limits_{i \in \{1,...,k\}}A_i) + 1 > k++$，
+  所以$\#(\bigcup\limits_{i \in \{1,...,k\}}A_i) > k$（命题2.2.6和自然数序的定义保证的），
+  由归纳假设可知存在$i \in \{1,...,k\}$使得$\#(A_i) \geq 2$。
+
+  至此，归纳完成。
+
+\end{zproof}
+\end{document}

@@ -1,0 +1,297 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{6.1 习题}
+\maketitle
+
+\section*{6.1.1}
+
+证明框架如下：由于$n,m$都是自然数，且$m>n$，所以存在正自然数$k$使得$k = n + k$，对$k$进行归纳。
+
+\section*{6.1.2}
+
+证明：
+
+与定义6.1.5 说的是一个意思，证明略
+
+\section*{6.1.3}
+
+证明：
+
+充分性：
+
+如果$(a_n)_{n=m}^\infty$收敛与$c$，那么对任意的$\epsilon > 0$，该序列都是最终$\epsilon -$接近$c$的，
+所以存在$N \geq m$使得$|a_n - c| \leq \epsilon$对所有的$n \geq N$均成立。
+由题设可知$m^\prime > m$，于是存在$N^\prime := max(m^\prime, N),N^\prime \geq m^\prime$，使得$|a_n - c| \leq \epsilon$对所有的$n \geq N^\prime$均成立，
+由于$\epsilon$是任意的，由习题6.1.2可知，$(a_n)_{n=m^\prime}^\infty$收敛与$c$。
+
+必要性：
+
+$(a_n)_{n=m^\prime}^\infty$收敛与$c$，那么对任意的$\epsilon > 0$，该序列都是最终$\epsilon -$接近$c$的。
+所以存在$N \geq m^\prime$使得$|a_n - c| \leq \epsilon$对所有的$n \geq N$均成立。由于$m^\prime > m$，
+所以$N \geq m$，该性质对序列$(a_n)_{n=m}^\infty$也成立，由于$\epsilon$是任意的，
+由习题6.1.2可知，$(a_n)_{n=m^\prime}^\infty$收敛与$c$。
+
+\section*{6.1.4}
+
+证明：
+
+$(a_n)_{n=m}^\infty$收敛于$c$，于是对任意$\epsilon > 0$，
+存在一个$N \geq m$使得$|a_n - c| \leq \epsilon$对所有的$n \geq N$
+均成立，由于$k \geq 0$是一个非负整数，所以$n + k \geq N$，
+于是$|a_{n+k} - c| \leq \epsilon$对所有的$n \geq N$
+均成立，由习题6.1.2可知，$(a_{n+k})_{n=m}^\infty$收敛与$c$。
+
+反之类似
+
+\section*{6.1.5}
+
+证明：
+
+要证明序列$(a_n)_{n=m}^\infty$是柯西序列，
+则对于任意$\epsilon>0$，我们需要证明序列$(a_n)_{n=m}^\infty$是最终$\epsilon -$接近的。
+于是设$\epsilon > 0$是一个任意的实数，那么$\epsilon/2 > 0$。因为$(a_n)_{n=m}^\infty$是收敛的
+实数序列，不妨设收敛于实数$L$，可知$(a_n)_{n=m}^\infty$是最终$\epsilon -$接近与$L$的，
+于是存在一个$N \geq m$使得$d(a_n,L)\leq \epsilon/2$对所有的$n \geq N$均成立。
+任意$j,k \geq N$，有$d(a_j,L)\leq \epsilon/2$，$d(a_k,L)\leq \epsilon/2$，
+于是根据三角不等式可得，$d(a_j,a_k) \leq \epsilon$，因此$(a_n)_{n=m}^\infty$是最终$\epsilon -$接近的。
+由于$\epsilon$是任意选取的，因此$(a_n)_{n=m}^\infty$是柯西序列。
+
+\section*{6.1.6}
+
+证明：
+
+证明为什么$a_n > L + \epsilon / 2$或$a_n < L - \epsilon / 2$，其余的按书中的提示证明就可以了。
+
+序列$(a_n)_{n=m}^\infty$不是最终$\epsilon -$接近与$L$的，
+即对任意的$N \geq m$都存在$|a_n - L| > \epsilon$对所有的$n \geq N$均成立。
+
+序列$(a_n)_{n=m}^\infty$是柯西序列，所以存在$N_0$使得$|a_j - a_k| \leq \epsilon/2$对所有的$j,k \geq N_0$均成立。
+
+固定$a_n=j_k$，所以，
+\begin{align*}
+  |a_j - a_n|                  & \leq \epsilon/2                      \\
+  \Rightarrow a_n - \epsilon/2 & \leq a_j       \leq a_n + \epsilon/2
+\end{align*}
+又因为，$|a_n - L| > \epsilon$所以$a_n > \epsilon + L$或$a_n < L - \epsilon$。
+
+如果$a_n > \epsilon + L$，那么，
+\begin{align*}
+  a_n - \epsilon/2          & \leq a_j \\
+  L + \epsilon - \epsilon/2 & < a_j    \\
+  L + \epsilon/2            & < a_j
+\end{align*}
+
+如果$a_n < L - \epsilon$，那么，
+
+\begin{align*}
+  a_j & \leq a_n + \epsilon/2       \\
+  a_j & < L - \epsilon + \epsilon/2 \\
+  a_j & < L - \epsilon/2
+\end{align*}
+
+\section*{6.1.7}
+
+证明：
+
+证明方法与命题6.1.4的类似。
+
+首先假设$(a_n)_{n=m}^\infty$是定义5.1.12 意义下的有界序列，那么存在有理数$M$，该序列以$M$为界，
+由于有理数$M$也是实数，所以$(a_n)_{n=m}^\infty$是定义6.1.16 意义下的有界序列。
+
+现在假设是定义6.1.16 下的有界序列，那么存在实数$M$，该序列以$M$为界，根据命题5.4.12 可知，
+存在一个比$M$大的有理数$M^\prime$，由于$M^\prime$是有理数，且$M < M^\prime$，所有该序列也以$M^\prime$为界，
+所以$(a_n)_{n=m}^\infty$是定义5.1.12 意义下的有界序列。
+
+\section*{6.1.8}
+
+\textbf{（a）}
+
+我们必须证明$(a_n+b_n)_{n=m}^\infty$收敛于$x+y$。换言之，对于任意的$\epsilon > 0$，
+我们需要证明序列$(a_n+b_n)_{n=m}^\infty$是最终$\epsilon -$接近$x+y$的。
+
+因为$(a_n)_{n=m}^\infty$收敛于$x$且$\epsilon /2 > 0$，则序列是最终$\epsilon /2 -$接近$x$，
+即存在$N_a \geq m$使得$|a_n - x| \leq \epsilon /2$对所有的$n \geq N_a$均成立。
+
+同理对序列$(b_n)_{n=m}^\infty$存在$N_b \geq m$使得$|b_n - y| \leq \epsilon /2$对所有的$n \geq N_b$均成立。
+
+取$N := max(N_a, N_b)$，于是对所有的$n \geq N$都有，
+\begin{align*}
+   & |a_n + b_n - (x+y)|                   \\
+   & =|(a_n - x) + (b_n - y)|              \\
+   & \leq |a_n - x| + |b_n - y| = \epsilon
+\end{align*}
+因此$(a_n+b_n)_{n=m}^\infty$是最终$\epsilon -$接近$x+y$的。
+由于$\epsilon$是任意的，所以$(a_n+b_n)_{n=m}^\infty$收敛于$x+y$
+
+\textbf{（b）}
+
+对任意$\epsilon> 0$，
+因为$(a_n)_{n=m}^\infty$收敛于$x$，即存在$N_a \geq m$使得$|a_n - x| \leq \epsilon$对所有的$n \geq N_a$均成立。
+
+因为$(b_n)_{n=m}^\infty$收敛于$y$，即存在$N_b \geq m$使得$|b_n - y| \leq \epsilon$对所有的$n \geq N_b$均成立。
+
+取$N := max(N_a, N_b)$，
+
+由命题4.3.7（h） 对实数也成立，那么对任意$n \geq N$都有，
+\begin{align*}
+  d(a_nb_n,xy) \leq \epsilon|y| + \epsilon|x| + \epsilon^2
+\end{align*}
+因为$|x|, |y|$是定值，$\epsilon$是任意的，所以$(a_nb_n)_{n=m}^\infty$收敛于$xy$。
+
+\textbf{（c）}
+
+（c）是（b）的特例。由实数的定义可知，存在一个有理数序列使得$LIM_{n\rightarrow\infty}c_n = c$，
+由命题6.1.15可知 $c = \lim\limits_{n \rightarrow \infty}c_n$，即$(c_n)_{n=m}^\infty$收敛于$c$，
+由命题（b）可知，
+\begin{align*}
+  \lim\limits_{n\rightarrow \infty}(ca_n) & = (\lim\limits_{n\rightarrow \infty}c) (\lim\limits_{n\rightarrow \infty}a_n) \\
+                                          & = cx
+\end{align*}
+
+\textbf{（d）}
+
+由（c）可知，$(-b_n)_{n=m}^\infty$是收敛于$-y$的。再利用（a）可证明该命题。
+
+
+\textbf{（e）}
+
+因为$(b_n)_{n=m}^\infty$收敛于$y$，
+那么对任意$\delta > 0$，存在$N_b \geq m$使得$|b_n - y| \leq \delta$，对任意的$n \geq N_b$均成立。
+
+我们必须要证明序列$(b_n^{-1})_{n=m}^\infty$收敛于$y^{-1}$。换言之，对于任意的$\epsilon > 0$，我们需要证明
+序列$(b_n^{-1})_{n=m}^\infty$是最终$\epsilon -$接近于$y^{-1}$的。
+于是设$\epsilon > 0$是任意的实数，
+\begin{align*}
+  |b_n^{-1} - y^{-1}| & = \left| \frac{1}{b_n} - \frac{1}{y} \right| \\
+                      & = \left| \frac{y - b_n}{yb_n} \right|        \\
+\end{align*}
+此时，分子分母都是可变的，无法定量分析，需要固定分母的范围，这也是书中提示要证明辅助命题
+\textbf{"如果一个序列的所有元素都不为零，并且该序列收敛于一个非零极限，那么这个序列是远离 0 的。"}原因。
+
+\begin{zgraytheorem}
+  辅助命题证明：
+
+  设序列$(a_n)_{n=m}^\infty$收敛于$L \neq 0$，那么设$\epsilon = \frac{1}{2}|L| > 0$，存在$N \geq m, n \geq N$使得
+  \begin{align*}
+    |a_n - L|                      & \leq \epsilon                    \\
+    |a_n - L|                      & \leq \frac{1}{2}|L|              \\
+    \Rightarrow L - \frac{1}{2}|L| & \leq a_n \leq L + \frac{1}{2}|L|
+  \end{align*}
+
+  如果$L > 0$，那么，$0 < \frac{1}{2}|L| \leq a_n$，由于序列的所有元素都不为零，即：$a_n > 0$对$m \leq n < N$均成立，
+  取$c := min(\frac{1}{2}|L|, (a_n)_{n=m}^{N-1})$【$min$生效的前提是$(a_n)_{n=m}^{N-1}$是有限集合】，
+  综上可知$c > 0$，且任意$a_n \geq c$对任意$n \geq m$均成立，
+  所以序列是远离$0$的。如果$L < 0$，同理可证。
+
+  综上，命题得证。
+\end{zgraytheorem}
+
+由辅助命题可知，序列$(b_n)_{n=m}^\infty$是远离$0$的，那么存在一个实数$c > 0$使得$|b_n| \geq c$对所有的$n \geq m$均成立。
+所以，
+\begin{align*}
+   & \left| \frac{y - b_n}{yb_n} \right| \\
+   & \leq |y - b_n| / c|y|               \\
+   & \leq \delta/c|y|                    \\
+\end{align*}
+
+因为$\delta>0$是任意实数，可以通过调整$\delta$的取值，使得，
+\begin{align*}
+   & \left| \frac{y - b_n}{yb_n} \right| \\
+   & \leq \epsilon
+\end{align*}
+即$|b_n^{-1} - y^{-1}| \leq \epsilon$，所以序列是最终$\epsilon -$接近于$y^{-1}$的，
+因为$\epsilon$是任意的，所以序列收敛于$y^{-1}$。
+
+\textbf{（f）}
+
+序列$(a_n/b_n)_{n=m}^\infty$可以看做$(a_n \times b_n^{-1})_{n=m}^\infty$，
+由（e）可知$(b_n^{-1})_{n=m}^\infty$收敛于$y^{-1}$。
+由（a）可知，
+\begin{align*}
+   & \lim\limits_{n \rightarrow \infty}(a_n \times b_n^{-1})                               \\
+   & = (\lim\limits_{n \rightarrow \infty}a_n)(\lim\limits_{n \rightarrow \infty}b_n^{-1}) \\
+   & = x \times y^{-1}                                                                     \\
+   & = \frac{x}{y}                                                                         \\
+   & = \frac{\lim\limits_{n \rightarrow \infty}a_n}{\lim\limits_{n \rightarrow \infty}b_n}
+\end{align*}
+
+\textbf{（g）}
+
+我们必须证明$(max(a_n,b_n))_{n=m}^\infty$收敛于$max(x,y)$。换言之，对于任意的$\epsilon > 0$，
+我们需要证明序列$(max(a_n,b_n))_{n=m}^\infty$是最终$\epsilon -$接近$max(x,y)$的。
+
+任意实数$\delta > 0$，
+因为$(a_n)_{n=m}^\infty$收敛于$x$，即存在$N_a \geq m$使得$|a_n - x| \leq \delta$对所有的$n \geq N_a$均成立。
+
+因为$(b_n)_{n=m}^\infty$收敛于$y$，即存在$N_b \geq m$使得$|b_n - y| \leq \delta$对所有的$n \geq N_b$均成立。
+
+取$N := max(N_a, N_b)$，于是对所有的$n \geq N$都有，
+\begin{align*}
+  |a_n - x|              & \leq \delta              \\
+  \Rightarrow x - \delta & \leq a_n \leq x + \delta \\
+  |b_n - y|              & \leq \delta              \\
+  \Rightarrow y - \delta & \leq b_n \leq y + \delta
+\end{align*}
+
+如果$y > x$，我们可以取$0 < \delta < (y-x)/2$，此时$b_n > a_n$对任意$n \geq N$均成立。也就是说，
+当$n \geq N$后$max(a_n,b_n) = b_n$，由习题6.1.3可知 序列$(max(a_n,b_n))_{n=m}^\infty$与$(b_n)_{n=m}^\infty$
+收敛于同一个值$y$。
+
+同理可证，$y \leq x$时，序列$(max(a_n,b_n))_{n=m}^\infty$收敛于$x$。
+
+综上，命题得证。
+
+\textbf{（h）}
+
+证明与（g）类似。
+
+
+\section*{6.1.9}
+
+暂时还证明不了，要看完10.5节后才可以解答
+
+\section*{6.1.10}
+
+首先假设$(a_n)_{n=0}^\infty$和$(b_n)_{n=0}^\infty$
+对于任意的实数$\epsilon > 0$它们都是最终$\epsilon -$接近的。
+特别地，对于任意的有理数$\epsilon > 0$，它们也都是最终$\epsilon -$接近的。
+
+现在假设$(a_n)_{n=0}^\infty$和$(b_n)_{n=0}^\infty$是定义5.2.6 意义下的等价柯西序列，
+那么对于任意的有理数$\epsilon > 0$，它们都是最终$\epsilon -$接近的。
+如果$\epsilon > 0$是实数，那么根据命题5.4.12 可知，存在一个比$\epsilon$小的有理数$\epsilon^\prime > 0$。
+因为$\epsilon^\prime$是有理数，所以$(a_n)_{n=0}^\infty$和$(b_n)_{n=0}^\infty$是最终$\epsilon^\prime -$接近的；
+又因为$\epsilon^\prime < \epsilon$，所以$(a_n)_{n=0}^\infty$和$(b_n)_{n=0}^\infty$是最终$\epsilon -$接近的。
+
+\end{document}
