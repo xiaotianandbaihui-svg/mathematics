@@ -1,0 +1,800 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{19.2 习题}
+\author{张志聪}
+\maketitle
+
+\section*{19.2.1}
+
+\begin{itemize}
+  \item (a)
+
+        (1)
+
+        因为$0$是从下方控制$f$的非负简单函数，因此可得
+        \begin{align*}
+          0 \leq \int_{\Omega} f \leq +\infty
+        \end{align*}
+
+        (2)
+        \begin{itemize}
+          \item $\Rightarrow$
+
+                考虑集合
+                \begin{align*}
+                  A : = \{x \in \Omega : f(x) > 0\}
+                \end{align*}
+                我们要证明这个集合的测度为零。
+
+                对于任意的$n \in \mathbb{N}^+$，定义
+                \begin{align*}
+                  A_n : = \{x \in \Omega : f(x) > \frac{1}{n}\}
+                \end{align*}
+                显然$A_n \subseteq A$，并且
+                \begin{align*}
+                  A = \bigcup_{n = 1}^{\infty} A_n
+                \end{align*}
+                因为在$A_n$上，$f(x) \geq \frac{1}{n}$，于是我们有
+                \begin{align*}
+                  \int_{\Omega} f \geq \int_{A_n} f \geq \int_{A_n} \frac{1}{n} = \frac{1}{n} m(A_n) \geq 0
+                \end{align*}
+                （注意没有用到(c)，因为这个可以通过定义19.2.2和命题19.1.10推出）
+
+                通过题设可知，$\int_{\Omega} f = 0$，所以
+                \begin{align*}
+                  \frac{1}{n} m(A_n) \leq 0 \\
+                  \implies                  \\
+                  m(A_n) = 0
+                \end{align*}
+                于是，我们有
+                \begin{align*}
+                  m(A) = m(\bigcup_{n = 1}^{\infty} A_n) \leq \sum_{n = 1}^{\infty} m(A_n) = 0
+                \end{align*}
+                命题得证。
+
+          \item $\Leftarrow$
+
+                设
+                \begin{align*}
+                  A = \{x \in \Omega : f(x) \neq 0\}
+                \end{align*}
+                由题设可知
+                \begin{align*}
+                  m(A) = 0
+                \end{align*}
+                于是由命题19.1.10(a)可知，
+                对所有$s$是一个非负简单函数，并且$s$从下方控制$f$的函数，我们有
+                \begin{align*}
+                  \int_{\Omega} s = 0
+                \end{align*}
+                所以
+                \begin{align*}
+                  \int_{\Omega} f = 0
+                \end{align*}
+        \end{itemize}
+
+  \item (b)
+
+        考虑集合
+        \begin{align*}
+          A = \{\int_{\Omega} s: s \text{是一个非负简单函数，并且$s$是从下方控制$f$}\} \\
+          B = \{\int_{\Omega} s: s \text{是一个非负简单函数，并且$s$是从下方控制$cf$}\}
+        \end{align*}
+
+        对任意$s$从下方控制$f$时，$cs$也从下方控制$cf$（反之亦成立）。
+        而且由命题19.1.10(c)可知，
+        \begin{align*}
+          \int_{\Omega} cs = c \int_{\Omega} s
+        \end{align*}
+        于是可得
+        \begin{align*}
+          x \in A         \\
+          \Leftrightarrow \\
+          cx \in B
+        \end{align*}
+        所以
+        \begin{align*}
+          \sup(B) = c \sup(A)
+        \end{align*}
+        即：
+        \begin{align*}
+          \int_{\Omega} cf = c \int_{\Omega} f
+        \end{align*}
+
+  \item (c)
+
+        考虑集合
+        \begin{align*}
+          A = \{\int_{\Omega} s: s \text{是一个非负简单函数，并且$s$是从下方控制$f$}\} \\
+          B = \{\int_{\Omega} s: s \text{是一个非负简单函数，并且$s$是从下方控制$g$}\}
+        \end{align*}
+
+        由题设可知，对任意$s$从下方控制$f$时，$s$也从下方控制$g$。
+        于是可得
+        \begin{align*}
+          x \in A
+          \implies
+          x \in B
+          \implies
+          A \subseteq B
+        \end{align*}
+        于是我们有
+        \begin{align*}
+          sup(A) \leq sup(B)
+        \end{align*}
+        即
+        \begin{align*}
+          \int_{\Omega} f \leq \int_{\Omega} g
+        \end{align*}
+  \item (d)
+
+        考虑集合
+        \begin{align*}
+          A : = \{x \in \Omega : f(x) \neq g(x)\}
+        \end{align*}
+        有题设可知$m(A) = 0$。
+
+        对任意$\epsilon > 0$，由定义19.2.2（通过上确界的方式定义的）可知，
+        存在一个非负简单函数$s$，使得
+        \begin{align*}
+          \int_{\Omega} f - \epsilon < \int_{\Omega} s
+        \end{align*}
+        定义一个$s^\prime$从下方控制$g$，
+        \begin{equation*}
+          s^\prime(x) = \begin{cases}
+            0    & \text{if } x \in A    \\
+            s(x) & \text{if } x \notin A
+          \end{cases}
+        \end{equation*}
+        于是可得
+        \begin{align*}
+          \int_{\Omega} s^\prime \leq \int_{\Omega} g
+        \end{align*}
+        令$h = s - s^\prime$，于是由命题19.1.10(a)可知
+        \begin{align*}
+          \int_{\Omega} h = 0
+        \end{align*}
+        因为$s = h + s^\prime$，于是由命题19.1.10(b)可知
+        \begin{align*}
+          \int_{\Omega} s = \int_{\Omega} h + \int_{\Omega} s^\prime = \int_{\Omega} s^\prime
+        \end{align*}
+        综上可得
+        \begin{align*}
+          \int_{\Omega} f - \epsilon < \int_{\Omega} s^\prime \leq \int_{\Omega} g
+        \end{align*}
+        由$\epsilon$的任意性可得
+        \begin{align*}
+          \int_{\Omega} f \leq \int_{\Omega} g
+        \end{align*}
+        类似地，可得
+        \begin{align*}
+          \int_{\Omega} g \leq \int_{\Omega} f
+        \end{align*}
+        所以
+        \begin{align*}
+          \int_{\Omega} g  = \int_{\Omega} f
+        \end{align*}
+
+  \item (e)
+
+        命题有些错误，应该是：
+
+        \textbf{如果$\Omega^\prime \subseteq \Omega$是一个可测集，
+          那么$\int_{\Omega^\prime} f = \int_{\Omega} f_{\chi_{\Omega^\prime}} \leq \int_{\Omega} f$，
+          其中$f_{\chi_{\Omega^\prime}}$表示只在$\Omega^\prime$上保留$f$的值，其它地方为0。
+        }
+
+        (1)先证明$f$是非负简单函数时，命题成立。
+
+        因为在$\Omega$上，$f \geq f_{\chi_{\Omega^\prime}}$，由命题19.1.10(d)可得
+        \begin{align*}
+          \int_{\Omega} f_{\chi_{\Omega^\prime}} \leq \int_{\Omega} f
+        \end{align*}
+
+        因为 $f$ 是非负简单函数，设 $f(\Omega^\prime) = \{c_1, c_2, \cdots, c_N\}$，定义：
+        \[
+          E_j := \{x \in \Omega^\prime : f(x) = c_j\}, \quad 1 \leq j \leq N
+        \]
+        这些集合两两不交，且 $\bigcup_{j=1}^N E_j = \Omega^\prime$。
+        由引理19.1.9，$\int_{\Omega^\prime} f$可表示为
+        \begin{align*}
+          \int_{\Omega^\prime} f = \sum\limits_{j = 1}^N c_j m(E_j)
+        \end{align*}
+
+        记$E_0 = \Omega \setminus \Omega^\prime$，由题设可知$E_0$是可测集（因为可以被$f^{-1}$表示出来，
+        而且$f$是可测函数。），
+        且与$E_j, 1 \leq j \leq N$不相交，
+        于是由引理19.1.9，$\int_{\Omega} f_{\chi_{\Omega^\prime}}$可表示为
+        \begin{align*}
+          \int_{\Omega} f_{\chi_{\Omega^\prime}}
+           & = \sum\limits_{j = 0}^N c_j m(E_j)                   \\
+           & = 0 \times m(E_0) + \sum\limits_{j = 1}^N c_j m(E_j) \\
+           & = \sum\limits_{j = 1}^N c_j m(E_j)                   \\
+           & = \int_{\Omega^\prime} f
+        \end{align*}
+
+        (2) $f$是非负可测函数，命题成立。
+
+        因为在$\Omega$上，$f \geq f_{\chi_{\Omega^\prime}}$，由(c)可得
+        \begin{align*}
+          \int_{\Omega} f_{\chi_{\Omega^\prime}} \leq \int_{\Omega} f
+        \end{align*}
+
+        对任意$\epsilon > 0$，存在一个非负简单函数$s$，并且从下方控制$f$，使得
+        \begin{align*}
+          \int_{\Omega^\prime} f - \epsilon < \int_{\Omega^\prime} s
+        \end{align*}
+        令
+        \begin{equation*}
+          s^\prime(x) = \begin{cases}
+            0    & \text{if } x \in \Omega \setminus \Omega^\prime \\
+            s(x) & \text{if } x \notin \Omega^\prime
+          \end{cases}
+        \end{equation*}
+        于是$s^\prime$是一个非负简单函数，并且从下方控制$f_{\chi_{\Omega^\prime}}$，
+        所以
+        \begin{align*}
+          \int_{\Omega} s^\prime \leq \int_{\Omega} f_{\chi_{\Omega^\prime}}
+        \end{align*}
+        又由(1)可知
+        \begin{align*}
+          \int_{\Omega^\prime} s = \int_{\Omega} s^\prime
+        \end{align*}
+        综上可得
+        \begin{align*}
+          \int_{\Omega^\prime} f - \epsilon < \int_{\Omega} f_{\chi_{\Omega^\prime}} \\
+          \implies                                                                   \\
+          \int_{\Omega^\prime} f \leq \int_{\Omega} f_{\chi_{\Omega^\prime}}
+        \end{align*}
+
+        类似的，存在一个非负简单函数$s$，并且从下方控制$f_{\chi_{\Omega^\prime}}$，使得
+        \begin{align*}
+          \int_{\Omega} f_{\chi_{\Omega^\prime}} - \epsilon < \int_{\Omega} s
+        \end{align*}
+        令
+        \begin{equation*}
+          s^\prime(x) = s(x) \;\;\; x \in \Omega^\prime
+        \end{equation*}
+        由于$s$是从下方控制$f_{\chi_{\Omega^\prime}}$，
+        于是$\Omega \setminus \Omega^\prime$上$s(x) = 0$，
+        于是由(1)，我们有
+        \begin{align*}
+          \int_{\Omega^\prime} s^\prime = \int_{\Omega} s
+        \end{align*}
+        又因为$s^\prime$从下方控制$f$，所以
+        \begin{align*}
+          \int_{\Omega^\prime} s^\prime \leq \int_{\Omega^\prime} f
+        \end{align*}
+        综上可得
+        \begin{align*}
+          \int_{\Omega} f_{\chi_{\Omega^\prime}} - \epsilon < \int_{\Omega^\prime} f \\
+          \implies                                                                   \\
+          \int_{\Omega} f_{\chi_{\Omega^\prime}} \leq \int_{\Omega^\prime} f
+        \end{align*}
+
+        综上，我们有
+        \begin{align*}
+          \int_{\Omega} f_{\chi_{\Omega^\prime}} = \int_{\Omega^\prime} f
+        \end{align*}
+
+\end{itemize}
+
+\section*{19.2.2}
+
+对任意$\epsilon > 0$，存在非负简单函数$s_f, s_g$，分别从下方控制$f, g$，使得
+\begin{align*}
+  \int_{\Omega} f - \frac{1}{2}\epsilon < \int_{\Omega} s_f \\
+  \int_{\Omega} g - \frac{1}{2}\epsilon < \int_{\Omega} s_g
+\end{align*}
+因为
+\begin{align*}
+  s_f(x) \leq f(x) \\
+  s_g(x) \leq g(x)
+\end{align*}
+于是，我们有
+\begin{align*}
+  (s_f + s_g)(x) \leq (f + g)(x)
+\end{align*}
+即非负简单函数$s_f + s_g$从下方控制$f + g$，于是我们有
+\begin{align*}
+  \int_{\Omega} s_f + s_g \leq \int_{\Omega} (f + g)
+\end{align*}
+由命题19.1.10可知，
+\begin{align*}
+  \int_{\Omega} s_f + s_g =  \int_{\Omega} f + \int_{\Omega} g
+\end{align*}
+综上可得
+\begin{align*}
+  \int_{\Omega} f + \int_{\Omega} g - \epsilon < \int_{\Omega} s_f + \int_{\Omega} s_g = \int_{\Omega} s_f + s_g \leq \int_{\Omega} (f + g) \\
+  \implies                                                                                                                                  \\
+  \int_{\Omega} f + \int_{\Omega} g \leq \int_{\Omega} (f + g)
+\end{align*}
+
+\section*{19.2.3}
+
+考虑序列$(F_N)_{N = 1}^\infty$，其中
+\begin{align*}
+  F_N : = \sum \limits_{n = 1}^N g_n
+\end{align*}
+因为$g_n$都是非负可测函数，于是我们有
+\begin{align*}
+  0 \leq F_1 \leq F_2 \leq \cdots
+\end{align*}
+且有推论18.5.7可知，$F_N$都是非负可测函数。
+于是利用定理19.2.9，我们有
+\begin{align*}
+  \int_{\Omega} \sup\limits_{N} F_N = \sup\limits_{N} \int_{\Omega} F_N
+\end{align*}
+
+因为$(F_N)_{N = 1}^\infty$是单调的递增序列，
+那么它逐点收敛于可测函数$f$（可测性由引理18.5.10保证），允许$f(x) = +\infty$。
+于是有
+\begin{align*}
+  \sum \limits_{n = 1}^\infty g_n = f = \sup\limits_{N} F_N
+\end{align*}
+（第二个等式的证明在19-2-comment.tex中有）\\
+于是
+\begin{align*}
+  \int_{\Omega} \sup\limits_{N} F_N  = \int_{\Omega} \sum \limits_{n = 1}^\infty g_n
+\end{align*}
+
+同理可得（考虑$\int_{\Omega} F_N = \sum \limits_{n = 1}^N \int_{\Omega} g_n $），
+\begin{align*}
+  \sup\limits_{N} \int_{\Omega} F_N = \sum \limits_{n = 1}^\infty \int_{\Omega} g_n
+\end{align*}
+
+综上，我们有
+\begin{align*}
+  \int_{\Omega} \sum \limits_{n = 1}^\infty g_n = \sum \limits_{n = 1}^\infty \int_{\Omega} g_n
+\end{align*}
+
+\section*{19.2.4}
+
+这道题有些反直觉：不等式的左侧不等于$0$，希望我能描述清楚。
+
+右侧：\\
+对每一个$n = 1, 2, 3, \cdots$，
+$f_n$都是简单函数，我们有
+\begin{align*}
+  \int_{\mathbb{R}} f_n = 0
+\end{align*}
+于是
+\begin{align*}
+  \sum \limits_{n = 1}^\infty \int_{\mathbb{R}} f_n = \sum \limits_{n = 1}^\infty 0 = 0
+\end{align*}
+
+左侧：\\
+考虑序列$(F_N)_{N = 1}^\infty$，其中
+\begin{align*}
+  F_N : = \sum \limits_{n = 1}^N f_n
+\end{align*}
+
+构造函数$f: \mathbb{R} \to \mathbb{R}$，
+\begin{equation*}
+  f(x) = \begin{cases}
+    1 & \;\; x \in [1, 2)    \\
+    0 & \;\; x \notin [1, 2)
+  \end{cases}
+\end{equation*}
+
+接下来证明$(F_N)_{N = 1}^\infty$逐点收敛于函数$f$。
+
+\begin{itemize}
+  \item $x < 1$。
+
+        任意$N \geq 1$都有
+        \begin{align*}
+          F_N(x) = 0 = f(x)
+        \end{align*}
+
+  \item $x \in [1, 2)$。
+
+        任意$N \geq 1$都有
+        \begin{align*}
+          f_1(x) = 1 - 0 = 1
+        \end{align*}
+        其他$f_n(x) = 0$，于是可得
+        \begin{align*}
+          F_N(x) = 1 = f(x)
+        \end{align*}
+
+  \item $x > 2$时。
+
+        令$m = \left\lfloor x \right\rfloor$
+        于是存在$N \geq m + 1$，就有
+        \begin{align*}
+          f_m(x) = 0 - 1 = -1 \\
+          f_{m + 1}(x) = 1 - 0 = 1
+        \end{align*}
+        其他$f_n(x) = 0$，
+        于是可得
+        \begin{align*}
+          F_N(x) = 0 = f(x)
+        \end{align*}
+\end{itemize}
+
+综上可得，$(F_N)_{N = 1}^\infty$逐点收敛于函数$f$，
+于是我们有
+\begin{align*}
+  \int_{\mathbb{R}} \sum\limits_{n=1}^\infty f_n = \int_{\mathbb{R}} f = 1
+\end{align*}
+
+所以$\int_{\mathbb{R}} \sum\limits_{n=1}^\infty f_n \neq \sum \limits_{n = 1}^\infty \int_{\mathbb{R}} f_n$
+
+\section*{19.2.5}
+
+考虑集合
+\begin{align*}
+  A := \{x \in \Omega: f(x) = +\infty\}
+\end{align*}
+证明$m(A) = 0$。
+
+反证法，假设$m(A) \neq 0$，即$m(A) > 0$。
+
+构造简单函数序列$(t_n)_{n = 1}^\infty$，其中
+\begin{equation*}
+  t_n(x) =
+  \begin{cases*}
+    0 & $x \notin A$ \\
+    n & $x \in A$
+  \end{cases*}
+\end{equation*}
+对每一个$t_n$都是简单函数，并在下方控制$f$。
+
+由引理19.1.9可知，对任意$n$，我们有
+\begin{align*}
+  \int_{\Omega} t_n = n \times m(A)
+\end{align*}
+于是
+\begin{align*}
+  \lim\limits_{n \to \infty} n \times m(A) = +\infty
+\end{align*}
+又因为，对任意$n$，我们有
+\begin{align*}
+  \int_{\Omega} f \geq \int_{\Omega} t_n
+\end{align*}
+所以，我们有
+\begin{align*}
+  \int_{\Omega} f \geq \lim\limits_{n \to \infty} \int_{\Omega} t_n = +\infty
+\end{align*}
+这与题设$\int_{\Omega} f$是有限的相互矛盾，假设不成立，命题得证。
+
+\section*{19.2.6}
+先设$\Omega = \bigcup \limits_{n = 1}^\infty \Omega_n$，
+由题设可知，$\Omega$是可测的。
+
+构造函数序列$(g_n)_{n = 1}^\infty$，其中
+\begin{align*}
+  g_n = \chi_{\Omega_n}
+\end{align*}
+于是我们有
+\begin{align*}
+  \int_{\Omega} g_n = m(\Omega_n)
+\end{align*}
+利用推论19.2.11可知，
+\begin{align*}
+  \int_{\Omega} \sum \limits_{n = 1}^\infty g_n
+  = \sum \limits_{n = 1}^\infty \int_{\Omega} g_n
+  = \sum \limits_{n = 1}^\infty m(\Omega_n)
+\end{align*}
+以为$\sum \limits_{n = 1}^\infty m(\Omega_n)$是有限的，
+那么由引理19.2.14可知$\sum \limits_{n = 1}^\infty g_n$是几乎处处有限。
+即集合
+\begin{align*}
+  A := \{x \in \Omega: \left(\sum \limits_{n = 1}^\infty g_n\right)(x) = +\infty\}
+\end{align*}
+的测度为零（$m(A) = 0$）。
+
+接下来证明集合$B := \{x \in \Omega: \text{存在无限个$n$使得$x \in \Omega_n$}\}$的测得为零（即$m(B) \neq 0$）。
+反证法，假设集合$B$的测度不为零，即$m(B) > 0$。
+为了完成证明，我们只需证明
+\begin{align*}
+  B \subseteq A
+\end{align*}
+对任意$x \in B$，那么集合$C := \{m \in \mathbb{N}^+ : x \in \Omega_m\}$是无限集，
+又因为对任意$m \in C$，我们有
+\begin{align*}
+  g_m(x) = 1
+\end{align*}
+进而
+\begin{align*}
+  \sum\limits_{m \in C} g_m(x) = +\infty
+\end{align*}
+于是可得
+\begin{align*}
+  \left(\sum \limits_{n = 1}^\infty g_n\right)(x) \geq \sum\limits_{m \in C} g_m(x) = +\infty
+\end{align*}
+所以$x \in A$，从而$B \subseteq A$，
+于是$m(B) \leq m(A)$，与$m(A) = 0, m(B) > 0$矛盾。
+假设不成立，命题得证。
+
+\section*{19.2.7 $\circledast$}
+设
+\begin{align*}
+  A := \{x \in [0, 1]: \text{存在无限多个正整数$a$和$q$使得$|x \ a/q| \leq c/q^p$}\}
+\end{align*}
+
+设$\Omega_1, \Omega_2, \cdots$是$[0, 1]$的一列可测子集，
+并且对任意$q \in \mathbb{N}^+$，
+\begin{align*}
+  \Omega_q = \bigcup \limits_{a = 1}^q [\frac{a}{q} - \frac{c}{q^p}, \frac{a}{q} + \frac{c}{q^p}] \cap [0, 1]
+\end{align*}
+这里我们只需考虑$1 \leq a \leq q$的情况（放在本节最后，不放在主体中，对理解整体思路有帮助。）
+（为什么这样构造，这是因为它有一个关键性质：如果$x \in \Omega_q$，能够满足$|x - \frac{a}{q}| \leq \frac{c}{q^p}$）。
+
+对任意$\Omega_q$，我们有
+\begin{align*}
+  m(\Omega_q) & \leq ((\frac{a}{q} + \frac{c}{q^p}) - (\frac{a}{q} - \frac{c}{q^p})) \times q \\
+              & = \frac{2cq}{q^p}                                                             \\
+              & = \frac{2c}{q^{p - 1}}
+\end{align*}
+由推论7.5.3（比值判别法）易得
+\begin{align*}
+  \sum\limits_{q = 1}^\infty m(\Omega_q)
+\end{align*}
+有限收敛。
+
+由Borel-Cantelli引理可知，集合
+\begin{align*}
+  B := \{x \in [0, 1]: \text{存在无限多个$q$使得$x \in \Omega_q$}\}
+\end{align*}
+的测度为零（即$m(B) = 0$）。
+
+到这一步，证明还未完成，需要证明$A \subseteq B$。\\
+对任意$x \in A$，那么存在无限多个正整数$a$和$q$使得$|x - a/q| \leq c/q^p$，
+对每一个具体的$a, q$（其中$1 \leq a \leq q$），有
+$x \in [\frac{a}{q} - \frac{c}{q^p}, \frac{a}{q} + \frac{c}{q^p}]$，
+所以，$x \in \Omega_q$，进而可得$x \in B$，于是我们有
+\begin{align*}
+  A \subseteq B
+\end{align*}
+我们有
+\begin{align*}
+  0 \leq m(A) \leq m(B) = 0 \\
+  \implies                  \\
+  m(A) = 0
+\end{align*}
+命题得证。
+
+\section*{19.2.8}
+
+% 考虑集合
+% \begin{align*}
+%   A : = \{x \in \mathbb{R}: x \text{不是丢番图数}\}
+% \end{align*}
+% 我们只需证明$m(A)= 0$。
+
+% A等价于以下集合
+
+todo （没思路）
+
+\section*{19.2.9}
+
+任意$\epsilon > 0$，对所有的$n = 1, 2, 3 \cdots$，考虑集合
+\begin{align*}
+  A_n = \{x \in \mathbb{R}: f_n(x) > \frac{1}{\epsilon 2^n}\}
+\end{align*}
+先证明: $m(A_n) \leq \frac{\epsilon}{2^n}$。
+反证法，假设$m(A_n) > \frac{\epsilon}{2^n}$。
+我们构造一个简单函数$s$，它从下方控制$f_n$：
+\begin{equation*}
+  s(x) = \begin{cases}
+    0                      & x \notin A_n \\
+    \frac{1}{\epsilon 2^n} & x \in A_n
+  \end{cases}
+\end{equation*}
+于是，我们有
+\begin{align*}
+  \int_{\mathbb{R}} f_n \geq \int_{\mathbb{R}} s > \frac{1}{\epsilon 2^n} \frac{\epsilon}{2^n} = \frac{1}{4^n}
+\end{align*}
+这与题设$\int_{\mathbb{R}} f_n \leq \frac{1}{4^n}$矛盾，
+假设不成立，$m(A_n) \leq \frac{\epsilon}{2^n}$得证。
+
+令
+\begin{align*}
+  E := \bigcup\limits_{n = 1}^\infty A_n
+\end{align*}
+利用引理7.3.3，我们有
+\begin{align*}
+  m(E) \leq \sum\limits_{n = 1}^\infty m(A_n) \leq \sum\limits_{n = 1}^\infty \frac{\epsilon}{2^n} = \epsilon
+\end{align*}
+
+对任意$x \in \mathbb{R} \setminus E$，
+那么，对任意$n$，因为$x \notin A_n$，我们有
+\begin{align*}
+  0 \leq f_n(x) \leq \frac{1}{\epsilon 2^n}
+\end{align*}
+于是
+\begin{align*}
+  0 \leq \lim\limits_{n \to \infty} f_n(x) \leq \lim\limits_{n \to \infty} \frac{1}{\epsilon 2^n} = 0
+\end{align*}
+由夹逼定理可得，$\lim\limits_{n \to \infty} f_n(x) = 0$。
+
+\section*{19.2.10 $\circledast$}
+
+ (1)
+
+按照书中提示，先证明对于任意的正整数$m$，我们能够找到一个$N > 0$使得
+$m(\{x \in [0, 1]: f_n(x) > \frac{1}{m}\}) \leq \epsilon/2^m$
+对所有的$n \geq N$都成立。
+
+对每一个$m \in \mathbb{N}^+$，
+我们都构造$F_n^{(m)} := \bigcup\limits_{i = n}^\infty E_i^{(m)}$，其中
+$E_n^{(m)} := \{x \in [0, 1]: f_n(x) > \frac{1}{m}\}$。
+可见，$F_1^{(m)} \supseteq F_2^{(m)} \supseteq F_3^{(m)} \supseteq \cdots$，
+而且$F_1^{(m)} \subseteq [0, 1]$。
+
+注意，上面对每个$m$都都构造了一套$F_n^{(m)}$集合序列。
+
+对任意每一个$m$，由习题18.2.3(b)，我们有
+\begin{align*}
+  m(\bigcap\limits_{n = 1}^\infty F_n^{(m)}) = \lim\limits_{n \to \infty} m(F_n^{(m)})
+\end{align*}
+接下来证明
+\begin{align*}
+  \bigcap\limits_{n = 1}^\infty F_n^{(m)} = \varnothing
+\end{align*}
+反证法，假设$\bigcap\limits_{n = 1}^\infty F_n^{(m)} \neq \varnothing$，
+那么存在$x \in \bigcap\limits_{n = 1}^\infty F_n^{(m)}$，
+即对每一个$n$都有$x \in F_n^{(m)}$，从而$x \in \bigcup\limits_{i = n}^\infty E_i^{(m)}$，
+我们可得，对任意$n$，都有$i \geq n$使得
+\begin{align*}
+  x \in E_i^{(m)} \\
+  \implies        \\
+  f_i(x) > \frac{1}{m}
+\end{align*}
+这与函数序列$f_n$逐点收敛于零矛盾。
+
+因为对任意的$m$都有$\bigcap\limits_{n = 1}^\infty F_n^{(m)} = \varnothing$，于是我们有
+\begin{align*}
+  m(\bigcap\limits_{n = 1}^\infty F_n^{(m)}) = \lim\limits_{n \to \infty} m(F_n^{(m)}) = 0
+\end{align*}
+于是对任意$\epsilon > 0$和任意正整数$m$，存在$N_m$使得只要$n \geq N_m$，就有
+\begin{align*}
+  m(F_n^{(m)}) \leq \epsilon/2^m
+\end{align*}
+构造集合$E$如下：
+\begin{align*}
+  E : = \bigcup\limits_{m = 1}^\infty F_{N_m}^{(m)}
+\end{align*}
+（形象化的理解，这一步就像剥洋葱，剥掉不要的。）\\
+于是，我们有
+\begin{align*}
+  m(E) \leq \sum\limits_{m=1}^\infty m(F_{N_m}^{(m)}) \leq \sum\limits_{m = 1}^\infty \epsilon/2^m = \epsilon
+\end{align*}
+
+接下来证明：$f_n(x)$在$[0, 1] \setminus E$上一致收敛于$0$。
+
+对任意$x \in [0, 1] \setminus E, \epsilon^\prime > 0$。
+存在正整数$M$使得$\frac{1}{M} \leq \epsilon^\prime$。
+$x \in [0, 1] \setminus E$可得$x \notin E$，
+从而$x \notin F_{N_M}^{(M)}$，于是当$n \geq N_M$，我们有
+\begin{align*}
+  f_n(x) \leq 1/M \leq \epsilon^\prime
+\end{align*}
+命题得证。
+
+(2)换成$\mathbb{R}$，命题成立么？
+
+不成立，举一个反例
+\begin{equation*}
+  f_n(x) = \begin{cases}
+    1 & x \in [n, n+1]    \\
+    0 & x \notin [n, n+1]
+  \end{cases}
+\end{equation*}
+对每一个$n$，$f_n$都会在$[n, n+1]$上等于1，其他地方都等于$0$，
+所以函数序列$f_n$逐点收敛于$0$。
+
+但由于这个等于1的区间$[n, n+1]$，随着$n \to \infty$一直向无穷处移动，
+我们就无法通过抠出一个有限的集合$E$，来拦截这种行为。
+
+\section*{19.2.11}
+定义函数$f: \mathbb{N} \times \mathbb{N} \to \mathbb{R}+$如下：
+\begin{equation*}
+  f(n, m) = \begin{cases}
+    1 & n = m    \\
+    0 & n \neq m
+  \end{cases}
+\end{equation*}
+
+\begin{itemize}
+  \item (1)证明对每一个$n$，$\sum\limits_{m=1}^\infty  f(n, m)$都是收敛的。
+
+        如果$n \geq 1$，于是存在$n = m$使得$f(n, m) = 1$，其他$f(n, m) = 0$，
+        于是可得
+        \begin{align*}
+          \sum\limits_{m=1}^\infty  f(n, m) = 1
+        \end{align*}
+
+        如果$n < 1$，则
+        \begin{align*}
+          \sum\limits_{m=1}^\infty  f(n, m) = 0
+        \end{align*}
+        命题得证。
+
+  \item (2) 对于每一个$m$，$\lim\limits_{n \to \infty} f(n, m)$。
+
+        存在$N > m$使得只要$n  \geq N$，就有
+        \begin{align*}
+          f(n, m) = 0
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} f(n, m) = 0
+        \end{align*}
+
+  \item (3)$f$满足下面这个不等式：
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sum\limits_{m = 1}^{\infty} f(n,m)
+          \neq \sum\limits_{m = 1}^{\infty} \lim\limits_{n \to \infty} f(n, m)
+        \end{align*}
+
+        由(1)可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sum\limits_{m = 1}^{\infty} f(n,m) = 1 \\
+          \sum\limits_{m = 1}^{\infty} \lim\limits_{n \to \infty} f(n, m) = 0
+         \end{align*}
+         综上，不等式成立。
+\end{itemize}
+
+\textbf{补充部分：}
+
+\begin{zremark}
+  习题19.2.7中：“只需考虑$1 \leq a \leq q$的情况”合理性证明。
+\end{zremark}
+
+\textbf{证明：}
+
+$a, q \in \mathbb{N}^+$，需要满足题设：
+\begin{align*}
+  |x - \frac{a}{q}| \leq \frac{c}{q^p} \\
+  x - \frac{c}{q^p} \leq \frac{a}{q} \leq x + \frac{c}{q^p}
+\end{align*}
+即$\frac{a}{q} \in [x - \frac{c}{q^p}, x + \frac{c}{q^p}]$可满足题设。
+又因为$x \in [0, 1]$，于是$\frac{a}{q} \in [- \frac{c}{q^p}, 1 + \frac{c}{q^p}]$，
+乘以$q$可得$a \in [-cq^{1 - p}, q + cq^{1 - p}]$。
+题设要求$a \in \mathbb{N}^+$，从而$a \in [1, q + cq^{1 - p}]$。
+
+由于$p > 2$，于是我们有
+\begin{align*}
+  \lim\limits_{q \to \infty} cq^{1 - p} = 0
+\end{align*}
+因此在$q$足够大时，$a \in [1, q + 1)$，即$a \in [1, q]$。
+（注意区间可以表示成$[1, q + cq^{1 - p}]_{q = 1}^\infty$，
+区间是单调递增的，之前$q$不够大时的区间，最后会被覆盖。）
+
+\end{document}
