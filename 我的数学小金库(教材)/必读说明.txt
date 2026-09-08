@@ -1,0 +1,15 @@
+1-KEIL5 MDK：
+
+	如何注册：安装完MDK-KEIL后，下载后再解压“Keil注册… .rar”包，请仔细查看内附流程图。
+
+
+2-芯片包
+
+	下载对应开发板主芯片系列名字的F1、F4、F7、H7等的pack芯片包，
+	初次安装完MDK-KEIL后，会弹出在线更新芯片包窗口，关闭，双击安装下载的pack芯片包。
+
+
+3-Keil5 添加 Arm Compiler v5.06 Keil添加编译器
+
+    先解压文件到Keil的ARM文件中，看文章使用
+    https://herui.blog.csdn.net/article/details/151311370?spm=1001.2014.3001.5502
