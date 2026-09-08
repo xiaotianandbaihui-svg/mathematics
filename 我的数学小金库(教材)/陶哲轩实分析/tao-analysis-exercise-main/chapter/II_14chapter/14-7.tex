@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{14.7 习题}
+\author{张志聪}
+\maketitle
+
+\section*{14.7.1}
+（1）$f_n$一致收敛于$f$。
+
+\begin{align*}
+   & f_n(x) - f(x)                                                                     \\
+   & = f_n(x) - L + \int_{[a, x_0]} g - \int_{[a, x]} g                                \\
+   & = f_n(x) - L - f_n(x_0) + f_n(x_0) + \int_{[a, x_0]} g - \int_{[a, x]} g          \\
+   & = f_n(x_0) - L + \int_{[x_0, x]} f^\prime_n + \int_{[a, x_0]} g - \int_{[a, x]} g \\
+   & = f_n(x_0) - L + \int_{[x_0, x]} f^\prime_n - g
+\end{align*}
+
+由$\lim\limits_{n \to \infty} f_n(x_0) = L$可得，
+对任意$\epsilon > 0$，存在$N_1 > 0$，使得只要$n \geq N_1$，就有
+\begin{align*}
+  |f_n(x_0) - L| < \frac{1}{2}\epsilon
+\end{align*}
+
+又由$f_n^\prime$一致收敛与$g$，那么，存在$N_2 > 0$，使得只要$n \geq N_2$，就有
+\begin{align*}
+  f^\prime_n - g < \frac{1}{2}\frac{\epsilon}{|b - a|}
+\end{align*}
+
+综上可得，对任意的$\epsilon > 0$，存在$N > max(N_1, N_2)$，使得只要$n \geq N$，就有
+\begin{align*}
+  |f_n(x) - f(x)| = |f_n(x_0) - L + \int_{[x_0, x]} f^\prime_n - g| < \frac{1}{2}\epsilon + \frac{1}{2}\epsilon = \epsilon
+\end{align*}
+命题得证。
+
+（2）$f$是可微的，它的导函数是$g$。
+
+$L - \int_{[a, x_0]} g$是常数，所以，导数是$0$；$g$是连续的，由推论11.5.2可知，
+\begin{align*}
+  \int_{[a, x]} g
+\end{align*}
+是黎曼可积的。
+
+又由定理11.9.1可知，$(\int_{[a, x]} g)^\prime = g(x)$。
+
+综上，命题得证。
+
+（3）例1.2.10与定理14.7.1不矛盾的原因。
+
+把$\epsilon$看做$\frac{1}{n}$，例1.2.10的操作没有按照定理14.7.1的操作，所以，定理14.7.1与例1.2.10不矛盾。
+
+\section*{14.7.2}
+
+如果
+\begin{align*}
+  d_{\infty}(f_n^\prime, f_m^\prime) \leq \epsilon
+\end{align*}
+
+即
+\begin{align*}
+  \sup\{|f_n^\prime(x) - f_m^\prime(x)|: x \in [a, b]\} \leq \epsilon
+\end{align*}
+
+所以对任意$x \in [a, b]$都有$|f_n^\prime(x) - f_m^\prime(x)| \leq \epsilon$。
+
+定义$h := (f_n + f_m)(x)$的函数$h : [a, b] \to \mathbb{R}$，因为$f_n, f_m$连续可微，
+由定理10.1.13(c)可知，$h$连续可微。
+
+利用推论10.2.9可知，对任意$x \in [a, b]$，在区间$[x, x_0]$，存在$z \in [x, x_0]$，使得
+\begin{align*}
+  h^\prime(z) = \frac{h(x) - h(x_0)}{x - x_0}
+\end{align*}
+
+即
+\begin{align*}
+  h^\prime(z) = f_n^\prime(z) - f_m^\prime(z) = \frac{(f_n(x) - f_m(x)) - (f_n(x_0) - f_m(x_0))}{x - x_0}
+\end{align*}
+
+综上可得，
+\begin{align*}
+  \left| (f_n(x) - f_m(x)) - (f_n(x_0) - f_m(x_0))\right|  \leq \epsilon|x - x_0|
+\end{align*}
+
+（1）$f_n$一致收敛于某个函数$f$。
+
+因为$\lim\limits_{n \to \infty} f_n^\prime = g$，
+那么，对任意$\epsilon > 0$，存在$N_1 > 0$使得只要$m, n \geq N_1$和$x \in [a, b]$，都有
+\begin{align*}
+  |f_n^\prime(x) - g(x)| \leq \frac{1}{2} \epsilon \\
+  |f_m^\prime(x) - g(x)| \leq \frac{1}{2} \epsilon
+\end{align*}
+
+于是可得
+\begin{align*}
+  |f_n^\prime(x) - f_m^\prime(x)| & = |f_n^\prime(x) - g(x) + g(x) - f_m^\prime(x)|      \\
+                                  & \leq |f_n^\prime(x) - g(x)| + |f_m^\prime(x) - g(x)| \\
+                                  & \leq \epsilon
+\end{align*}
+
+所以，我们有
+\begin{align*}
+  d_\infty(f_n^\prime, f_m^\prime) \leq \epsilon
+\end{align*}
+
+由之前的讨论
+\begin{align*}
+  |f_n(x) - f_m(x)| \leq \epsilon|x - x_0| + |f_n(x_0) - f_m(x_0)| \leq \epsilon|b - a| + |f_n(x_0) - f_m(x_0)|
+\end{align*}
+
+由$\lim\limits_{n \to \infty} f_n(x_0)$极限存在，于是$(f_n(x_0))_{n = 1}^\infty$是柯西序列，
+那么，存在$N_2 \geq 1$，使得只要$n, m \geq N_2$，就有
+\begin{align*}
+  |f_n(x_0) - f_m(x_0)| \leq \epsilon|b - a|
+\end{align*}
+
+综上可得，只要$n, m \geq max(N_1, N_2)$，对任意$x \in [a, b]$都有
+\begin{align*}
+  |f_n(x) - f_m(x)| & \leq \epsilon|b - a| + |f_n(x_0) - f_m(x_0)|              \\
+                    & \leq \epsilon|b - a| + \epsilon|b - a| = 2\epsilon|b - a|
+\end{align*}
+
+即
+\begin{align*}
+  d_\infty(f_n, f_m) \leq 2\epsilon|b - a|
+\end{align*}
+
+由$\epsilon$的任意性可知，
+$(f_n)_{n = 1}^\infty$是度量空间$(C([a, b] \to \mathbb{R}), d_{\infty})$中的柯西序列，
+由定理14.4.5可知，该序列收敛于$C([a, b] \to \mathbb{R})$中的一个函数$f$，由命题14.4.4可知，
+$(f_n)_{n = 1}^\infty$一致收敛$f$。
+
+（2）$f$是可微的，它的导函数是$g$。
+
+todo 还没证明完，卡住了!
+
+利用命题14.3.3进行证明。
+
+对任意$c \in [a, b], E := [a, b] \setminus \{c\}$，
+需证明$\lim\limits_{x \to c; x \in E} \frac{f(x) - f(c)}{x - c}$是存在的，
+且等于$g(x)$。
+
+定义函数如下：
+\begin{equation*}
+  \begin{cases*}
+    F(x)    := \frac{f(x) - f(c)}{x - c},\;\;\;\; x \in E \\
+    F_n(x)  : = \frac{f_n(x) - f_n(c)}{x - c}, \;\;\;\; x \in E
+  \end{cases*}
+\end{equation*}
+
+接下来，证明$(F_n)_{n = 1}^\infty$一致收敛于$F$。
+\begin{align*}
+  F_n(x) - F(x) & = \frac{(f_n(x) - f_n(c)) - (f(x) - f(c))}{x - c} \\
+                & = \frac{(f_n(x) - f(x)) + (f(c) - f_n(c))}{x - c}
+\end{align*}
+
+由$(f_n)_{n = 1}^\infty$一致收敛$f$可得，存在$N$，使得只要$n \geq N$和$x \in E$都有
+\begin{align*}
+  |f_n(x) - f(x)| \leq \epsilon
+\end{align*}
+
+综上可得
+\begin{align*}
+ |F_n(x) - F(x)| = |\frac{(f_n(x) - f(x)) + (f(c) - f_n(c))}{x - c}| \leq \frac{2\epsilon}{|x - c|}  
+\end{align*}
+
+
+\section*{14.7.3}
+
+利用定理14.5.7（威尔斯特拉斯M判别法）可知
+\begin{align*}
+  \sum \limits_{n = 1}^\infty f_n^\prime
+\end{align*}
+是一致收敛的，不妨设一致收敛于连续函数$g$。
+
+定义$F_N := \sum\limits_{n = 1}^N f_n$函数$F_N: [a, b] \to \mathbb{R}$，
+因为$f_n$是可微函数，由10.1.13(c)可知，$F_N$是可微函数，且
+导函数为
+\begin{align*}
+  F_N^\prime := \sum\limits_{n = 1}^N f_n^\prime
+\end{align*}
+由于$f_n^\prime$是连续的，那么导函数$F_N^\prime$也是连续的。
+
+由之前的讨论可得$\lim\limits_{N \to \infty} F_N^\prime = g$，又因为
+存在某个$x_0 \in [a, b]$，使得级数$\sum\limits_{n = 1}^\infty f_n(x_0)$收敛，
+即$\lim\limits_{N \to \infty} F_N(x_0)$存在，于是利用定理14.7.1可知，
+函数数列$F_N$一致收敛于可微函数$f$，并且$f$的导函数等于$g$。
+
+\end{document}

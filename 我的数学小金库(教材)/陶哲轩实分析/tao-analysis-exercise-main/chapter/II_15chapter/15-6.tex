@@ -1,0 +1,864 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{15.6 习题}
+\author{张志聪}
+\maketitle
+
+\section*{15.6.1}
+
+设$z_1 = (a, b), z_2 = (c, d), z_3 = (e, f)$。
+
+\begin{itemize}
+  \item (a) 可交换性：$z_1 + z_2 = z_2 + z_1$。
+
+        按照定义15.6.3（复数的加法运算）可知，
+        \begin{align*}
+          z_1 + z_2 & = (a + c, b + d) \\
+          z_2 + z_1 & = (c + a, d + b) \\
+        \end{align*}
+        因为
+        \begin{align*}
+          a + c & = c + a \\
+          b + d & = d + b
+        \end{align*}
+        于是，由定义15.6.2中关于相等的定义可知，
+        \begin{align*}
+          z_1 + z_2 = z_2 + z_1
+        \end{align*}
+
+  \item (b) 结合性：$(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)$。
+
+        我们有
+        \begin{align*}
+          (z_1 + z_2) + z_2 & = (a + c, b + d) + (e, f) \\
+                            & = (a + c + e, b + d + f)
+        \end{align*}
+
+        又因为
+
+        \begin{align*}
+          z_1 + (z_2 + z_3) & = (a, b) + (c + e, d + f) \\
+                            & = (a + c + e, b + d + f)
+        \end{align*}
+
+        于是，由定义15.6.2中关于相等的定义可知，
+        \begin{align*}
+          (z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)
+        \end{align*}
+
+  \item (c) 恒等性：$z_1 + 0_\mathbb{C} = 0_\mathbb{C} + z_1$。
+
+        我们有，
+        \begin{align*}
+          z_1 + 0_\mathbb{C} & = (a, b) + (0, 0) \\
+                             & = (a, b)
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          0_\mathbb{C} + z_1 & = (0, 0) + (a, b) \\
+                             & = (a, b)
+        \end{align*}
+
+        于是，由定义15.6.2中关于相等的定义可知，
+        \begin{align*}
+          z_1 + 0_\mathbb{C} = 0_\mathbb{C} + z_1
+        \end{align*}
+
+  \item (d) 逆元性：$z_1 + (-z_1) = (-z_1) + z_1 = 0_\mathbb{C}$。
+
+        由(a)可交换性可知
+        \begin{align*}
+          z_1 + (-z_1) = (-z_1) + z_1
+        \end{align*}
+
+        我们有，
+        \begin{align*}
+          z_1 + (-z_1) & = (a, b) + (-a, -b) \\
+                       & = (0, 0)            \\
+                       & = 0_\mathbb{C}
+        \end{align*}
+
+\end{itemize}
+
+\section*{15.6.2}
+
+设$z_1 = (a, b), z_2 = (c, d), z_3 = (e, f)$。
+
+\begin{itemize}
+  \item (a) 可交换性：$z_1z_2 = z_2z_1$。
+
+        由定义15.6.5可知，
+        \begin{align*}
+          z_1z_2 & = (a, b)(c, d)       \\
+                 & = (ac - bd, ad + bc)
+        \end{align*}
+        \begin{align*}
+          z_2z_1 & = (c, d)(a, b)       \\
+                 & = (ca - db, cb + da)
+        \end{align*}
+
+        因为
+        \begin{align*}
+          ac - bd & = ca - db \\
+          ad + bc & = cb + da
+        \end{align*}
+
+        于是，由定义15.6.2中关于相等的定义可知，
+        \begin{align*}
+          z_1z_2 = z_2z_1
+        \end{align*}
+
+  \item (b) 结合性：$(z_1z_2)z_3 = z_1(z_2z_3)$。
+
+        因为
+        \begin{align*}
+          (z_1z_2)z_3 & = ((a, b)(c, d))(e, f)                             \\
+                      & = (ac - bd, ad + bc)(e, f)                         \\
+                      & = ((ac-bd)e - (ad + bc)f, (ac - bd)f + (ad + bc)e) \\
+                      & = (ace - bde - adf - bcf, acf - bdf + ade + bce)
+        \end{align*}
+        \begin{align*}
+          z_1(z_2z_3) & = (a, b)((c, d)(e, f))                               \\
+                      & = (a, b)(ce - df, cf + de)                           \\
+                      & = (a(ce - df) - b(cf + de), a(cf + de) + b(ce - df)) \\
+                      & = (ace - adf - bcf - bde, acf + ade + bce - bdf)
+        \end{align*}
+
+        于是，由定义15.6.2中关于相等的定义可知，
+        \begin{align*}
+          (z_1z_2)z_3 = z_1(z_2z_3)
+        \end{align*}
+
+  \item (c) 恒等性：$z_11_\mathbb{C} = 1_\mathbb{C}z_1 = z_1$。
+
+        由(a)可知
+        \begin{align*}
+          z_11_\mathbb{C} = 1_\mathbb{C}z_1
+        \end{align*}
+
+        又有
+        \begin{align*}
+          z_11_\mathbb{C} & = (a, b)(1, 0)                                    \\
+                          & = (a\times 1 - b \times 0, a\times 0 + b\times 1) \\
+                          & = (a, b)                                          \\
+                          & = z_1
+        \end{align*}
+
+  \item (d) 分配性：$z_1(z_2 + z_3) = z_1z_2 + z_1z_3$和$(z_2 + z_3)z_1 = z_2z_1 + z_3z_1$。
+
+        因为
+        \begin{align*}
+          z_1(z_2 + z_3) & = (a, b)((c, d) + (e, f))                    \\
+                         & = (a, b)(c + e, d + f)                       \\
+                         & = (a(c + e) - b(d + f), a(d + f) + b(c + e)) \\
+                         & = (ac + ae - bd - bf, ad + af + bc + be)
+        \end{align*}
+        \begin{align*}
+          z_1z_2 + z_1z_2 & = (a, b)(c, d) + (a, b)(e, f)             \\
+                          & = (ac - bd, ad + bc) + (ae - bf, af + be) \\
+                          & = (ac - bd + ae - bf, ad + bc + af + be)
+        \end{align*}
+
+        于是，由定义15.6.2中关于相等的定义可知，
+        \begin{align*}
+          z_1(z_2 + z_3) = z_1z_2 + z_1z_3
+        \end{align*}
+
+        同理可得，
+        \begin{align*}
+          (z_2 + z_3)z_1 = z_2z_1 + z_3z_1
+        \end{align*}
+
+\end{itemize}
+
+\section*{15.6.3}
+
+这个引理是想说明：形式符号$z = (a, b)$与$z = a + bi$是等价的。
+
+因为
+\begin{align*}
+  a + bi & = (a, 0) + (b, 0)(0, 1) \\
+         & = (a, 0) + (0, b)       \\
+         & = (a, b)
+\end{align*}
+从而，$a + bi$与$(a, b)$就是一回事。
+
+\section*{15.6.4}
+
+设$z = a + bi, w = c + di$。
+
+\begin{itemize}
+  \item $\overline{z + w} = \overline{z} + \overline{w}$。
+
+        因为
+        \begin{align*}
+          z + w = a + bi + c + di & = a + c + (b + d)i
+        \end{align*}
+        于是
+        \begin{align*}
+          \overline{z + w} = a + c - (b + d)i
+        \end{align*}
+
+        又
+        \begin{align*}
+          \overline{z} + \overline{w} & = a - bi + c - di  \\
+                                      & = a + c - (b + d)i
+        \end{align*}
+
+        所以，$\overline{z + w} = \overline{z} + \overline{w}$。
+
+  \item $\overline{-z} = - \overline{z}$。
+
+        \begin{align*}
+          \overline{-z} & = \overline{-a - bi} \\
+                        & = -a + bi
+        \end{align*}
+        \begin{align*}
+          - \overline{z} & = -(a - bi) \\
+                         & = -a + bi
+        \end{align*}
+
+        所以，$\overline{-z} = - \overline{z}$。
+
+  \item $\overline{zw} = \overline{z} \; \overline{w}$。
+
+        因为
+        \begin{align*}
+          \overline{zw} & = \overline{(a + bi)(c + di)}       \\
+                        & = \overline{(ac - bd) + (ad + bc)i} \\
+                        & = (ac - bd) - (ad + bc)i
+        \end{align*}
+
+        \begin{align*}
+          \overline{z} \; \overline{w} & = \overline{a + bi}\overline{c + di} \\
+                                       & = (a - bi)(c - di)                   \\
+                                       & = ac - bd - (ad + bc)i
+        \end{align*}
+
+        所以，$\overline{zw} = \overline{z} \; \overline{w}$。
+
+  \item $\overline{\overline{z}} = z$。
+
+        \begin{align*}
+          \overline{\overline{z}} & = \overline{\overline{a + bi}} \\
+                                  & = \overline{a - bi}            \\
+                                  & = a + bi                       \\
+                                  & = z
+        \end{align*}
+
+  \item $\overline{z} = \overline{w}$当且仅当$z = w$。
+
+        \begin{itemize}
+          \item $\Rightarrow$
+
+                \begin{align*}
+                  \overline{z} & = \overline{w} \\
+                  a - bi       & = c - di
+                \end{align*}
+                于是，$a = c$且$-b = -d$，即$a = c$且$b = d$。
+                所以$z = w$。
+
+          \item $\Leftarrow$
+
+                $z = w$，所以$a = c$且$b = d$。
+                \begin{align*}
+                  \overline{z} & = a - bi \\
+                  \overline{w} & = c - di
+                \end{align*}
+                于是$a = c$且$-b = -d$，
+                所以$\overline{z} = \overline{w}$。
+        \end{itemize}
+
+  \item $\overline{z} = z$当且仅当$z$是一个实数。
+        \begin{itemize}
+          \item $\Rightarrow$
+
+                $\overline{z} = z$，那么$-b = b$，所以$b = 0$，即$\mathfrak{I}(z) = 0$，
+                所以$z$是一个实数。
+
+          \item $\Leftarrow$
+
+                $z$是一个实数，$\mathfrak{I}(z) = 0$，于是$b = 0$，
+                所以$\overline{z} = z$。
+        \end{itemize}
+
+\end{itemize}
+
+\section*{15.6.5}
+
+设$z = a + bi$，
+所以$\mathfrak{R} (z) = a, \mathfrak{I}(z) = b$。
+
+又因为
+\begin{align*}
+  \frac{z + \overline{z}}{2} & = \frac{a + bi + a - bi}{2} \\
+                             & = \frac{2a}{2}              \\
+                             & = a                         \\
+                             & = \mathfrak{R} (z)
+\end{align*}
+
+\begin{align*}
+  \frac{z - \overline{z}}{2i} & = \frac{a + bi - (a - bi)}{2i} \\
+                              & = \frac{b2i}{2i}               \\
+                              & = b                            \\
+                              & = \mathfrak{I}(z)
+\end{align*}
+
+\section*{15.6.6}
+
+设$z = a + bi, w = c + di$。
+
+\begin{itemize}
+  \item 恒等式$z\overline{z} = |z|^2$，从而有$|z| = \sqrt{z \overline{z}}$。
+
+        \begin{align*}
+          z \overline{z} & = (a + bi)(a - bi)         \\
+                         & = a^2 - b^2i^2 - abi + abi \\
+                         & = a^2 - b^2i^2             \\
+                         & = a^2 + b^2
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          |z|^2 & = \sqrt{a^2 + b^2}^2 \\
+                & = a^2 + b^2
+        \end{align*}
+
+        于是，$z\overline{z} = |z|^2$，从而有$|z| = \sqrt{z \overline{z}}$。
+
+  \item $|zw| = |z||w|$且$|\overline{z}| = |z|$。
+
+        由之前的讨论可得，
+        \begin{align*}
+          |zw| & = \sqrt{zw\overline{zw}}              \\
+               & = \sqrt{zw\overline{z}\;\overline{w}} \\
+               & = \sqrt{z\overline{z}w\overline{w}}   \\
+               & = \sqrt{|z|^2|w|^2}                   \\
+               & = |z||w|
+        \end{align*}
+
+        $|\overline{z}| = |z|$直接可以从复数绝对值定义中得到。
+
+  \item 不等式$-|z| \leq \mathfrak{R}(z) \leq |z|$。
+
+        因为
+        \begin{align*}
+          |z|^2 = a^2 + b^2 \geq a^2
+        \end{align*}
+
+        由引理5.6.9(d)（更准确的说是实数版本）可得
+        \begin{align*}
+          |z| \geq |a| \geq \mathfrak{R}(z) = a
+        \end{align*}
+
+        于是，
+        \begin{align*}
+          -|z| \leq -|a| \leq a = \mathfrak{R}(z)
+        \end{align*}
+
+  \item 不等式$-|z| \leq \mathfrak{I}(z) \leq |z|$。
+
+        与上一个不等式证明方式一致。
+
+  \item 不等式$|z| \leq |\mathfrak{R}| + |\mathfrak{I}|$。
+
+        因为
+        \begin{align*}
+          (|\mathfrak{R}| + |\mathfrak{I}|)^2
+           & = (|a| + |b|)^2        \\
+           & = a^2 + b^2 + 2|ab|    \\
+           & \geq a^2 + b^2 = |z|^2
+        \end{align*}
+
+        由引理5.6.9(d)（更准确的说是实数版本）可得
+        \begin{align*}
+          |z| \leq |\mathfrak{R}| + |\mathfrak{I}|
+        \end{align*}
+
+  \item 三角不等式$|z + w| \leq |z| + |w|$。
+
+        按照书中的提示进行证明。
+
+        由之前的命题可得，
+        \begin{align*}
+          \mathfrak{R}(z\overline{w}) \leq |z\overline{w}| = |z||\overline{w}| = |z||w|
+        \end{align*}
+
+        于是，
+        \begin{align*}
+          \mathfrak{R}(z\overline{w}) \leq |z||w|
+        \end{align*}
+
+        利用习题15.6.5可得，
+        \begin{align*}
+          \mathfrak{R}(z\overline{w}) & = \frac{z\overline{w} + \overline{z\overline{w}}}{2} \\
+                                      & = \frac{z\overline{w} + \overline{z}w}{2}
+        \end{align*}
+
+        于是，
+        \begin{align*}
+          \frac{z\overline{w} + \overline{z}w}{2} & \leq |z||w|  \\
+          z\overline{w} + \overline{z}w           & \leq 2|z||w|
+        \end{align*}
+
+        然后，不等式两端加上$|z|^2 + |w|^2$，
+        \begin{align*}
+          z\overline{w} + \overline{z}w + |z|^2 + |w|^2 \leq 2|z||w| + |z|^2 + |w|^2        \\
+          z\overline{w} + \overline{z}w + z\overline{z} + w\overline{w}  \leq (|z| + |w|)^2 \\
+          (z + w)(\overline{z + w}) \leq (|z| + |w|)^2                                      \\
+          |z + w|^2 \leq (|z| + |w|)^2                                                      \\
+          |z + w| \leq |z| + |w|
+        \end{align*}
+\end{itemize}
+
+\section*{15.6.7}
+
+注意：实数也是复数，所以复数的相关性质，实数也具备。
+
+因为
+\begin{align*}
+  |z/w| & = |zw^{-1}|                                \\
+        & = \left|z|w|^{-2}\overline{w}\right|       \\
+        & = \left|\frac{z\overline{w}}{|w|^2}\right| \\
+        & = |\frac{1}{|w|^2}| |z\overline{w}|        \\
+        & = \frac{1}{|w|^2} |z| |\overline{w}|       \\
+        & = \frac{|\overline{w}|}{|w|^2} |z|         \\
+        & = \frac{|z|}{|w|}
+\end{align*}
+
+\section*{15.6.8}
+
+注意：实数也是复数，所以复数的相关性质，实数也具备。
+
+\begin{itemize}
+  \item $\Rightarrow$
+
+        todo
+
+
+
+  \item $\Leftarrow$
+
+        \begin{align*}
+          |z + w| & = |cw + w|    \\
+                  & = |(c + 1) w| \\
+                  & = |c + 1| |w|
+        \end{align*}
+        \begin{align*}
+          |z| + |w| & = |cw| + |w|    \\
+                    & = |c| |w| + |w| \\
+                    & = |c + 1| |w|
+        \end{align*}
+
+        所以$|z + w| = |z| + |w|$。
+\end{itemize}
+
+\section*{15.6.9}
+
+$z = \mathfrak{R}(z) + \mathfrak{I}(z) i$。
+
+\begin{itemize}
+  \item $\Rightarrow$
+
+        （1）$\lim\limits_{n \to \infty} \mathfrak{R} (z_n) = \mathfrak{R}(z)$。
+
+        反证法，假设$\lim\limits_{n \to \infty} \mathfrak{R} (z_n)$不收敛于$\mathfrak{R}(z)$。
+
+        于是存在$\epsilon$，不存在$N > 0$，使得只要$n \geq N$，就有
+        \begin{align*}
+          |\mathfrak{R} (z_n) - \mathfrak{R} (z) | < \epsilon
+        \end{align*}
+        即对所有的$n$都有
+        \begin{align*}
+          |\mathfrak{R} (z_n) - \mathfrak{R} (z) | \geq \epsilon
+        \end{align*}
+
+        又因为$\lim\limits_{n \to \infty} z_n = z$，所以对
+        $\epsilon > 0$，存在$N > 0$，使得只要$n \geq N$，都有
+        \begin{align*}
+           & |z_n - z| < \epsilon                                                                                  \\
+           & \implies                                                                                              \\
+           & \sqrt{(\mathfrak{R} (z_n) - \mathfrak{R}(z))^2 + (\mathfrak{I} (z_n) - \mathfrak{I}(z))^2} < \epsilon
+        \end{align*}
+
+        因为
+        \begin{align*}
+          \sqrt{(\mathfrak{R} (z_n) - \mathfrak{R}(z))^2 + (\mathfrak{I} (z_n) - \mathfrak{I}(z))^2}
+          > |\mathfrak{R} (z_n) - \mathfrak{R} (z) | \geq \epsilon
+        \end{align*}
+
+        存在矛盾。
+
+        所以，$\lim\limits_{n \to \infty} \mathfrak{R} (z_n) = \mathfrak{R}(z)$。
+
+
+        （2）$\lim\limits_{n \to \infty} \mathfrak{I} (z_n) = \mathfrak{I}(z)$。
+
+        证明类似，不做赘述。
+
+  \item $\Leftarrow$
+
+        对任意$\epsilon > 0$。
+
+        因为$\lim\limits_{n \to \infty} \mathfrak{R} (z_n) = \mathfrak{R}(z)$，
+        存在$N_1 > 0$，使得只要$n \geq N_1$，都有
+        \begin{align*}
+          |\mathfrak{R} (z_n) - \mathfrak{R} (z) | < \frac{1}{\sqrt{2}}\epsilon
+        \end{align*}
+
+        同理，因为$\lim\limits_{n \to \infty} \mathfrak{I} (z_n) = \mathfrak{I}(z)$，
+        存在$N_2 > 0$，使得只要$n \geq N_2$，都有
+        \begin{align*}
+          |\mathfrak{I} (z_n) - \mathfrak{I} (z) | < \frac{1}{\sqrt{2}}\epsilon
+        \end{align*}
+
+        取$N = max(N_1, N_2)$，使得只要$n \geq N$，都有
+        \begin{align*}
+          |z_n - z|
+           & =  \sqrt{(\mathfrak{R} (z_n) - \mathfrak{R}(z))^2 + (\mathfrak{I} (z_n) - \mathfrak{I}(z))^2} \\
+           & < \epsilon
+        \end{align*}
+
+        由$\epsilon$的任意性可得，$\lim\limits_{n \to \infty} z_n = z$。
+
+\end{itemize}
+
+\section*{15.6.10}
+
+由定义12.4.9（完备度量空间）可知，
+我们需要证明，度量空间$(\mathbb{C}, d)$中的任意$(z_n)_{n = 1}^\infty$柯西序列都有极限。
+
+对任意$\epsilon > 0$，存在$N > 0$，使得只要$p, q \geq N$，都有
+\begin{align*}
+  |z_p - z_q| < \epsilon \\
+  \implies               \\
+  \sqrt{(\mathfrak{R} (z_p) - \mathfrak{R}(z_q))^2 + (\mathfrak{I} (z_p) - \mathfrak{I}(z_q))^2} < \epsilon
+\end{align*}
+所以，
+\begin{align*}
+  \sqrt{(\mathfrak{R} (z_p) - \mathfrak{R}(z_q))^2} < \epsilon \\
+  \implies                                                     \\
+  |\mathfrak{R} (z_p) - \mathfrak{R}(z_q)| < \epsilon
+\end{align*}
+
+所以$(\mathfrak{R}(z_n))_{n = 1}^\infty$是柯西序列，
+由于$\mathfrak{z_n}$都是实数，实数度量空间是完备的，
+所以，$(\mathfrak{R}(z_n))_{n = 1}^\infty$是收敛序列。
+
+同理可得，$(\mathfrak{I}(z_n))_{n = 1}^\infty$是收敛序列。
+
+综上，利用引理15.6.13可得，$(z_n)_{n = 1}^\infty$收敛。
+
+\section*{15.6.11}
+
+\begin{itemize}
+  \item $f$是双射。
+
+        证明$f$是单射和双射即可，证明略。
+
+  \item $f, f^{-1}$都是连续函数。
+
+        （1）$f$是连续函数。
+
+        任意$(x_0, y_0) \in \mathbb{R}^2$，
+        设$(x^{(n)})_{n = 1}^\infty$是$\mathbb{R}^2$中的序列，
+        其中$x^{(n)} := (x_n, y_n)$，
+        并且序列收敛于$(x_0, y_0)$，
+        我们需要证明$(f(x^{n}))_{n = 1}^\infty$即
+        $(z_n)_{n = 1}^\infty$其中$z_n = x_n + y_n i$收敛于$f(x_0, y_0) = x_0 + y_0 i$。
+
+        由命题12.1.18可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} x_n = x_0 \\
+          \lim\limits_{n \to \infty} y_n = y_0
+        \end{align*}
+
+        由引理15.6.13可知，
+        $(z_n)_{n = 1}^\infty$收敛于$f(x_0, y_0)$。
+
+        （2）$f^{-1}$是连续函数。
+
+        证明方式与（1）类似，证明略。
+
+\end{itemize}
+
+
+\section*{15.6.12}
+
+我们构造出这样一个通路：
+
+对任意$z_0, z_1 \in \mathbb{C}$，定义$\gamma (x) = (1 - x)z_0 + z_1 x$，其中$x \in [0, 1]$。
+
+以上定义的通道满足：
+
+\begin{itemize}
+  \item $\gamma (0) = z_0, \gamma (1) = z_1$。
+  \item $\gamma$是连续的。（可以直接使用引理15.6.14证明。）
+\end{itemize}
+
+道路连通蕴含连通性，所以，$\mathbb{C}$是连通的。
+
+\section*{15.6.13}
+
+
+\begin{itemize}
+  \item （1）证明：$E$是紧致的，当且仅当$E$既是闭的又是有界的。
+        \begin{itemize}
+          \item $\Rightarrow$
+
+                利用推论 12.5.6 可证。
+
+          \item $\Leftarrow$
+                设$(z_n)_{n = 1}^\infty$是$E$中的任意序列。
+
+                按照习题15.6.11中定义的$f^{-1}$，我们有$E^\prime = f^{-1}(E), E^\prime \subseteq \mathbb{R}$。
+
+                因为$\mathbb{C}$的通常度量$d$是与欧几里得度量是一致的，
+                所以，$E$是闭的又是有界的，那么，$E^\prime$也是闭的又是有界的。
+
+                所以，$(f^{-1}(z_n))_{n = 1}^\infty$存在收敛的$R^2$上的子序列$(a_n)_{n = 1}^\infty$，
+                其对应的复数序列为$(f(a_n))_{n = 1}^\infty$。
+
+                由命题12.1.18(d)可知，我们有以下极限存在，
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \mathfrak{R} (f(a_n)) \\
+                  \lim\limits_{n \to \infty} \mathfrak{I} (f(a_n))
+                \end{align*}
+
+                所以，由引理15.6.13可知，$\lim\limits_{n \to \infty} f(a_n)$极限存在。
+
+                综上，由$(z_n)_{n = 1}^\infty$的任意性可得， $E$是紧致的。
+        \end{itemize}
+
+  \item （2）$\mathbb{C}$不是紧致的。
+
+        $\mathbb{C}$的子集$\mathbb{R}$都不是紧致的，$\mathbb{C}$不可能是紧致的。
+
+        或者直接举一个反例$(a_n)_{n = 1}^\infty$，其中$a_n = n$，这个序列就没有收敛的子序列。
+
+\end{itemize}
+
+\section*{15.6.14}
+
+只证明其中的某几个。
+
+\begin{itemize}
+  \item $(z_n + w_n)_{n = 1}^\infty$收敛，并且$\lim\limits_{n \to \infty} z_n + w_n = \lim\limits_{n \to \infty} z_n + \lim\limits_{n \to \infty} w_n$。
+
+        因为$(z_n)_{n = 1}^\infty$是收敛的复数序列，由引理15.6.13可知，以下极限存在
+        \begin{align*}
+          \lim\limits_{n \to \infty} \mathfrak{R}(z_n) \\
+          \lim\limits_{n \to \infty} \mathfrak{I}(z_n)
+        \end{align*}
+
+        同理可得，以下极限存在
+        \begin{align*}
+          \lim\limits_{n \to \infty} \mathfrak{R}(w_n) \\
+          \lim\limits_{n \to \infty} \mathfrak{I}(w_n)
+        \end{align*}
+
+        又因为，对任意$n$都有，
+        \begin{align*}
+          \mathfrak{R}(z_n + w_n) = \mathfrak{R}(z_n) + \mathfrak{R}(w_n)
+        \end{align*}
+
+        于是由极限定理（引理6.1.19）可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} \mathfrak{R}(z_n + w_n) = \lim\limits_{n \to \infty} \mathfrak{R}(z_n) + \lim\limits_{n \to \infty} \mathfrak{R}(w_n)
+        \end{align*}
+
+        同理可得，
+        \begin{align*}
+          \lim\limits_{n \to \infty} \mathfrak{I}(z_n + w_n) = \lim\limits_{n \to \infty} \mathfrak{I}(z_n) + \lim\limits_{n \to \infty} \mathfrak{I}(w_n)
+        \end{align*}
+
+        再次利用15.6.13可知，$(z_n + w_n)_{n = 1}^\infty$收敛，并且
+        \begin{align*}
+          \lim\limits_{n \to \infty} z_n + w_n = z
+        \end{align*}
+        其中，$\mathfrak{R}(z) = \lim\limits_{n \to \infty} \mathfrak{R}(z_n) + \lim\limits_{n \to \infty} \mathfrak{R}(w_n),
+          \mathfrak{I}(z) = \lim\limits_{n \to \infty} \mathfrak{I}(z_n) + \lim\limits_{n \to \infty} \mathfrak{I}(w_n)$，
+        所以，
+        \begin{align*}
+          \lim\limits_{n \to \infty} z_n + w_n = \lim\limits_{n \to \infty} z_n + \lim\limits_{n \to \infty} w_n
+        \end{align*}
+
+
+  \item $(\overline{z_n})_{n = 1}^\infty$收敛，并且$\lim\limits_{n \to \infty} \overline{z_n} = \overline{\lim\limits_{n \to \infty} z_n}$。
+
+        不妨设$(z_n)_{n = 1}^\infty$收敛于$z$，即$\overline{\lim\limits_{n \to \infty} z_n} = z$，
+        于是
+        \begin{align*}
+          \lim\limits_{n \to \infty} \mathfrak{R}(z_n) = \mathfrak{R}(z) \\
+          \lim\limits_{n \to \infty} \mathfrak{I}(z_n) = \mathfrak{I}(z)
+        \end{align*}
+
+        对每一个$n$，都有
+        \begin{align*}
+          \overline{z_n} = \mathfrak{R}(z_n) - \mathfrak{I}(z_n) i
+        \end{align*}
+
+        于是由极限定理（引理6.1.19）可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} -\mathfrak{I}(z_n) = -\mathfrak{I}(z)
+        \end{align*}
+
+        综上，利用引理15.6.13可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} \overline{z_n} = \overline{\lim\limits_{n \to \infty} z_n}
+        \end{align*}
+\end{itemize}
+
+\section*{15.6.15}
+
+按照书中的提示进行证明。
+
+（1）首先，$1 \neq 0$。假设$1$是负数。
+
+由负运算公理可知$-1$是正的，那么，由可乘性可得$-1 \times -1 = 1$是正数，
+与假设矛盾。
+
+综上可得，$1$是正数，从而$-1$是负数。
+
+（2）不一致的证明（由公理集合推演得到一个矛盾的结果）。
+
+
+
+$z = i$，$z \neq 0$，由三歧性可知，$i$要么是负数，要么是正数。
+
+如果$i$是正数，那么，由可乘性公理得$i^2 = -1$是正数，这与（1）矛盾。
+
+如果$i$是负数，那么，由负运算可得$-i$是正数，由可乘性公理得$(-i)^2 = -1$是正数，这与（1）矛盾。
+
+综上，公理间存在矛盾。
+
+\section*{15.6.16}
+
+\begin{itemize}
+  \item （1）叙述并证明关于复数的比值判别法。
+
+        \begin{itemize}
+          \item 比值判别法：设$\sum\limits_{n = m}^\infty z_n$是一个所有项都不为零的复数级数
+                （不为零的假设是为了保证下文中的比值$|z_{n + 1}|/|z_n|$是有意义的）。
+
+                \begin{itemize}
+                  \item 如果$\lim\sup\limits_{n \to \infty} \frac{|z_{n + 1}|}{|z_n|} < 1$，那么
+                        级数$\sum\limits_{n = m}^\infty z_n$是绝对收敛的（从而是条件收敛的。）
+                  \item 如果$\lim\sup\limits_{n \to \infty} \frac{|z_{n + 1}|}{|z_n|} > 1$，那么
+                        级数$\sum\limits_{n = m}^\infty z_n$不是条件收敛的（从而不可能是绝对收敛的）。
+                  \item 在其他情况下，我们无法给出任何结论。
+                \end{itemize}
+
+          \item 证明
+
+                （1）如果$\lim\sup\limits_{n \to \infty} \frac{|z_{n + 1}|}{|z_n|} < 1$。
+
+                因为$|z_n|$是实数，
+                于是利用推论7.5.3（比值判别法）可知，级数$\sum\limits_{n = m}^\infty z_n$是绝对收敛的。
+
+                接下来，证明绝对收敛的复数序列必定条件收敛。
+
+                设$(a_n)_{n = 1}^\infty$是绝对收敛的复数序列，其中$a_n = x_n + y_n i$。
+                由于$|a_n| = \sqrt{x_n^2 + y_n^2}$，于是
+                \begin{align*}
+                  |x_n| \leq |a_n| \\
+                  |y_n| \leq |a_n|
+                \end{align*}
+
+                于是可得，$(x_n)_{n = 1}^\infty$和$(y_n)_{n = 1}^\infty$这两个实数序列都是绝对收敛的，
+                所以，$\lim\limits_{n \to \infty} x_n$和$\lim\limits_{n \to \infty} y_n$都存在，
+                由引理15.6.13可知，以下极限存在，
+                \begin{align*}
+                  \lim\limits_{n \to \infty} a_n
+                \end{align*}
+
+                综上可得，绝对收敛的复数序列必定条件收敛。
+
+                所以，级数$\sum\limits_{n = m}^\infty z_n$是绝对收敛的，从而是条件收敛的。
+
+
+                （2）如果$\lim\sup\limits_{n \to \infty} \frac{|z_{n + 1}|}{|z_n|} > 1$。
+
+                所以，存在$c > 1$和对应的$N \geq m$，使得$n \geq N$，就有
+                \begin{align*}
+                  |z_{n + 1}| > |z_N|c^{n + 1 - N}
+                \end{align*}
+
+                所以，$n \to +\infty$时，$|z_n| \to +\infty$，
+                所以$(z_n)_{n = m}^\infty$是发散的，
+                利用7.2.6（零判别法）（更准确的说法是复数版本）
+                级数$\sum\limits_{n = m}^\infty z_n$是发散的。
+
+                （3）直接利用习题7.5.3即可，把实数级数看做复数级数的特例。
+        \end{itemize}
+
+  \item （2）利用比值定理证明对任意的$z$，$\exp(z)$都是收敛的。
+
+        因为，对任意复数$z$，都有
+        \begin{align*}
+          \lim\sup\limits_{n \to \infty}\frac{\frac{|z^{n+1}|}{(n+1)!}}{\frac{|z^{n}|}{n!}}
+           & = \lim\sup\limits_{n \to \infty}\frac{|z^{n+1}|}{|z^{n}|} \frac{1}{n+1} \\
+           & = \lim\sup\limits_{n \to \infty}\frac{|z^{n}||z|}{|z^{n}|}\frac{1}{n+1} \\
+           & = \lim\sup\limits_{n \to \infty}\frac{|z|}{n + 1}                       \\
+           & = 0 < 1
+        \end{align*}
+
+        于是利用复数级数的比值判别法可知，$\exp(z)$绝对收敛，从而是条件收敛的。
+
+  \item （3）$\exp(z + w) = \exp(z) \exp(w)$。
+
+        \begin{align*}
+          \exp(z + w) = \sum\limits_{n = 0}^\infty \frac{(z + w)^n}{n!}
+        \end{align*}
+        利用二项式公式（习题7.1.4）可知直接得到
+        \begin{align*}
+          \exp(z + w)
+           & =\sum\limits_{n = 0}^\infty \frac{(z + w)^n}{n!}                                                  \\
+           & = \sum\limits_{n = 0}^\infty \frac{1}{n!}\sum \limits_{j = 0}^n \frac{n!}{j!(n - j)!}z^jw^{n - j}
+        \end{align*}
+        约分掉$n!$可得
+        \begin{align*}
+          \exp(z + w)
+           & = \sum\limits_{n = 0}^\infty \sum \limits_{j = 0}^n \frac{z^jw^{n - j}}{j!(n - j)!}
+        \end{align*}
+
+        由于$\exp$函数在$\mathbb{C}$上绝对收敛的，所以可以使用定理8.2.2（富比尼定理）
+        （准确的说是复数版本）
+        \begin{align*}
+          \exp(z + w)
+           & = \sum\limits_{j = 0}^\infty \sum \limits_{n = j}^\infty \frac{z^jw^{n - j}}{j!(n - j)!}
+        \end{align*}
+        令$m = n - j$，于是可得，
+        \begin{align*}
+          \exp(z + w)
+           & = \sum\limits_{j = 0}^\infty \sum \limits_{m = 0}^\infty \frac{z^jw^m}{j!m!}
+        \end{align*}
+
+        分离成两个级数：
+        \begin{align*}
+          \exp(z + w)
+           & = \sum\limits_{j = 0}^\infty \frac{z^j}{j!} \sum \limits_{m = 0}^\infty \frac{w^m}{m!} \\
+           & = \exp(z) \exp(w)
+        \end{align*}
+\end{itemize}
+
+\end{document}

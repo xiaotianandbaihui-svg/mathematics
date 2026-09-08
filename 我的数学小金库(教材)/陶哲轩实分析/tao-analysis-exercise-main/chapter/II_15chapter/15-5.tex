@@ -1,0 +1,650 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{15.5 习题}
+\author{张志聪}
+\maketitle
+
+\section*{15.5.1}
+
+\begin{itemize}
+  \item (a)
+
+        （1）绝对收敛。
+
+        任意$x \in \mathbb{R}$，都有
+        \begin{align*}
+          \lim\sup\limits_{n \to \infty} \frac{|\frac{x^{n + 1}}{(n + 1)!}|}{|\frac{x^{n}}{(n)!}|}
+           & = \lim\sup\limits_{n \to \infty} |\frac{x}{n + 1}| \\
+           & = 0 < 1
+        \end{align*}
+
+        由推论7.5.3（比值判别法）可知，$\sum\limits_{n = 0}^\infty \frac{x^n}{n!}$绝对收敛。
+
+        （2）
+
+        由命题7.2.9(绝对收敛判别法)可知，绝对收敛的级数，也是条件收敛的。
+
+        （3）收敛半径是$\infty$
+
+        \begin{align*}
+          \lim\sup\limits_{n \to \infty} |\frac{1}{n!}| \leq \lim\sup\limits_{n \to \infty} |\frac{1}{n}| = 0
+        \end{align*}
+
+        于是可得，收敛半径$R = \infty$。
+
+        （4）$\exp$是$(-\infty, \infty)$上的实解析函数。
+
+        由习题15.2.8(f)可知直接得到。
+
+  \item (b)
+
+        由定理15.1.6(d)可知，$\exp$在$\mathbb{R}$上可微。
+        又因为
+        \begin{align*}
+          (\exp(x))^\prime & = \sum\limits_{n = 1}^\infty n \frac{x^{n - 1}}{n!}   \\
+                           & = \sum\limits_{n = 1}^\infty \frac{x^{n - 1}}{(n-1)!} \\
+        \end{align*}
+        设$n^\prime = n - 1$，于是
+        \begin{align*}
+           & \sum\limits_{n = 1}^\infty \frac{x^{n - 1}}{(n-1)!}                \\
+           & = \sum\limits_{n^\prime = 0}^\infty \frac{x^{n^\prime}}{n^\prime!} \\
+           & = \exp(x)
+        \end{align*}
+  \item (c)
+
+        由定理15.1.6(c)可知，$\exp$在$\mathbb{R}$上连续。
+        又由(b)可知，$\exp(x)$是$\exp(x)$的原函数。
+
+        于是利用定理11.9.4（微积分第二基本定理）可得
+        \begin{align*}
+          \int_{[a, b]} \exp(x) dx = \exp(b) - \exp(a)
+        \end{align*}
+
+
+  \item (d)
+        \begin{align*}
+          \exp(x + y) = \sum\limits_{n = 0}^\infty \frac{(x + y)^n}{n!}
+        \end{align*}
+        利用二项式公式（习题7.1.4）可知直接得到
+        \begin{align*}
+          \exp(x + y)
+           & =\sum\limits_{n = 0}^\infty \frac{(x + y)^n}{n!}                                                  \\
+           & = \sum\limits_{n = 0}^\infty \frac{1}{n!}\sum \limits_{j = 0}^n \frac{n!}{j!(n - j)!}x^jy^{n - j}
+        \end{align*}
+        约分掉$n!$可得
+        \begin{align*}
+          \exp(x + y)
+           & = \sum\limits_{n = 0}^\infty \sum \limits_{j = 0}^n \frac{x^jy^{n - j}}{j!(n - j)!}
+        \end{align*}
+
+        由于$\exp$函数在$\mathbb{R}$上绝对收敛的，所以可以使用定理8.2.2（富比尼定理）
+        \begin{align*}
+          \exp(x + y)
+           & = \sum\limits_{j = 0}^\infty \sum \limits_{n = j}^\infty \frac{x^jy^{n - j}}{j!(n - j)!}
+        \end{align*}
+        令$m = n - j$，于是可得，
+        \begin{align*}
+          \exp(x + y)
+           & = \sum\limits_{j = 0}^\infty \sum \limits_{m = 0}^\infty \frac{x^jy^m}{j!m!}
+        \end{align*}
+
+        分离成两个级数：
+        \begin{align*}
+          \exp(x + y)
+           & = \sum\limits_{j = 0}^\infty \frac{x^j}{j!} \sum \limits_{m = 0}^\infty \frac{y^m}{m!} \\
+           & = \exp(x) \exp(y)
+        \end{align*}
+  \item (e)
+
+        （1）$\exp(0) = 1$
+
+        \begin{align*}
+          \exp(0) = \sum\limits_{n = 0}^\infty \frac{0^n}{n!} = 1
+        \end{align*}
+
+        （2）$\exp(-x) = \frac{1}{\exp(x)}$。
+
+        因为
+        \begin{align*}
+           & \exp(0) = 1 = \exp(x - x) = \exp(x)\exp(-x) \\
+           & \implies                                    \\
+           & \exp(-x) = \frac{1}{\exp(x)}
+        \end{align*}
+
+        （3）$\exp(x) > 0$。
+
+        由于（2）易得，任意$x$，都有$\exp(x) \neq 0$。
+
+        于是我们有，
+        \begin{align*}
+          \exp(x) & = \exp(\frac{1}{2}x + \frac{1}{2}x )   \\
+                  & = \exp(\frac{1}{2}x)\exp(\frac{1}{2}x) \\
+                  & = \exp(\frac{1}{2}x)^2                 \\
+                  & > 0
+        \end{align*}
+
+  \item (f)
+
+        由(b)(e)和命题10.3.3可以得到该结论。
+
+\end{itemize}
+
+\section*{15.5.2}
+
+（1）先按照书中提示，先证明对于所有的$k=1,2,3,...,$都有$(n + k)! > 2^kn!$。
+
+对$k$进行归纳。
+
+$k = 1$时，$(n + k)! = (n + 1)! = (n + 1)n!$，
+因为$n \geq 3$，所以$n + 1 > 2^k = 2^1 = 2$，
+所以$(n + k)! > 2^kn!$成立。
+
+归纳假设$k = j$时，$(n + j)! > 2^jn!$成立。
+
+$k = j + 1$时，
+\begin{align*}
+  (n + j + 1)! & = (n + j)!(n + j + 1) \\
+\end{align*}
+由归纳假设和$n + j + 1 > 2$可得，
+\begin{align*}
+  (n + j)!(n + j + 1) & > 2^jn! \times 2 = 2^{j + 1}n!
+\end{align*}
+即
+\begin{align*}
+  (n + j + 1)! & > 2^{j + 1}n!
+\end{align*}
+
+归纳完成。
+
+（2）证明$\frac{1}{(n + 1)!} + \frac{1}{(n + 2)!} + ... < \frac{1}{n!}$。
+
+由（1）可知，
+\begin{align*}
+  \frac{1}{(n + 1)!} + \frac{1}{(n + 2)!} + ...
+   & < \sum\limits_{k = 1}^\infty \frac{1}{2^kn!} = \frac{1}{n!}\sum\limits_{k = 1}^\infty (\frac{1}{2})^k
+\end{align*}
+
+由引理7.3.3可知，
+\begin{align*}
+  \sum\limits_{k = 0}^\infty \frac{1}{2^kn!} = \frac{1}{1-\frac{1}{2}} = 2
+\end{align*}
+于是可得
+\begin{align*}
+  \sum\limits_{k = 1}^\infty (\frac{1}{2})^k
+   & = 2 - \sum\limits_{k = 0}^0 (\frac{1}{2})^k \\
+   & = 2 - 1                                     \\
+   & = 1
+\end{align*}
+
+综上可得
+\begin{align*}
+  \frac{1}{(n + 1)!} + \frac{1}{(n + 2)!} + ...
+   & < \frac{1}{n!}
+\end{align*}
+
+（3）任意的$n \geq 3$，$n!e$都不是整数。
+
+\begin{align*}
+  n!\sum\limits_{m = 0}^\infty \frac{1}{m!}
+   & = n!\sum\limits_{m = 0}^n \frac{1}{m!} + n!\sum\limits_{m = n + 1}^\infty \frac{1}{m!}
+\end{align*}
+
+因为$m \leq n$，都有$\frac{n!}{m!}$是正整数。
+所以
+\begin{align*}
+  n!\sum\limits_{m = 0}^n \frac{1}{m!}
+\end{align*}
+是正整数。
+
+又由（2）可知，
+\begin{align*}
+  0 < n!\sum\limits_{m = n + 1}^\infty \frac{1}{m!} < 1
+\end{align*}
+
+综上，命题成立。
+
+（4）推导出$e$是无理数。
+
+反证法，假设$e$不是无理数，又因为$e > 0$，所以存在正整数$a, b$，使得$e = \frac{a}{b}$。
+
+于是，我们有，
+\begin{align*}
+   & \frac{a}{b} = e  \\
+   & \implies         \\
+   & a = b e          \\
+   & \implies         \\
+   & a(b - 1)! = b! e
+\end{align*}
+因为$a(b - 1)!$是正整数，所以$b! e$也是正整数，这与（3）矛盾。
+
+注意：这里有个细节，就是$b \geq 3$不一定成立的困惑，这个无需考虑，只需做扩分操作即可。
+
+\section*{15.5.3}
+
+\begin{itemize}
+  \item (a) $x$是自然数。
+        对$x$进行归纳。
+
+        （1）$x = 0$时，由定理15.5.2(e)可知，$\exp(0) = 1$，又$e^0 = 1$，所以命题成立。
+
+        （2）归纳假设，$x = k$时，$\exp(k) = e^k$成立。
+
+        （3）$x = k + 1$时，结合归纳假设和定理15.5.2(d)，得
+        \begin{align*}
+          \exp(k + 1) = \exp(k)\exp(1) = e^k e = e^{k + 1}
+        \end{align*}
+
+        归纳完成。
+
+  \item (b) $x$是整数。
+
+        由(a)可知，我们只需讨论$x$是负整数的情况。
+
+        设$-x < 0$，于是$x > 0$，
+        \begin{align*}
+          \exp(-x) & = \frac{1}{\exp(x)} \\
+                   & = \frac{1}{e^x}     \\
+                   & = e^{-x}
+        \end{align*}
+        综上，命题成立。
+
+  \item (c) $x$是有理数。
+
+        $x$可以表示成$\frac{a}{b}$，其中$a, b$都是整数，且$b > 0$。
+        \begin{align*}
+           & \exp(x)^b = \exp(\frac{a}{b}b) = \exp(a) = e^a \\
+           & \implies                                       \\
+           & \exp(x) = e^{\frac{a}{b}} = e^x
+        \end{align*}
+
+        综上，命题成立。
+
+  \item (d) $x$是实数。
+
+        对任意实数$x$，存在序列$(a_n)_{n = 0}^\infty$，使得$x = \lim\limits_{n \to \infty} a_n$。
+
+        由定义6.7.2可知，$e^x = \lim\limits_{n \to \infty} e^{a_n}$。
+
+        又因为$e^{a_n} = \exp(a_n)$，对所有的$n$均成立，又因为$\exp$是连续的，利用命题9.4.7可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} \exp(a_n) = \exp(x)
+        \end{align*}
+
+        综上可得，
+        \begin{align*}
+          e^x & = \lim\limits_{n \to \infty} e^{a_n}   \\
+              & = \lim\limits_{n \to \infty} \exp(a_n) \\
+              & = \exp(x)
+        \end{align*}
+\end{itemize}
+
+\section*{15.5.4}
+
+\begin{itemize}
+  \item （a）$f$是无限可微的。
+
+        \begin{itemize}
+          \item $x < 0$
+
+                $f^{(k)}(x) = 0^{(k)} = 0$。
+          \item $x > 0$
+
+                导数通项式：
+                $f^{(k)}(x) = \frac{P_k(x)\exp(\frac{-1}{x})}{x^{2k}}$
+                ，其中$P_k(x)$是一个关于$x$的多项式。
+
+                可以通过归纳法证明，证明略。
+
+          \item $x = 0$
+
+                对$k$进行归纳。
+
+                （1）$k = 1$时，
+                左极限为$0$，我们主要讨论右极限。
+                右极限：
+                \begin{align*}
+                  \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{f(x) - f(0)}{x - 0}
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{f(x)}{x}                        \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\exp(\frac{-1}{x})}{x}          \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\frac{1}{\exp(\frac{1}{x})}}{x} \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{1}{\exp(\frac{1}{x})x}          \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\frac{1}{x}}{\exp(\frac{1}{x})} \\
+                \end{align*}
+
+                定义函数$\phi: \mathbb{R} - \{0\} \to \mathbb{R}$为$\phi(x) = \frac{1}{x}$。
+
+                于是我们有
+                \begin{align*}
+                  \lim\limits_{x \to 0; x \in (0, + \infty)} \phi(x) = +\infty
+                \end{align*}
+
+                于是可得，
+                \begin{align*}
+                   & \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\frac{1}{x}}{\exp(\frac{1}{x})}        \\
+                   & =  \lim\limits_{\phi(x) \to +\infty; x \in (0, + \infty)} \frac{\phi(x)}{\exp(\phi(x))} \\
+                   & = 0
+                \end{align*}
+
+                （注意：第一个等式使用了一个小命题，在10-5-comment.tex的"3定理"中有说明。第二个等式使用了习题15.5.8）。
+
+                （2）归纳假设$k \leq n$时，命题成立。
+
+                （3）$k = n + 1$时，
+
+                \begin{align*}
+                   & \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{f^{(n)}(x) - f^{(n)}(0)}{x - 0}                 \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{f^{(n)}(x) - 0}{x - 0}                        \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{f^{(n)}(x)}{x}                                \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\frac{P_n(x)\exp(\frac{-1}{x})}{x^{2n}}}{x}   \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{P_n(x)\exp(\frac{-1}{x})}{x^{2n+1}}           \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} P_n(x) \frac{\frac{1}{x}^{2n+1}}{\exp(\frac{1}{x})}
+                \end{align*}
+
+                因为$P_n(x)$是连续的，所以$\lim\limits_{x \to 0; x \in (0, + \infty)} P_n(x) = P_n(0)$，
+                再次利用习题15.5.8可知，$\lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\frac{1}{x}^{2n+1}}{\exp(\frac{1}{x})} = 0$。
+
+                综上，
+                \begin{align*}
+                   & \lim\limits_{x \to 0; x \in (0, + \infty)} P_n(x) \frac{\frac{1}{x}^{2n+1}}{\exp(\frac{1}{x})}                                              \\
+                   & = \lim\limits_{x \to 0; x \in (0, + \infty)} P_n(x) \lim\limits_{x \to 0; x \in (0, + \infty)} \frac{\frac{1}{x}^{2n+1}}{\exp(\frac{1}{x})} \\
+                   & = P_n(0) \times 0                                                                                                                           \\
+                   & = 0
+                \end{align*}
+                即$f^{(n + 1)}(x) = 0$。
+
+                归纳完成。
+
+
+          \item （b）$f$在$0$处不是实解析的。
+
+
+                反证法，假设$f$在$0$处是实解析的。即存在收敛半径大于或等于$r> 0$的幂级数
+                $\sum\limits_{n = 0}^\infty c_n(x - 0)^n = \sum\limits_{n = 0}^\infty c_nx^n$在
+                $(-r, r)$上收敛于$f$。
+
+                利用泰勒公式（推论15.2.10），我们有泰勒公式
+                \begin{align*}
+                  f(x) = \sum\limits_{n = 0}^\infty \frac{f^{(n)}(0)}{n!}(x - 0)^n, x \in (-r, r)
+                \end{align*}
+
+                因为任意$n \geq 0$，$f^{(n)}(0) = 0$，所以
+                \begin{align*}
+                  f(x) = \sum\limits_{n = 0}^\infty 0 = 0, x \in (-r, r)
+                \end{align*}
+
+                而任意$x \in (-r, r)$，利用定理15.5.2(e)可得
+                \begin{align*}
+                  f(x) = \exp(-1/x) > 0
+                \end{align*}
+
+                存在矛盾。
+
+
+        \end{itemize}
+\end{itemize}
+
+\section*{15.5.5}
+
+\begin{itemize}
+  \item (a)
+
+        对任意$x \in (0, + \infty)$，存在$y \in \mathbb{R}$使得$\exp(y) = x$，
+        利用定理10.4.2可知，
+        \begin{align*}
+          \ln^\prime(x) & = \frac{1}{\exp^\prime(y)} \\
+                        & = \frac{1}{x}
+        \end{align*}
+
+        因为$\ln(x)$是$\frac{1}{x}$的原函数，于是利用微积分基本定理可得，
+        \begin{align*}
+          \int_{[a, b]}\frac{1}{x} dx = \ln(b) - \ln(a)
+        \end{align*}
+
+  \item (b)
+
+        因为$\exp(\ln (x)) = x, \exp(\ln (y)) = y$，于是
+        \begin{align*}
+          \ln(xy) & = \ln(\exp(\ln (x))\exp(\ln (y))) \\
+                  & = \ln(\exp(\ln (x) + \ln (y)))    \\
+                  & = \ln(x) + \ln(y)
+        \end{align*}
+
+  \item (c)
+
+        （1）因为$\exp(0) = 1$，于是
+        \begin{align*}
+          \ln(1) = \ln(\exp(0)) = 0
+        \end{align*}
+
+        （2）设$\exp(y) = x$，于是
+        \begin{align*}
+          -\ln(x) = \ln(\exp(y)) = -y
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          -y = \ln(\exp(-y)) & = \ln(\frac{1}{\exp(y)}) \\
+                             & = \ln(\frac{1}{x})
+        \end{align*}
+
+  \item (d)
+
+        设$\exp(z) = x$，于是
+        \begin{align*}
+          y\ln(x) = yz
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          \ln(x^y) & = \ln(\exp(z)^y) \\
+                   & = \ln(\exp(yz))  \\
+                   & = yz
+        \end{align*}
+
+  \item (e)
+
+        （1）
+
+        利用引理7.3.3可得，$\sum\limits_{n = 0}^\infty x^{n}$在$(-1, 1)$上逐点收敛于
+        $\frac{1}{1 - x}$。
+
+        由定理15.1.6(c)可知，$\sum\limits_{n = 0}^\infty x^{n}$一致收敛于某个函数$f$。
+        由习题14.2.2(a)，和逐点收敛函数的唯一性可知，
+        $\sum\limits_{n = 0}^\infty x^{n}$一致收敛于$\frac{1}{1 - x}$。
+
+        于是由定理15.1.6(e)可知，
+        \begin{align*}
+          \int_{[0, x]} \frac{1}{1 - y} dy
+           & = \sum\limits_{n = 0}^\infty \frac{x^{n + 1} - (0 - 0)^{n + 1}}{n + 1} \\
+           & = \sum\limits_{n = 1}^\infty \frac{x^{n}}{n}
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          \int_{[0, x]} \frac{1}{1 - y} dy
+           & = -\ln(1 - y) |_0^x \\
+           & = -\ln(1 - x)
+        \end{align*}
+
+        综上可得，
+        \begin{align*}
+          \ln(1 - x) = - \sum\limits_{n = 1}^\infty \frac{x^{n}}{n}
+        \end{align*}
+
+        （2）
+
+        令$y = 1 - x, x \in (-1, 1)$，于是$y \in (0, 2)$。
+
+        于是利用（1），我们有
+        \begin{align*}
+          \ln(y)
+           & = \ln(1 - x)                                                   \\
+           & = - \sum\limits_{n = 1}^\infty \frac{x^{n}}{n}                 \\
+           & = - \sum\limits_{n = 1}^\infty \frac{(1 - y)^{n}}{n}           \\
+           & = - \sum\limits_{n = 1}^\infty \frac{(-1)^n(y - 1)^{n}}{n}     \\
+           & = \sum\limits_{n = 1}^\infty \frac{(-1)^{n + 1}(y - 1)^{n}}{n}
+        \end{align*}
+\end{itemize}
+
+\section*{15.5.6}
+
+任意实数$x_0 \in (0, + \infty)$都存在自然数$N$使得$N - 1 < x_0 < N + 1$
+（可以利用命题4.4.1和命题5.4.12，完成证明）。
+
+接下来证明，$\ln$在$x_0$处是解析的，并且存在幂级数展开式。
+
+证明思路：与习题15.5.5(e)（2）类似，都是通过变换，满足已有定理的定义域。
+
+令$y = \frac{x}{x_0}, x \in (0, 2x_0)$，于是$y \in (0, 2)$。
+
+利用定理15.5.6(e)可得
+\begin{align*}
+  \ln(y) & = \ln(\frac{x}{x_0})                                                       \\
+         & = \sum \limits_{n = 1}^\infty \frac{(-1)^{n + 1}}{n} (\frac{x}{x_0} - 1)^n \\
+         & = \sum \limits_{n = 1}^\infty \frac{(-1)^{n + 1}}{nx_0^n} (x - x_0)^n
+\end{align*}
+
+又因为，
+\begin{align*}
+  \ln(\frac{x}{x_0}) = \ln(xx_0^{-1}) = \ln(x) - \ln(x_0)
+\end{align*}
+
+综上可得，
+\begin{align*}
+  \ln(x) & = \ln(x_0) + \sum \limits_{n = 1}^\infty \frac{(-1)^{n + 1}}{nx_0^n} (x - x_0)^n            \\
+         & = \ln(x_0)(x - x_0)^0 + \sum \limits_{n = 1}^\infty \frac{(-1)^{n + 1}}{nx_0^n} (x - x_0)^n
+\end{align*}
+
+命题成立。
+
+\section*{15.5.7}
+\begin{align*}
+  (f(x)e^{-x})^\prime
+   & = f^\prime(x) e^{-x} + f(x)e^{-x} (-1) \\
+   & = e^{-x} (f^\prime(x) - f(x) )         \\
+   & = 0
+\end{align*}
+
+由此可得$f(x)e^{-x}$是常数，设为$C$。又因为$f(x)$，$e^{-x}$都是正实数，所以$C > 0$。
+
+于是
+\begin{align*}
+  f(x)e^{-x} & = C    \\
+  f(x)       & = Ce^x
+\end{align*}
+
+\section*{15.5.8}
+
+直接使用洛必达定理的推广，本书中没有讲到这个推广。我在10-5-comment.tex中的“2.4”中添加了这个推广。
+
+因为$x \to +\infty$，$e^x$及$x^m$都趋于无穷大，
+所以，利用洛必达定理可得，
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{e^x}{x^m}
+  =
+  \lim\limits_{x \to +\infty} \frac{e^x}{mx^{m - 1}}
+\end{align*}
+
+多次使用洛必达定理，可以得到
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{e^x}{x^m}
+  =
+  \lim\limits_{x \to +\infty} \frac{e^x}{mx^{m - 1}}
+  =
+  ...
+  =
+  \lim\limits_{x \to +\infty} \frac{e^x}{m!}
+  = +\infty
+\end{align*}
+
+\section*{15.5.9}
+
+
+$P(x)$是多项式，所以我们可以找到一个正整数$k \geq 0$和实数$a_0, a_1, \dots, a_k$使得
+\begin{align*}
+  P(x) & = a_0 + a_1x + a_2x^2 + \dots + a_kx^k
+\end{align*}
+
+对每一个$i > 0$，由习题15.5.8可知，
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{e^{cx}}{(cx)^i} = +\infty
+\end{align*}
+
+于是，存在$N_i > 0$，使得只要$x > N_i$，就有
+\begin{align*}
+   & \frac{e^{cx}}{(cx)^i} > (k + 1)\frac{1}{c^i}|a_i| \\
+   & \implies                                          \\
+   & e^{cx} > (k + 1) |a_i| x^i
+\end{align*}
+
+又因为$\lim\limits_{x \to +\infty} e^{cx} = +\infty$，所以存在$N^\prime$，使得
+$x > N^\prime$，就有
+\begin{align*}
+  e^{cx} > (k + 1)|a_0|
+\end{align*}
+
+综上，取$N = max(N^\prime, N_1, \dots, N_k)$，
+使得$x > N$，就有
+\begin{align*}
+  (k + 1)e^{cx} & > (k+1) |a_0| + |a_1|x + |a_2|x^2 + \dots + |a_k|x^k \\
+                & \geq (k + 1) |P(x)|                                  \\
+\end{align*}
+
+于是
+\begin{align*}
+  e^{cx} > |P(x)|
+\end{align*}
+
+\section*{15.5.10}
+
+（1）利用$\exp, \ln$的连续性证明。
+
+可以仿照推论13.2.3的证明。
+
+我们有，
+\begin{align*}
+  \exp(y\ln(x)) = e^{y\ln(x)} = (e^{\ln(x)})^y = x^y
+\end{align*}
+
+先证明$y\ln(x)$是连续的。
+
+对任意$(x_0, y_0) \in (0, + \infty) \times \mathbb{R}$，
+设$(x^{(n)})_{n = 1}^\infty$是$(0, + \infty) \times \mathbb{R}$中收敛于
+$(x_0, y_0)$的点，其中$x^{(n)} = (x_n, y_n)$，利用命题12.1.18(d)可知，
+$(x_n)_{n = 1}^\infty$收敛于$x_0$，$(y_n)_{n = 1}^\infty$收敛于$y_0$。
+
+于是利用定理6.1.19（极限定律）我们有
+\begin{align*}
+  \lim\limits_{n \to \infty} y_n \ln(x_n)
+   & = \lim\limits_{n \to \infty} y_n \lim\limits_{n \to \infty} \ln(x_n) \\
+   & = y_0 \ln(x_0)
+\end{align*}
+
+所以，$y\ln(x)$是连续的。
+
+由于$\exp$函数是连续的，利用推论13.1.7可知，
+$\exp(y\ln(x))$是连续的。
+
+（2）挑战一下
+
+todo 还没思路。
+
+\end{document}

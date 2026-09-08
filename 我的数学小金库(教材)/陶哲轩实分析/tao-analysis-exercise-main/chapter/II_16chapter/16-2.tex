@@ -1,0 +1,433 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{16.2 习题}
+\author{张志聪}
+\maketitle
+
+\section*{16.2.1}
+
+设$f(x) = f_1(x) + if_2(x), g(x) = g_1(x) + ig_2(x), h(x) = h_1(x) + ih_2(x), c = c_1 + ic_2$。
+
+\begin{itemize}
+  \item (a)
+
+        \begin{align*}
+          \langle g, f \rangle & = \int_{[0, 1]} g(x) \overline{f(x)} dx                                                         \\
+                               & = \int_{[0, 1]} \left(g_1(x) + ig_2(x)\right) \left(f_1(x) - if_2(x)\right) dx                  \\
+                               & = \int_{[0, 1]} g_1(x) f_1(x) + g_2(x)f_2(x) + i(-g_1(x)f_2(x) + g_2(x)f_1(x)) dx               \\
+                               & = \int_{[0, 1]} g_1(x) f_1(x) + g_2(x)f_2(x) dx + i\int_{[0, 1]} g_2(x)f_1(x) - g_1(x)f_2(x) dx
+        \end{align*}
+
+        \begin{align*}
+          \langle f, g \rangle & = \int_{[0, 1]} f(x) \overline{g(x)} dx                                                        \\
+                               & = \int_{[0, 1]} (f_1(x) + if_2(x)) (g_1(x) - ig_2(x)) dx                                       \\
+                               & = \int_{[0, 1]} f_1(x)g_1(x) + f_2(x)g_2(x) + i(-f_1(x)g_2(x) + f_2(x)g_1(x)) dx               \\
+                               & = \int_{[0, 1]} f_1(x)g_1(x) + f_2(x)g_2(x) dx + i\int_{[0, 1]}-f_1(x)g_2(x) + f_2(x)g_1(x) dx \\
+        \end{align*}
+        于是，
+        \begin{align*}
+          \overline{\langle f, g \rangle} & = \int_{[0, 1]} f_1(x)g_1(x) + f_2(x)g_2(x) dx - i\int_{[0, 1]}-f_1(x)g_2(x) + f_2(x)g_1(x) dx \\
+                                          & = \int_{[0, 1]} f_1(x)g_1(x) + f_2(x)g_2(x) dx + i\int_{[0, 1]}f_1(x)g_2(x) - f_2(x)g_1(x) dx  \\
+        \end{align*}
+
+        所以，
+        \begin{align*}
+          \langle g, f \rangle = \overline{\langle f, g \rangle}
+        \end{align*}
+
+  \item (b)
+
+        \begin{itemize}
+          \item (1) $\langle f, f \rangle \geq 0$。
+
+                \begin{align*}
+                  \langle f, f \rangle & = \int_{[0, 1]} f(x) \overline{f(x)} dx                                         \\
+                                       & = \int_{[0, 1]} (f_1(x) + if_2(x))(f_1(x) - if_2(x))                            \\
+                                       & = \int_{[0, 1]} f_1(x)f_1(x) + f_2(x)f_2(x) + i(-f_1(x)f_2(x) + f_2(x)f_1(x))dx \\
+                                       & = \int_{[0, 1]} f_1(x)f_1(x) + f_2(x)f_2(x)dx
+                \end{align*}
+
+                因为
+                \begin{align*}
+                  f_1(x)f_1(x) + f_2(x)f_2(x) \geq 0
+                \end{align*}
+
+                由定理11.4.1(e)可知，
+                \begin{align*}
+                  \int_{[0, 1]} f_1(x)f_1(x) + f_2(x)f_2(x)dx \geq \int_{[0, 1]} 0 dx = 0
+                \end{align*}
+                即
+                \begin{align*}
+                  \langle f, f \rangle \geq 0
+                \end{align*}
+
+          \item $\langle f, f \rangle = 0$当且仅当$f = 0$。
+
+                $\Leftarrow$ 是易证的，略。
+
+                $\Rightarrow$
+
+                反证法，假设$f$不是零函数，那么存在某个$x_0 \in [0, 1], f(x_0) \neq 0$，
+                又因为$f$是连续的，那么，对$\epsilon = \frac{1}{2}|f(x_0)|$，
+                存在$\delta > 0$，使得只要，$|x - x_0| < \delta$，就有
+                \begin{align*}
+                  |f(x) - f(x_0)| \leq \epsilon \\
+                  |f(x_0)| - \epsilon \leq |f(x)| \leq |f(x_0)| + \epsilon
+                \end{align*}
+                （以上是复数的性质，与实数是一致的，具体证明在15-6-comment.tex文件中）
+                所以，
+                \begin{align*}
+                  \int_{[x_0 - \delta, x_0 + \delta]} |f(x)|^2 dx > 0
+                \end{align*}
+
+                于是，我们有
+                \begin{align*}
+                  \langle f, f \rangle & = \int_{[0, 1]} f_1(x)f_1(x) + f_2(x)f_2(x)dx \\
+                                       & = \int_{[0, 1]} |f(x)|^2 dx                   \\
+                                       & = \int_{[0, x_0 - \delta]} |f(x)|^2 dx
+                  + \int_{(x_0 - \delta, x_0 + \delta)} |f(x)|^2 dx
+                  + \int_{[x_0 + \delta, 1]} |f(x)|^2 dx                               \\
+                                       & > 0
+                \end{align*}
+                存在矛盾。
+
+        \end{itemize}
+
+  \item (c)
+
+        证明略
+
+  \item (d)
+
+        证明略
+\end{itemize}
+
+\section*{16.2.2}
+
+证明$(C(\mathbb{R}/\mathbb{Z};\mathbb{C}), d_{L^2})$是一个度量空间，
+按照定义12.1.2，我们需要证明满足下面四个公理：
+\begin{itemize}
+  \item (a) 对任意的$f \in C(\mathbb{R}/\mathbb{Z};\mathbb{C})$，
+        我们有$d_{L^2}(f, f) = 0$。
+
+        \begin{align*}
+          d_{L^2}(f, f) & = \| f - f\|_2                                       \\
+                        & = \left(\int_{[0, 1]} |f(x) - f(x)|^2dx\right)^{1/2} \\
+                        & = \left(\int_{[0, 1]} 0 dx\right)^{1/2}              \\
+                        & = 0
+        \end{align*}
+
+  \item (b) （正性）对任意两个不同的$f, g \in C(\mathbb{R}/\mathbb{Z};\mathbb{C})$，
+        我们有$d_{L^2}(f, g) > 0$。
+
+        \begin{align*}
+          d_{L^2}(f, g) & = \| f - g\|_2                                                            \\
+                        & = \left(\int_{[0, 1]} |f(x) - g(x)|^2dx\right)^{1/2}                      \\
+                        & = \left(\int_{[0, 1]} (f(x) - g(x))\overline{f(x) - g(x)} dx\right)^{1/2} \\
+                        & \geq 0
+        \end{align*}
+        最后一个不等式，使用了引理16.2.5(b)。
+
+  \item (c)（对称性）对任意的$f, g \in C(\mathbb{R}/\mathbb{Z};\mathbb{C})$，
+        我们有$d_{L^2}(f, g) = d_{L^2}(g, f)$。
+
+        \begin{align*}
+          d_{L^2}(f, g) & = \| f - g\|_2                                       \\
+                        & = \left(\int_{[0, 1]} |f(x) - g(x)|^2dx\right)^{1/2}
+        \end{align*}
+
+        \begin{align*}
+          d_{L^2}(g, f) & = \| g - f\|_2                                       \\
+                        & = \left(\int_{[0, 1]} |g(x) - f(x)|^2dx\right)^{1/2}
+        \end{align*}
+
+        由于，对任意$x \in [0, 1]$，都有
+        \begin{align*}
+          |f(x) - g(x)| & = |(-1)(g(x) - f(x))| \\
+                        & = |-1||g(x) - f(x)|   \\
+                        & = |g(x) - f(x)|
+        \end{align*}
+
+        所以，
+        \begin{align*}
+          \left(\int_{[0, 1]} |f(x) - g(x)|^2dx\right)^{1/2} = \left(\int_{[0, 1]} |g(x) - f(x)|^2dx\right)^{1/2}
+        \end{align*}
+
+        综上，$d_{L^2}(f, g) = d_{L^2}(g, f)$。
+
+  \item (d) （三角不等式）对任意的$f,g,h \in C(\mathbb{R}/\mathbb{Z};\mathbb{C})$，
+        我们有$d_{L^2}(f, h) \leq d_{L^2}(f, g) + d_{L^2}(g, h)$。
+
+        这里有个开方，不好处理，需要使用一个小命题：
+        \begin{zremark}
+          \textbf{命题：实数$a, b, c \geq 0$，如果$a^2 + b^2 \geq c^2$，那么$a + b \geq c$。}
+
+          \textbf{证明：}
+
+          反证法，假设$a + b < c$，那么
+          \begin{align*}
+            (a + b)^2 < c^2 \\
+            a^2 + b^2 + 2ab < c^2
+          \end{align*}
+          因为，$2ab \geq 0$，所以，
+          \begin{align*}
+            a^2 + b^2 + 2ab \geq a^2 + b^2
+          \end{align*}
+
+          $a^2 + b^2 + 2ab < c^2$与$a^2 + b^2 \geq c^2$矛盾。
+        \end{zremark}
+
+        \begin{align*}
+          (d_{L^2}(f, g))^2 + (d_{L^2}(g, h))^2
+           & = \int_{[0, 1]} |f(x) - g(x)|^2dx + \int_{[0, 1]} |g(x) - h(x)|^2dx \\
+           & = \int_{[0, 1]} |f(x) - g(x)|^2 + |g(x) - h(x)|^2dx
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          (d_{L^2}(f, h))^2
+           & = \int_{[0, 1]} |f(x) - h(x)|^2dx
+        \end{align*}
+
+        由引理15.6.11的三角不等式可知，对任意$x \in [0, 1]$，
+        \begin{align*}
+          |f(x) - h(x)| & = |f(x) - g(x) + g(x) - h(x)|      \\
+                        & \leq |f(x) - g(x)| + |g(x) - h(x)|
+        \end{align*}
+
+        综上可得，
+        \begin{align*}
+          |f(x) - h(x)|^2 \leq |f(x) - g(x)|^2 + |g(x) - h(x)|^2
+        \end{align*}
+
+        于是由定理11.4.1(e)可知，
+        \begin{align*}
+          \int_{[0, 1]} |f(x) - h(x)|^2dx \leq \int_{[0, 1]} |f(x) - g(x)|^2 + |g(x) - h(x)|^2dx
+        \end{align*}
+        即，
+        \begin{align*}
+          (d_{L^2}(f, h))^2 \leq (d_{L^2}(f, g))^2 + (d_{L^2}(g, h))^2
+        \end{align*}
+        由刚才的小命题可得，
+        \begin{align*}
+          d_{L^2}(f, h) \leq d_{L^2}(f, g) + d_{L^2}(g, h)
+        \end{align*}
+\end{itemize}
+
+\section*{16.2.3}
+
+（1）
+
+由定义可知，$\|f\|_2, \|f\|_{L^\infty}$都是正值，
+于是可以通过$(\|f\|_2)^2 \leq (\|f\|_{L^\infty})^2$来证明。
+
+对任意$x \in [0, 1]$，我们有
+\begin{align*}
+  |f(x)| \leq \sup\limits_{x \in \mathbb{R}} |f(x)| = \sup\limits_{x \in [0, 1]} |f(x)| = \|f\|_{L^\infty}
+\end{align*}
+
+于是可得，
+\begin{align*}
+  (\|f\|_2)^2 = \int_{[0, 1]} |f(x)|^2dx  \leq \int_{[0, 1]} (\sup\limits_{x \in [0, 1]} |f(x)|)^2 dx
+\end{align*}
+
+又因为$\sup\limits_{x \in [0, 1]} |f(x)|$是常量，所以
+\begin{align*}
+  \int_{[0, 1]} (\sup\limits_{x \in [0, 1]} |f(x)|)^2 dx
+   & = (1-0) \times (\sup\limits_{x \in [0, 1]} |f(x)|)^2 \\
+   & = (\sup\limits_{x \in [0, 1]} |f(x)|)^2              \\
+   & = (\|f\|_{L^\infty})^2
+\end{align*}
+
+综上可得，
+\begin{align*}
+  (\|f\|_2)^2 \leq (\|f\|_{L^\infty})^2 \\
+  \implies                              \\
+  \|f\|_2 \leq  \|f\|_{L^\infty}
+\end{align*}
+
+（2）
+
+todo
+
+\begin{align*}
+  \|f\|_2^2 & = \int_{[0, 1]} |f(x)|^2dx   \\
+            & = \int_{[0, 1]} c + dg(x) dx \\
+            & = c + d \int_{[0, 1]} g(x)dx
+\end{align*}
+我们希望
+\begin{equation*}
+  \begin{cases*}
+    \|f\|_2^2 = c + d \int_{[0, 1]} g(x)dx = A^2 \\
+    \|f\|_\infty = \sup\limits_{x \in [0, 1]} |f(x)|
+    = \sup\limits_{x \in [0, 1]} \sqrt{c + dg(x)}  = B
+  \end{cases*}
+\end{equation*}
+
+\section*{16.2.4}
+
+\begin{itemize}
+  \item (a) 非退化性。
+
+        由引理16.2.5(b)可得，
+        \begin{align*}
+          \|f\|_2 & = \sqrt{\langle f, f \rangle} \geq 0
+        \end{align*}
+
+  \item (b)柯西-施瓦茨不等式。
+
+        如果$\|g\|_2 = 0$，由$\|g\|_2 = \sqrt{\langle g, g \rangle}$和引理16.2.5(b)，
+        $g = 0$，于是$|\langle f, g \rangle| = 0$，所以
+        \begin{align*}
+          |\langle f, g \rangle| = \|f\|_2\|g\|_2 = 0
+        \end{align*}
+
+        如果$\|g\|_2 > 0$，我们有
+        \begin{align*}
+           & \langle f\|g\|_2^2 - \langle f, g \rangle g, f\|g\|_2^2 - \langle f, g \rangle g \rangle                                      \\
+           & = \langle  f\|g\|_2^2, f\|g\|_2^2 - \langle f, g \rangle g \rangle
+          - \langle \langle f, g \rangle g, f\|g\|_2^2 - \langle f, g \rangle g \rangle                                                    \\
+           & = \langle  f\|g\|_2^2, f\|g\|_2^2 \rangle - \langle  f\|g\|_2^2, \langle f, g \rangle g \rangle
+          - (\langle \langle f, g \rangle g, f\|g\|_2^2 \rangle - \langle \langle f, g \rangle g, \langle f, g \rangle g \rangle)          \\
+           & = \langle  f\|g\|_2^2, f\|g\|_2^2 \rangle - \langle  f\|g\|_2^2, \langle f, g \rangle g \rangle
+          - \langle \langle f, g \rangle g, f\|g\|_2^2 \rangle + \langle \langle f, g \rangle g, \langle f, g \rangle g \rangle            \\
+           & = \|g\|_2^4 \langle  f, f \rangle - \|g\|_2^2 \langle  f, \langle f, g \rangle g \rangle
+          - \|g\|_2^2 \langle \langle f, g \rangle g, f \rangle + \langle \langle f, g \rangle g, \langle f, g \rangle g \rangle           \\
+           & = \|g\|_2^4 \langle  f, f \rangle - \|g\|_2^2 \overline{\langle f, g \rangle}\langle  f, g \rangle
+          - \|g\|_2^2 \langle f, g \rangle\langle g, f \rangle + \langle f, g \rangle \overline{\langle f, g \rangle} \langle g, g \rangle \\
+           & = \|g\|_2^4 \langle  f, f \rangle - \|g\|_2^2 \overline{\langle f, g \rangle}\langle  f, g \rangle
+          - \|g\|_2^2 \langle f, g \rangle\langle g, f \rangle + \langle f, g \rangle \langle g, f \rangle \|g\|_2^2                       \\
+           & = \|g\|_2^4 \langle  f, f \rangle - \|g\|_2^2 \overline{\langle f, g \rangle}\langle  f, g \rangle                            \\
+           & = \|g\|_2^4\|f\|_2^2 - \|g\|_2^2|\langle  f, g \rangle|^2                                                                     \\
+        \end{align*}
+        （注意，在拆分的时候，$\langle *, * \rangle, \|g\|_2, -1$都是复数，可以使用引理16.2.5(c)(d)；
+        最后一个等式利用了复数共轭相乘的性质，引理15.6.11中有说明）
+
+        因为
+        \begin{align*}
+          \langle f\|g\|_2^2 - \langle f, g \rangle g, f\|g\|_2^2 - \langle f, g \rangle g \rangle \geq 0 \\
+          \|g\|_2^4\|f\|_2^2 - \|g\|_2^2|\langle  f, g \rangle|^2 \geq 0                                  \\
+          \|g\|_2^2\|f\|_2^2 - |\langle  f, g \rangle|^2 \geq 0                                           \\
+          \|g\|_2^2\|f\|_2^2 \geq |\langle  f, g \rangle|^2                                               \\
+          \|g\|_2\|f\|_2 \geq |\langle  f, g \rangle|
+        \end{align*}
+
+
+  \item (c) 三角不等式
+
+        我们有，
+        \begin{align*}
+          \|f + g\|_2^2 & = \langle f + g, f + g \rangle                                                              \\
+                        & = \langle f, f \rangle + \langle f, g \rangle + \langle g, f \rangle + \langle g, g \rangle \\
+                        & \leq \|f\|_2^2 + \|f\|_2\|g\|_2 + \|g\|_2\|f\|_2 + \|g\|_2^2                                \\
+                        & = (\|f\|_2 + \|g\|_2)^2
+        \end{align*}
+        于是
+        \begin{align*}
+          \|f + g\|_2 \leq \|f\|_2 + \|g\|_2
+        \end{align*}
+
+  \item (d) 毕达哥拉斯定理
+
+        因为$\langle f, g \rangle = 0$，于是$\langle g, f \rangle = \overline{\langle f, g \rangle} = 0$。
+
+        我们有，
+        \begin{align*}
+          \|f + g\|_2^2 & = \langle f + g, f + g \rangle                                                              \\
+                        & = \langle f, f \rangle + \langle f, g \rangle + \langle g, f \rangle + \langle g, g \rangle \\
+                        & = \|f\|_2^2 + 0 + 0 + \|g\|_2^2                                                             \\
+                        & = \|f\|_2^2 + \|g\|_2^2
+        \end{align*}
+
+  \item (e) 齐次性
+
+        \begin{align*}
+          \|cf\|_2^2 & = \langle cf, cf \rangle  \\
+                     & = c^2\langle f, f \rangle \\
+                     & = c^2 \|f\|_2^2
+        \end{align*}
+
+        于是可得，
+        \begin{align*}
+          \|cf\|_2 = |c| \|f\|_2
+        \end{align*}
+\end{itemize}
+
+\section*{16.2.5}
+
+先定义不连续的$\mathbb{Z}$周期方波函数
+\begin{equation*}
+  f(x) =
+  \begin{cases*}
+    1 \ if \ x \in [n, n + \frac{1}{2}), \\
+    0 \ if \ x \in [n + \frac{1}{2}, n + 1)
+  \end{cases*}
+\end{equation*}
+
+构造连续的$\mathbb{Z}$周期函数序列$(f_n)_{n = 1}^\infty$。
+
+\begin{equation*}
+  f_n(x) =
+  \begin{cases*}
+    1 \ \ if \ x \in [0, \frac{1}{2} - \frac{1}{2n}),                                                              \\
+    1 - n(x - \frac{1}{2} + \frac{1}{2n}) \ \ if \ x \in [\frac{1}{2} - \frac{1}{2n}, \frac{1}{2} + \frac{1}{2n}), \\
+    0 \ \ if \ x \in [\frac{1}{2} + \frac{1}{2n}, 1)
+  \end{cases*}
+\end{equation*}
+（注意，以上只定义了$[0, 1)$）于是要做一下补充：$x \in \mathbb{R}, f_n(x + 1) = f_n(x)$。
+
+以上定义的$f_n(x)$关键在于$[\frac{1}{2} - \frac{1}{2n}, \frac{1}{2} + \frac{1}{2n})$上，函数线性从1到0。
+
+\section*{16.2.6}
+
+\begin{itemize}
+  \item (a)
+
+        对任意$\sqrt{\epsilon} > 0$，因为$f_n$一致收敛于$f$，
+        于是存在$N \geq 1$，使得只要$n \geq N$和$x \in \mathbb{R}$，都有
+        \begin{align*}
+          |f_n(x) - f(x)| < \sqrt{\epsilon}
+        \end{align*}
+
+        于是，当$n \geq N$时
+        \begin{align*}
+          \int_{[0, 1]} |f_n(x) - f(x)|^2 dx \leq \int_{[0, 1]} \epsilon dx = \epsilon
+        \end{align*}
+
+        由$\epsilon$的任意性可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} \int_{[0, 1]} |f_n(x) - f(x)|^2 dx = 0
+        \end{align*}
+
+  \item (b)
+
+        todo
+
+  \item (c)
+
+  \item (d)
+
+\end{itemize}
+
+
+\end{document}
+
+

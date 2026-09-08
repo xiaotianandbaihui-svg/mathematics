@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{17.4 习题}
+\author{张志聪}
+\maketitle
+
+\section*{17.4.1}
+
+先证明可微性，再证明导数作为关于$\mathbb{R}^n$的函数是连续的。
+
+设$L : \mathbb{R}^n \to \mathbb{R}^m$的线性变换，令$L = T$，
+于是，对任意$x_0 \in \mathbb{R}^n$，我们有
+\begin{align*}
+  \lim\limits_{x \to x_0; x \in \mathbb{R}^n - \{x_0\} } \frac{\|T(x) - T(x_0) - L(x - x_0) \|}{\|x - x_0\|}
+   & = \lim\limits_{x \to x_0; x \in \mathbb{R}^n - \{x_0\} } \frac{\|T(x - x_0) - L(x - x_0) \|}{\|x - x_0\|} \\
+   & = \lim\limits_{x \to x_0; x \in \mathbb{R}^n - \{x_0\} } \frac{\|T(x - x_0) - T(x - x_0) \|}{\|x - x_0\|} \\
+   & = \lim\limits_{x \to x_0; x \in \mathbb{R}^n - \{x_0\} } \frac{0}{\|x - x_0\|}                            \\
+   & = 0
+\end{align*}
+
+所以$T$在$x_0$处是可微的，并且导数为$T$。而且引理17.2.4也保证了导数的唯一性。
+
+又由$x_0$的任意性可知，$T$在任意一点$x$处的导数都是$T$，即$T^\prime(x) = x$，
+可见导数函数是定值，所以其是连续的。
+
+\section*{17.4.2}
+
+要证明$f$在$x_0$连续，我们需要证明
+\begin{align*}
+  \lim\limits_{x \to x_0; x \in E - \{x_0\} } f(x) = f(x_0)
+\end{align*}
+
+对任意$\epsilon > 0$，由于$f$在$x_0$处的可微性可知，
+存在$\delta > 0$，使得只要$\|x - x_0\| \leq \delta, x \in E - \{x_0\}$，
+就有
+\begin{align*}
+  \frac{\|f(x) - f(x_0) - f^\prime(x_0)(x - x_0)\|}{\|x - x_0\|} < \epsilon                                             \\
+  \|f(x) - f(x_0) - f^\prime(x_0)(x - x_0)\| < \epsilon \|x - x_0\|                                                     \\
+  \|f(x) - f(x_0)\| - \|f^\prime(x_0)(x - x_0)\| \leq \|f(x) - f(x_0) - f^\prime(x_0)(x - x_0)\| < \epsilon \|x - x_0\| \\
+  \|f(x) - f(x_0)\| - \|f^\prime(x_0)(x - x_0)\| < \epsilon \|x - x_0\|                                                 \\
+  \|f(x) - f(x_0)\| < \epsilon \|x - x_0\| + \|f^\prime(x_0)(x - x_0)\|
+\end{align*}
+因为$x_0$是$E$的内点，于是$B(x_0, min(\delta, \epsilon)) \subseteq E$，
+令$x \in B(x_0, min(\delta, \epsilon))$。
+又由习题17.1.4可知，存在$M > 0$，使得$\|f^\prime(x_0)(x - x_0)\| \leq M \|x - x_0\|$，
+于是，我们有
+\begin{align*}
+  \|f(x) - f(x_0)\| & < \epsilon \|x - x_0\| + \|f^\prime(x_0)(x - x_0)\| \\
+                    & \leq \epsilon^2 + M \epsilon
+\end{align*}
+$M$是定值和$\epsilon$的任意性可知，$f$在$x_0$处连续。
+
+\section*{17.4.3}
+不妨设$g^\prime(f(x_0)) = L_1, f^\prime(x_0) = L_2$。
+
+按照可微性的定义（定义17.2.2），我们需要证明
+\begin{align*}
+  \lim_{x \to x_0; x \in E - \{x_0\}} \frac{\|g \circ f(x) - g \circ f(x_0) - L_1L_2(x - x_0)\|}{\|x - x_0\|} = 0
+\end{align*}
+
+因为$g$在$f(x_0)$处可微，
+于是对任意的$\epsilon > 0$，存在$\delta > 0$，使得只要$\|y - f(x_0)\| < \delta$，
+就有
+\begin{align*}
+  \frac{\|g(y) - g(f(x_0)) - L_1(y - f(x_0))\|}{\|y - f(x_0)\|} < \epsilon
+\end{align*}
+又$f$在$x_0$处可微，由习题17.4.2可知，$f$在$x_0$处连续，
+所以，存在$\delta_f > 0$，使得只要$\|x - x_0\| < \delta_f$，
+就有
+\begin{align*}
+  \|f(x) - f(x_0)\| < \delta
+\end{align*}
+综上，当$\|x - x_0\| < \delta_f$，我们有
+\begin{align}
+  \frac{\|g(f(x)) - g(f(x_0)) - L_1(y - f(x_0))\|}{\|f(x) - f(x_0)\|} < \epsilon
+\end{align}
+
+$f$在$x_0$处可微，存在$\delta^\prime > 0$，使得只要$|x - x_0| < min(\delta_f,\delta^\prime)|$，就有
+\begin{align}
+  \frac{\|f(x) - f(x_0) - L_2(x - x_0)\|}{\|x - x_0\|} < \epsilon
+\end{align}
+取$\delta = min(\delta_f,\delta^\prime), \|x - x_0 \| < \delta$，式（1）（2）同时成立。
+
+对任意$v \in R^m, w \in R^n$，由习题17.1.4可知，存在$M_1, M_2 > 0$使得
+\begin{align*}
+  \|L_1 v\| \leq M_1 \|v\| \\
+  \|L_2 w\| \leq M_2 \|w\|
+\end{align*}
+
+当$\| x - x_0 \| < \delta$时，我们有
+\begin{align*}
+   & \frac{\|g \circ f(x) - g \circ f(x_0) - L_1L_2(x - x_0)\|}{\|x - x_0\|}                                                              \\
+   & = \frac{\|g(f(x)) - g(f(x_0)) - L_1L_2(x - x_0)\|}{\|x - x_0\|}                                                                      \\
+   & = \frac{\|g(f(x)) - g(f(x_0)) - L_1(f(x) - f(x_0)) + L_1(f(x) - f(x_0)) - L_1L_2(x - x_0)\|}{\|x - x_0\|}                            \\
+   & \leq \frac{\|g(f(x)) - g(f(x_0)) - L_1(f(x) - f(x_0))\|}{\|x - x_0\|} + \frac{\|L_1(f(x) - f(x_0)) - L_1L_2(x - x_0)\|}{\|x - x_0\|} \\
+   & = \frac{\|g(f(x)) - g(f(x_0)) - L_1(f(x) - f(x_0))\|}{\|x - x_0\|} + \frac{\|L_1[f(x) - f(x_0) - L_2(x - x_0)]\|}{\|x - x_0\|}       \\
+   & \leq \frac{\epsilon \|f(x) - f(x_0)\|}{\|x - x_0\|} + \frac{M_2\|f(x) - f(x_0) - L_2(x - x_0)\|}{\|x - x_0\|}                        \\
+   & \leq \frac{\epsilon \|f(x) - f(x_0)\|}{\|x - x_0\|} + \frac{M_2\epsilon \|x - x_0\|}{\|x - x_0\|}                                    \\
+   & = \frac{\epsilon \|f(x) - f(x_0) - L_2(x - x_0) + L_2(x - x_0)\|}{\|x - x_0\|} + M_2\epsilon                                         \\
+   & \leq \frac{\epsilon \|f(x) - f(x_0) - L_2(x - x_0)\| + \epsilon\|L_2(x - x_0)\|}{\|x - x_0\|} + M_2\epsilon                          \\
+   & \leq \frac{\epsilon^2\|x - x_0\| + \epsilon M_1\|x - x_0\|}{\|x - x_0\|} + M_2\epsilon                                               \\
+   & = \epsilon(\epsilon + M_1 + M_2)
+\end{align*}
+
+由$\epsilon$是任意的，$M_1, M_2$是定值，所以
+\begin{align*}
+  \lim_{x \to x_0; x \in E - \{x_0\}} \frac{\|g \circ f(x) - g \circ f(x_0) - L_1L_2(x - x_0)\|}{\|x - x_0\|} = 0
+\end{align*}
+命题得证。
+
+\section*{17.4.4}
+
+\textbf{命题：}
+
+设$f: \mathbb{R}^n \to \mathbb{R}$和$g: \mathbb{R}^n \to \mathbb{R}$都是可微函数，
+且$g$在$\mathbb{R}^n$上不为零，那么$f/g$也是可微的，且
+\begin{align*}
+  \nabla (\frac{f}{g}) = \frac{(\nabla f) g  - f (\nabla g)  }{g^2}
+\end{align*}
+
+\textbf{证明：}
+
+仿照例17.4.2进行证明。
+
+把$h: \mathbb{R}^n \to \mathbb{R}^2$定义为$h(x) = (f(x), g(x))$。
+现在令$k: \mathbb{R}^2 \to \mathbb{R}$表示除法函数$K(a, b) = \frac{a}{b}$。
+注意，
+\[
+  D_h(x_0) =
+  \begin{pmatrix}
+    \nabla f(x_0) \\
+    \nabla g(x_0)
+  \end{pmatrix}
+\]
+和
+\begin{align*}
+  D_k(a,b) = (\frac{1}{b}, -\frac{a}{b^2})
+\end{align*}
+根据链式法则可得，
+\begin{align*}
+  D(k \circ h)
+   & = (\frac{1}{g(x_0)}, -\frac{f(x_0)}{g(x_0)^2})
+  \begin{pmatrix}
+    \nabla f(x_0) \\
+    \nabla g(x_0)
+  \end{pmatrix}                                                                      \\
+   & = \frac{\nabla f(x_0)}{g(x_0)} - \frac{f(x_0)\nabla g(x_0)}{g(x_0)^2}            \\
+   & = \frac{(\nabla f(x_0)) g(x_0)}{g(x_0)^2} - \frac{f(x_0)\nabla g(x_0)}{g(x_0)^2} \\
+   & = \frac{(\nabla f(x_0)) g(x_0) - f(x_0)\nabla g(x_0)}{g(x_0)^2}
+\end{align*}
+命题得证。
+
+\section*{17.4.5}
+
+注意，注意，注意!!! 书中的是点积（或点乘），正文中没有正式定义过，
+只有P364有些涉及。证明的最后一步我无法保证正确性。
+
+令$k: \mathbb{R}^3 \to \mathbb{R}$表示$l^2$度量函数
+$k(a, b, c) = \|(a, b, c)\| = \sqrt{a^2 + b^2 + c^2}$。
+我们有
+\begin{align*}
+  D_{\overrightarrow{x}}(t_0) =
+  \begin{pmatrix}
+    \frac{\partial \overrightarrow{x}_1}{\partial x_1} (t_0) \\
+    \frac{\partial \overrightarrow{x}_2}{\partial x_1} (t_0) \\
+    \frac{\partial \overrightarrow{x}_3}{\partial x_1} (t_0)
+  \end{pmatrix}
+\end{align*}
+和
+\begin{align*}
+  D_k(a, b, c) = (\frac{a}{\sqrt{a^2 + b^2 + c^2}}, \frac{b}{\sqrt{a^2 + b^2 + c^2}}, \frac{c}{\sqrt{a^2 + b^2 + c^2}})
+\end{align*}
+令$\overrightarrow{x}(t_0) = (c_1, c_2, c_3)$
+根据链式法则可得，
+\begin{align*}
+  D(k \circ \overrightarrow{x})(t_0)
+   & = (\frac{c_1}{\|\overrightarrow{x}(t_0)\|}, \frac{c_2}{\|\overrightarrow{x}(t_0)\|}, \frac{c_3}{\|\overrightarrow{x}(t_0)\|})
+  \begin{pmatrix}
+    \frac{\partial \overrightarrow{x}_1}{\partial x_1} (t_0) \\
+    \frac{\partial \overrightarrow{x}_2}{\partial x_1} (t_0) \\
+    \frac{\partial \overrightarrow{x}_3}{\partial x_1} (t_0)
+  \end{pmatrix}                                                                       \\
+   & = \frac{\frac{\partial \overrightarrow{x}_1}{\partial x_1} (t_0) c_1 }{\|\overrightarrow{x}(t_0)\|}
+  + \frac{\frac{\partial \overrightarrow{x}_2}{\partial x_1} (t_0) c_2}{\|\overrightarrow{x}(t_0)\|}
+  + \frac{\frac{\partial \overrightarrow{x}_3}{\partial x_1} (t_0) c_3}{\|\overrightarrow{x}(t_0)\|}                                 \\
+   & = \frac{\overrightarrow{x}^\prime(t_0) \cdot \overrightarrow{x}(t_0)}{r(t_0)}
+\end{align*}
+
+因为
+\begin{align*}
+  \overrightarrow{x}^\prime(t_0) \cdot \overrightarrow{x}(t_0)
+  = \frac{\partial \overrightarrow{x}_1}{\partial x_1} (t_0) c_1 
+  + \frac{\partial \overrightarrow{x}_2}{\partial x_1} (t_0) c_2
+  + \frac{\partial \overrightarrow{x}_3}{\partial x_1} (t_0) c_3
+\end{align*}
+
+\end{document}
+
+
