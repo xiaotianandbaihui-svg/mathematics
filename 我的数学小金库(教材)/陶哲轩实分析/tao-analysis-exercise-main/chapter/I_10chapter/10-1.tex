@@ -1,0 +1,404 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{10.1 习题}
+\author{张志聪}
+\maketitle
+
+\section*{10.1.1}
+
+（1）
+$f$在$x_0$处可微分，由定义10.1.1可知，极限
+\begin{align*}
+  \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x) - f(x_0)}{x - x_0}
+\end{align*}
+是存在的，不妨设极限是$L$。由定义9.3.6可知，
+对任意$\epsilon > 0$，存在$\delta > 0$，使得
+\begin{align*}
+  |\frac{f(x) - f(x_0)}{x - x_0} - L | \leq \epsilon
+\end{align*}
+对任意$x \in \big((x_0 - \delta, x_0 + \delta) \cap X \setminus \{x_0\}\big)$
+均成立。
+
+任意$y \in \big((x_0 - \delta, x_0 + \delta) \cap Y \setminus \{x_0\}\big)$，
+因为$Y \subset X$，所以$y \in \big((x_0 - \delta, x_0 + \delta) \cap X \setminus \{x_0\}\big)$，
+所以
+\begin{align*}
+  |\frac{f(y) - f(x_0)}{y - x_0} - L | \leq \epsilon
+\end{align*}
+由定义9.3.6可知，
+\begin{align*}
+  \lim\limits_{y \to x_0; y \in Y \setminus \{x_0\}} \frac{f|_Y(y) - f|_Y(x_0)}{y - x_0}
+\end{align*}
+的极限存在，所以$f|_Y$在$x_0$处可微。
+
+（2）
+与10.1.2不矛盾的原因：
+
+点$3$不是$[1,2] \cup \{3\}$的极限点，不满足习题10.1.1习题的前置条件。
+
+\section*{10.1.2}
+
+\begin{itemize}
+  \item $(a) \implies (b)$
+
+        $f$在$X$中的$x_0$处是可微的，且导数为$L$，由定义10.1.1可知，极限
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x) - f(x_0)}{x - x_0} = L
+        \end{align*}
+
+        于是，由定义9.3.6可知，
+        对任意$\epsilon > 0$，存在$\delta > 0$，使得
+        \begin{align*}
+          |\frac{f(x) - f(x_0)}{x - x_0} - L | \leq \epsilon
+        \end{align*}
+        对$|x - x_0| \leq \delta, x \in X \setminus \{x_0\}$均成立。
+
+        对上式进行算术运算，
+        \begin{align*}
+          |\frac{f(x) - f(x_0)}{x - x_0} - L |       & \leq \epsilon           \\
+          |\frac{f(x) - f(x_0) - L(x-x_0)}{x - x_0}| & \leq \epsilon           \\
+          |f(x) - f(x_0) - L(x-x_0)|                 & \leq \epsilon |x - x_0| \\
+          |f(x) - \big( f(x_0) + L(x-x_0) \big)|     & \leq \epsilon |x - x_0|
+        \end{align*}
+        对$|x - x_0| \leq \delta, x \in X \setminus \{x_0\}$均成立。
+        当$x = x_0$时，公式也成立。
+
+  \item $(b) \implies (a)$
+
+        直接进行算术运算，略
+\end{itemize}
+
+\section*{10.1.3}
+
+\begin{itemize}
+  \item 方法1(利用极限定律，命题9.3.14)
+
+        不妨设$x_0$处的导数为$L$，于是
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x) - f(x_0)}{x - x_0} = L
+        \end{align*}
+        即函数$f$在$x_0$处沿着$X \setminus \{x_0\}$收敛于$L$。
+
+        我们易证
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} x - x_0 = 0
+        \end{align*}
+
+        即函数$g$在$x_0$处沿着$X \setminus \{x_0\}$收敛于$0$。
+
+        于是
+        \begin{align*}
+          fg & = \frac{f(x) - f(x_0)}{x - x_0}  (x - x_0) \\
+             & = f(x) - f(x_0)
+        \end{align*}
+
+        按照极限定律（命题9.3.14）可得
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} fg              \\
+           & = \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} f(x) - f(x_0) \\
+           & = L \times 0                                                       \\
+           & = 0
+        \end{align*}
+
+        于是对任意$\epsilon > 0$，都存在$\delta > 0$使得$|f(x) - f(x_0)| < \epsilon$对所有满足
+        $|x - x_0| < \delta$的$x \in X \setminus \{x_0\}$均成立。特别地$x = x_0$时$f(x) - f(x_0) = 0 < \delta$也成立。
+
+        所以由命题9.4.7(d)可知，$f$在$x_0$处连续。
+
+
+
+  \item 方法2（利用命题10.1.7）
+
+        $f$在$x_0$处可微，由命题10.1.7(b)可知，对任意的$\epsilon > 0$都存在$\delta > 0$，
+        当$x \in X$且$|x - x_0| \leq \delta$时，那么就有
+        \begin{align*}
+          |f(x) - \big( f(x_0) + L(x-x_0) \big)| & \leq \epsilon |x - x_0|
+        \end{align*}
+        进过算术运算，
+        \begin{align*}
+          |f(x) - \big( f(x_0) + L(x-x_0) \big)| & \leq \epsilon |x - x_0|                \\
+          |f(x) - f(x_0)|                        & \leq \epsilon |x - x_0| + |L||x - x_0| \\
+          |f(x) - f(x_0)| \leq (\epsilon + |L|)|x - x_0|
+        \end{align*}
+        取$\delta = \frac{\epsilon}{\epsilon + |L|}$，此时$|x - x_0| \leq \frac{\epsilon}{\epsilon + |L|} = \delta$，
+        使得
+        \begin{align*}
+          |f(x) - f(x_0)| \leq \epsilon
+        \end{align*}
+        由命题9.4.7(d)可知，$f$在$x_0$处连续。
+\end{itemize}
+
+\section*{10.1.4}
+
+\begin{itemize}
+  \item (a)
+
+        对任意$\epsilon > 0$，对任意$\delta > 0$，都存在
+        \begin{align*}
+           & \frac{f(x) - f(x_0)}{x - x_0} \\
+           & = \frac{c - c}{x - x_0}       \\
+          %  & = \frac{0}{x - x_0}           \\
+           & = 0
+        \end{align*}
+        对所有满足$|x - x_0| < \delta$的$x \in X \setminus \{x_0\}$均成立。
+        于是由命题9.4.7(c)可得
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}}  \frac{f(x) - f(x_0)}{x - x_0} = 0
+        \end{align*}
+        即$f^\prime(x_0) = 0$
+
+  \item (b)
+
+        对任意$\epsilon > 0$，对任意$\delta > 0$，都存在
+        \begin{align*}
+           & \frac{f(x) - f(x_0)}{x - x_0} \\
+           & = \frac{x - x_0}{x - x_0}     \\
+           & = 1
+        \end{align*}
+        对所有满足$|x - x_0| < \delta$的$x \in X \setminus \{x_0\}$均成立。
+        于是由命题9.4.7(c)可得
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}}  \frac{f(x) - f(x_0)}{x - x_0} = 1
+        \end{align*}
+        即$f^\prime(x_0) = 1$
+
+  \item (c)
+
+        设$f^\prime(x_0) = L, g^\prime(x_0) = M$
+
+        $f$在$x_0$处可微，由定义10.1.1可知，极限
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x) - f(x_0)}{x - x_0} = L
+        \end{align*}
+        由定义9.3.6可知，
+        对任意$\epsilon > 0, \frac{1}{2}\epsilon > 0$，存在$\delta_f > 0$，使得
+        \begin{align*}
+          |\frac{f(x) - f(x_0)}{x - x_0} - L | \leq \frac{1}{2}\epsilon
+        \end{align*}
+        对所有满足$|x - x_0| < \delta_f$的$x \in X \setminus \{x_0\}$均成立。
+
+        同理可得，
+        存在$\delta_g > 0$，使得
+        \begin{align*}
+          |\frac{g(x) - g(x_0)}{x - x_0} - M | \leq \frac{1}{2}\epsilon
+        \end{align*}
+        对所有满足$|x - x_0| < \delta_g$的$x \in X \setminus \{x_0\}$均成立。
+
+        令$\delta = min(\delta_f, \delta_g)$，于是，
+        \begin{align*}
+           & \big|\frac{(f(x) + g(x)) - (f(x_0) - g(x_0))}{x - x_0} - (L + M)  \big|                          \\
+           & = \big|\frac{f(x) - f(x_0)}{x - x_0} - L + \frac{g(x) - g(x_0)}{x - x_0} - M \big|               \\
+           & \leq \big|\frac{f(x) - f(x_0)}{x - x_0} - L \big| + \big|\frac{g(x) - g(x_0)}{x - x_0} - M \big| \\
+           & = \frac{1}{2}\epsilon + \frac{1}{2}\epsilon                                                      \\
+           & = \epsilon
+        \end{align*}
+        对所有满足$|x - x_0| < \delta$的$x \in X \setminus \{x_0\}$均成立。
+        所以$(f + g)^\prime(x_0) = L + M$。
+
+        于是$(f + g)^\prime(x_0) = f^\prime(x_0) + g^\prime(x_0) = L + M$。
+
+  \item (d)
+
+        设$f^\prime(x_0) = L, g^\prime(x_0) = M$
+
+        $f$在$x_0$处可微，由定义10.1.1可知，极限
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x) - f(x_0)}{x - x_0} = L
+        \end{align*}
+
+        同理可得，
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{g(x) - g(x_0)}{x - x_0} = M
+        \end{align*}
+
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x)g(x) - f(x_0)g(x_0)}{x - x_0} \\
+           & = \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{f(x)\big(g(x) - g(x_0)\big)
+          + \big(f(x) - f(x_0)\big)g(x_0)}{x - x_0}                                                     \\
+           & = \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} f(x) \frac{g(x) - g(x_0)}{x - x_0}
+          + g(x_0) \frac{f(x) - f(x_0)}{x - x_0}                                                        \\
+        \end{align*}
+        又$f$在$x_0$处可微，由命题10.1.0可知$f$在$x_0$处连续
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X} f(x) = f(x_0) \\
+        \end{align*}
+        于是通过命题9.4.7(c)可知（$x = x_0$是特例），
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} f(x) = f(x_0)
+        \end{align*}
+        于是利用极限定律（命题9.3.14）可得
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} f(x) \frac{g(x) - g(x_0)}{x - x_0}
+          + g(x_0) \frac{f(x) - f(x_0)}{x - x_0}                                                   \\
+           & = f(x_0)M + g(x_0)L
+        \end{align*}
+        所以$(fg)^\prime(x_0) = f^\prime(x_0)g(x_0) + f(x_0)g^\prime(x_0)$。
+
+  \item (e)
+
+        设函数$h : X \to \mathbb{R}$为$h(x) = c$，于是$(cf)(x) = h(x)f(x)$，函数相等一定有相同的导数（注10.1.4），
+        于是利用(d)可得
+        \begin{align*}
+           & (cf)^\prime(x_0)                            \\
+           & = (hf)^\prime(x_0)                          \\
+           & = h^\prime(x_0)f(x_0) + h(x_0)f^\prime(x_0) \\
+           & = 0 \times f(x_0) + c \times f^\prime(x_0)  \\
+           & = cf^\prime(x_0)
+        \end{align*}
+
+  \item (f)
+
+        设函数$h : X \to \mathbb{R}$为$h(x) = -g(x)$，于是$(f-g)(x) = (f+h)(x)$，函数相等一定有相同的导数（注10.1.4），
+        于是利用(d)可得
+
+        \begin{align*}
+           & (f-g)^\prime(x_0)               \\
+           & = (f+h)^\prime(x_0)             \\
+           & = f^\prime(x_0) + h^\prime(x_0)
+        \end{align*}
+
+        由(e)可知，$h^\prime(x_0) = (-g)^\prime(x_0) = -g^\prime(x_0)$，这里把(e)中的$c$看做$-1$。
+
+        综上可得
+        \begin{align*}
+           & (f-g)^\prime(x_0)               \\
+           & = f^\prime(x_0) - g^\prime(x_0)
+        \end{align*}
+
+
+  \item (g)
+
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{\frac{1}{g(x)} - \frac{1}{g(x_0)}}{x - x_0}               \\
+           & = \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{\frac{g(x_0) - g(x)}{g(x)g(x_0)}}{x - x_0}              \\
+           & = \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{1}{g(x)g(x_0)} \frac{g(x_0) - g(x)}{x - x_0}            \\
+           & = \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{1}{g(x)} \frac{1}{g(x_0)} \frac{g(x_0) - g(x)}{x - x_0} \\
+        \end{align*}
+
+        由于$g$在$x_0$处可微，所以
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{g(x) - g(x_0)}{x - x_0} \\
+           & = f^\prime(x_0)
+        \end{align*}
+
+        由于$g$在$x_0$处可微，由命题10.1.0可知$g$在$x_0$处连续，且$g(x)$在$X$上不为零，
+        由命题9.3.14（函数的极限定理）可得
+        \begin{align*}
+          \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{1}{g(x)} = \frac{1}{g(x_0)}
+        \end{align*}
+
+
+        再次利用命题9.3.14（函数的极限定理）可得
+        \begin{align*}
+           & \lim\limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{1}{g(x)} \frac{1}{g(x_0)} \frac{g(x_0) - g(x)}{x - x_0} \\
+           & = \frac{1}{g(x_0)} \frac{1}{g(x_0)} \big( - g^\prime(x_0)\big)                                                   \\
+           & = -\frac{g^\prime(x_0)}{g(x_0)^{2}}
+        \end{align*}
+
+  \item (h)
+
+        因为$\big(\frac{f}{g}\big)(x) = \big(f\frac{1}{g}\big)(x)$，于是利用(d)(g)可知，
+        \begin{align*}
+          \big(\frac{f}{g}\big)^\prime(x_0) & = \big(f\frac{1}{g}\big)^\prime(x_0)                                                 \\
+                                            & = f^\prime(x_0)\frac{1}{g(x_0)} + f(x_0)\big(\frac{1}{g}\big)^\prime(x_0)            \\
+                                            & = f^\prime(x_0)\frac{1}{g(x_0)} + f(x_0) \big(-\frac{g^\prime(x_0)}{g(x_0)^{2}}\big) \\
+                                            & = \frac{f^\prime(x_0)}{g(x_0)} - \frac{f(x_0) g^\prime(x_0)}{g(x_0)^{2}}             \\
+                                            & = \frac{f^\prime(x_0) g(x_0) - f(x_0) g^\prime(x_0)}{g(x_0)^{2}}
+        \end{align*}
+
+
+\end{itemize}
+
+\section*{10.1.5}
+
+对$n$进行归纳。
+
+归纳基始$n = 0$时，$f(x) = x^0 = 1$，由定理10.1.13(a)可知$f^\prime(x) = 0$，命题成立。
+
+归纳假设$n = k$时，命题成立。
+
+$n = k+1$时，$f(x) = x^{k + 1} = x^k x$，由定理10.1.13(d)和归纳假设可知
+\begin{align*}
+  (x^k x)^\prime
+   & = (x^k)^\prime x + x^k x^\prime \\
+   & = kx^{k-1} x + x^k 1            \\
+   & = kx^k + x^k                    \\
+   & = (k+1)x^k
+\end{align*}
+
+归纳完成，命题成立。
+
+\section*{10.1.6}
+
+因为$n$是负整数，令$n=-k$是正整数，于是$f(x) = x^n = \frac{1}{x^{k}}$，然后利用10.1.13(g)
+和习题10.1.5可知，
+\begin{align*}
+  (\frac{1}{x^{k}})^\prime & = - \frac{kx^{k-1}}{(x^{k})^2} \\
+                           & = - \frac{kx^{k-1}}{x^{2k}}    \\
+                           & = - kx^{-k-1}                  \\
+                           & = nx^{n-1}                     \\
+\end{align*}
+
+\section*{10.1.7}
+
+设$g$在$y_0$处的导数为L，$f$在$x_0$处的导数为$M$。
+\begin{itemize}
+  \item 方法1，牛顿逼近法（命题10.1.7）
+        由命题10.1.7（牛顿逼近法）可得，对任意的$\epsilon > 0$都存在一个$\delta > 0$使得，只有
+        $y \in Y$是$\delta-$接近于$y_0$的，就有
+        \begin{align}
+          \big| g(y) - \big(g(y_0) + L(y - y_0) \big) \big| \leq \epsilon|y - y_0|
+        \end{align}
+
+        因为$f$在$x_0$处可微，由命题10.1.10可知$f$在$x_0$处连续，于是存在$\delta_f > 0$，
+        使得
+        \begin{align*}
+          |f(x) - f(x_0)| \leq \delta
+        \end{align*}
+        对所有满足$|x - x_0| < \delta_f$的$x \in X$均成立。
+
+        综上，当满足$|x - x_0| < \delta_f, x \in X$，并将$y = f(x), y_0 = f(x_0)$代入(1)式可得，
+        \begin{align*}
+          \big| g(f(x)) - \big(g(f(x_0)) + L(f(x) - f(x_0)) \big) \big| \leq \epsilon|f(x) - f(x_0)|                                       \\
+          \big| \frac{g(f(x)) - g(f(x_0))}{x - x_0} - \frac{L(f(x) - f(x_0))}{x - x_0}  \big| \leq \epsilon|\frac{f(x) - f(x_0)}{x - x_0}| \\
+          - \epsilon|\frac{f(x) - f(x_0)}{x - x_0}| \leq \frac{g(f(x)) - g(f(x_0))}{x - x_0} - \frac{L(f(x) - f(x_0))}{x - x_0} \leq \epsilon|\frac{f(x) - f(x_0)}{x - x_0}|
+        \end{align*}
+
+        因为
+        \begin{align}
+          \lim \limits_{x \to x_0; x \in X \setminus \{x_0\}} - \epsilon|\frac{f(x) - f(x_0)}{x - x_0}| = -\epsilon M \\
+          \lim \limits_{x \to x_0; x \in X \setminus \{x_0\}} \epsilon|\frac{f(x) - f(x_0)}{x - x_0}| = \epsilon M
+        \end{align}
+
+        由$\epsilon$的任意性与夹逼定理，且$\lim \limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{L(f(x) - f(x_0))}{x - x_0} = LM$可得，
+
+        \begin{align*}
+           & \lim \limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{g(f(x)) - g(f(x_0))}{x - x_0} - \frac{L(f(x) - f(x_0))}{x - x_0} = 0 \\
+           & \implies                                                                                                                       \\
+          % & \lim \limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{g(f(x)) - g(f(x_0))}{x - x_0} - LM = 0                               \\
+          % & \implies                                                                                                                       \\
+           & \lim \limits_{x \to x_0; x \in X \setminus \{x_0\}} \frac{g(f(x)) - g(f(x_0))}{x - x_0} = LM                                   \\
+        \end{align*}
+
+  \item 方法2，命题9.3.9
+\end{itemize}
+
+\end{document}

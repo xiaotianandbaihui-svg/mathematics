@@ -1,0 +1,360 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{}
+
+
+\begin{document}
+\title{10.5 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  \textbf{个人判断，陶哲轩书中的洛必达法则的表述存在问题。}
+\end{zremark}
+
+主要有以下问题：
+\begin{itemize}
+  \item II中$\lim\limits_{x \to a; x \in (a, b]} \frac{f^\prime(x)}{g^\prime(x)}$是一定存在的。
+
+        题设中$f,g$在$[a, b]$上是可微的，且任意$x \in [a,b], g^\prime(x) \neq 0$，
+        即$f^\prime(a),g^\prime(a)$存在，且$g^\prime(a) \neq 0$，
+        此时，按照定义10.1.1可得，
+        \begin{align*}
+          \lim\limits_{x \to a; x \in [a, b] \setminus \{a\}} \frac{f(x) - f(a)}{x - a}
+          = f^\prime(a) \\
+          \lim\limits_{x \to a; x \in [a, b] \setminus \{a\}} \frac{g(x) - g(a)}{x - a}
+          = g^\prime(a) \\
+        \end{align*}
+
+        集合$[a, b] \setminus \{a\} = (a, b]$，按照命题9.3.14，极限就是，
+        \begin{align*}
+           & \lim\limits_{x \to a; x \in (a, b]} \frac{f^\prime(x)}{g^\prime(x)}                               \\
+           & = \lim\limits_{x \to a; x \in (a, b]} \frac{\frac{f(x) - f(a)}{x - a}}{\frac{g(x) - g(a)}{x - a}} \\
+           & = \frac{f^\prime(a)}{g^\prime(a)}
+        \end{align*}
+        此时为啥还要判断存在性呢？？？
+\end{itemize}
+
+
+\textcolor{red}{后来，在第1版的《陶哲轩实分析》勘误网页中发现，已经说明了其中问题。}
+
+网页：https://terrytao.wordpress.com/books/analysis-i/
+
+原文如下：
+\begin{zremark}
+  In Proposition 10.5.2,
+  the hypothesis that f,g be differentiable on [a,b] may be weakened
+  to being continuous on [a,b] and differentiable on (a,b],
+  with g' only assumed to be non-zero on (a,b] rather than [a,b].
+
+  翻译：
+  在命题10.5.2中，
+  关于f和g在$[a,b]$上可微的假设可以弱化为：在$[a,b]$上连续且在$(a,b]$上可微，
+  且$g^\prime$仅需在$(a,b]$上非零（而非原条件要求的$[a,b]$上）。
+\end{zremark}
+
+
+\section*{2 \textbf{和我本科期间学的洛必达定理表达不一样。}}
+
+\begin{itemize}
+  \item 本科期间是$\lim\limits_{x \to a} f(x) = 0$，而不是$f(a) = 0$，后者的条件更强了。
+\end{itemize}
+
+
+\section*{2.1 定理1}
+
+\begin{zremark}
+  设
+  \begin{itemize}
+    \item （1） 当$x \to a$时，函数$f(x)$及$F(x)$都趋于零。
+    \item （2）在点$a$的某个去心领域内，$f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x) \not = 0$。
+    \item （3）$\lim\limits_{x \to a} \frac{f^\prime(x)}{F^\prime(x)}$存在（或为无穷大），
+          则
+          \begin{align*}
+            \lim\limits_{x \to a} \frac{f(x)}{F(x)} = \lim\limits_{x \to a} \frac{f^\prime(x)}{F^\prime(x)}
+          \end{align*}
+  \end{itemize}
+\end{zremark}
+
+\textbf{证明}：
+
+需做如下转换：
+
+设函数$h$如下：$x = a$时$h(a) = 0$（这是为了保证$h$在$a$处是连续的），$x \not = a$时，$h(x) = f(x)$。
+
+同理设函数$H$如下，$x = a$时$H(a) = 0$,$x \not = a$时，$H(x) = h(x)$。
+
+由前置条件（2），我们设$a$的去心领域为$(a - \epsilon, a + \epsilon), 0 < \delta < \epsilon$。
+
+\begin{itemize}
+  \item  方法一：直接利用命题10.5.2进行证明。
+
+        于是
+        \begin{align*}
+          \lim\limits_{x \to a; x \in (a, \delta]} \frac{f^\prime(x)}{F^\prime(x)}
+           & = \lim\limits_{x \to a; x \in (a, \delta]} \frac{h^\prime(x)}{H^\prime(x)}
+        \end{align*}
+
+        利用命题10.5.2，得
+        \begin{align*}
+          \lim\limits_{x \to a; x \in (a, \delta]} \frac{h^\prime(x)}{H^\prime(x)}
+           & = \lim\limits_{x \to a; x \in (a, \delta]} \frac{h(x)}{H(x)} \\
+           & = \lim\limits_{x \to a; x \in (a, \delta]} \frac{f(x)}{F(x)}
+        \end{align*}
+
+        左极限证明类似。
+
+        综上，命题成立。
+
+  \item 同济版证明（有改动）
+
+        同济版的证明使用了“柯西中值定理”，定理的具体内容，
+        在10-2-comment.tex中有说明。
+
+        因为对任意$x \in (a, \delta), \delta > 0$，
+        由“柯西中值定理”可知，存在$\xi(x) \in (a, x)$（$\xi$是关于$x$的函数），使得
+        \begin{align*}
+           & \frac{h(x) - h(a)}{H(x) - H(a)} = \frac{h^\prime(\xi(x))}{H^\prime(\xi(x))} \\
+           & \implies                                                                    \\
+           & \frac{h(x)}{H(x)} = \frac{h^\prime(\xi(x))}{H^\prime(\xi(x))}
+        \end{align*}
+
+        当$x \to a$时，$\xi(x)$也收敛于$a$，
+        由题设（3）和$h,H$的构造方式，我们有，
+        \begin{align*}
+          \lim\limits_{x \to a} \frac{h^\prime(\xi(x))}{H^\prime(\xi(x))}
+          =
+          \lim\limits_{x \to a} \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))}
+        \end{align*}
+
+        于是由极限定律可知，
+        \begin{align*}
+          \lim\limits_{x \to a} \frac{h(x)}{H(x)} = \lim\limits_{x \to a} \frac{h^\prime(\xi(x))}{H^\prime(\xi(x))}
+        \end{align*}
+
+        又因为$x \in (0, \delta)$，我们有
+        \begin{align*}
+          \frac{f(x)}{F(x)}
+          = \frac{h(x)}{H(x)}
+          = \frac{h^\prime(\xi(x))}{H^\prime(\xi(x))}
+          = \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))}
+        \end{align*}
+
+        综上可得，
+        \begin{align*}
+          \lim\limits_{x \to a} \frac{f(x)}{F(x)}
+          =\lim\limits_{x \to a} \frac{h(x)}{H(x)}
+          = \lim\limits_{x \to a} \frac{h^\prime(\xi(x))}{H^\prime(\xi(x))}
+          = \lim\limits_{x \to a} \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))}
+        \end{align*}
+
+        左极限同理。
+\end{itemize}
+
+
+\section*{2.2 定理}
+
+\begin{zremark}
+  设
+  \begin{itemize}
+    \item （1）当$x \to a$时，函数$f(x)$及$F(x)$都趋于无穷大。
+    \item （2）在点$a$的某个去心领域内，$f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x) \not = 0$。
+    \item （3）$\lim\limits_{x \to a} \frac{f^\prime(x)}{F^\prime(x)}$存在（或为无穷大），
+          则
+          \begin{align*}
+            \lim\limits_{x \to a} \frac{f(x)}{F(x)} = \lim\limits_{x \to a} \frac{f^\prime(x)}{F^\prime(x)}
+          \end{align*}
+  \end{itemize}
+\end{zremark}
+
+\textbf{证明}：
+
+证明使用了“柯西中值定理”，定理的具体内容，
+在10-2-comment.tex中有说明。
+
+因为$f(x)$及$F(x)$都趋于无穷大，所以无法保证在$a$处的连续性，为使用“柯西中值定理”需要特殊处理下。
+
+任意$x \in (a, a + \delta)$，取$y = \frac{1}{2}(x + a)$，于是可得$a < y < x$，
+
+由柯西中值定理，我们有
+\begin{align*}
+  \frac{f(x)}{F(x)} = \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))}
+\end{align*}
+其中$\xi(x) \in (y, x)$。
+
+因为$x \to a$，$\xi(x)$也收敛于$a$，我们有
+\begin{align*}
+  \lim\limits_{x \to a} \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))} = \lim\limits_{x \to a} \frac{f^\prime(x)}{F^\prime(x)}
+\end{align*}
+
+不妨设$\lim\limits_{x \to a} \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))} = L$。
+
+对任意$\epsilon > 0$，存在$\delta_1 > 0$，使得只要$|x - a| < \delta_1$，就有
+\begin{align*}
+  |\frac{f^\prime(\xi(x))}{F^\prime(\xi(x))} - L| < \epsilon
+\end{align*}
+
+因为$\frac{f(x)}{F(x)} = \frac{f^\prime(\xi(x))}{F^\prime(\xi(x))}$，所以
+\begin{align*}
+  |\frac{f(x)}{F(x)} - L| < \epsilon
+\end{align*}
+
+由$\epsilon$的任意性可得，$\lim\limits_{x \to a} \frac{f(x)}{F(x)} = L$。
+
+综上，
+\begin{align*}
+  \lim\limits_{x \to a} \frac{f(x)}{F(x)} = \lim\limits_{x \to a} \frac{f^\prime(x)}{F^\prime(x)}
+\end{align*}
+
+左极限证明类似。
+
+\section*{2.3 定理}
+\begin{zremark}
+  设
+  \begin{itemize}
+    \item （1）当$x \to +\infty$时，函数$f(x)$及$F(x)$都趋于零。
+    \item （2）存在$r > 0$，使得$x > r, f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x) \not = 0$。
+    \item （3）$\lim\limits_{x \to \infty} \frac{f^\prime(x)}{F^\prime(x)}$存在（或为无穷大），
+          则
+          \begin{align*}
+            \lim\limits_{x \to +\infty} \frac{f(x)}{F(x)} = \lim\limits_{x \to +\infty} \frac{f^\prime(x)}{F^\prime(x)}
+          \end{align*}
+  \end{itemize}
+\end{zremark}
+
+\textbf{证明}：
+
+定义$\phi(x) = \frac{1}{x}$，于是
+\begin{align*}
+  \lim\limits_{x \to 0^{+}} \phi(x) = +\infty
+\end{align*}
+
+于是
+\begin{align*}
+  \lim\limits_{x \to 0^{+}} \frac{f^\prime(\phi(x))}{F^\prime(\phi(x))}
+  =
+  \lim\limits_{x \to \infty} \frac{f^\prime(x)}{F^\prime(x)}
+\end{align*}
+（注意：使用了下文中的3定理）
+
+利用2.1定理可得，
+\begin{align*}
+  \lim\limits_{x \to 0^{+}} \frac{f(\phi(x))}{F(\phi(x))}
+  =
+  \lim\limits_{x \to 0^{+}} \frac{f^\prime(\phi(x))}{F^\prime(\phi(x))}
+\end{align*}
+
+反方向使用刚才的操作，我们有
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{f(x)}{F(x)}
+  =
+  \lim\limits_{x \to 0^{+}} \frac{f(\phi(x))}{F(\phi(x))}
+\end{align*}
+
+综上，
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{f(x)}{F(x)}
+  =
+  \lim\limits_{x \to \infty} \frac{f^\prime(x)}{F^\prime(x)}
+\end{align*}
+
+\section*{2.4 定理}
+\begin{zremark}
+  设
+  \begin{itemize}
+    \item （1）当$x \to +\infty$时，函数$f(x)$及$F(x)$都趋于无穷大。
+    \item （2）存在$r > 0$，使得$x > r, f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x) \not = 0$。
+    \item （3）$\lim\limits_{x \to \infty} \frac{f^\prime(x)}{F^\prime(x)}$存在（或为无穷大），
+          则
+          \begin{align*}
+            \lim\limits_{x \to +\infty} \frac{f(x)}{F(x)} = \lim\limits_{x \to +\infty} \frac{f^\prime(x)}{F^\prime(x)}
+          \end{align*}
+  \end{itemize}
+\end{zremark}
+
+\textbf{证明：}
+
+定义$\phi(x) = \frac{1}{x}$，于是
+\begin{align*}
+  \lim\limits_{x \to 0^{+}} \phi(x) = +\infty
+\end{align*}
+
+于是
+\begin{align*}
+  \lim\limits_{x \to 0^{+}} \frac{f^\prime(\phi(x))}{F^\prime(\phi(x))}
+  =
+  \lim\limits_{x \to \infty} \frac{f^\prime(x)}{F^\prime(x)}
+\end{align*}
+（注意：使用了下文中的3定理）
+
+利用2.3可知，
+\begin{align*}
+  \lim\limits_{x \to 0^{+}} \frac{f(\phi(x))}{F(\phi(x))}
+  =
+  \lim\limits_{x \to 0^{+}} \frac{f^\prime(\phi(x))}{F^\prime(\phi(x))}
+\end{align*}
+
+反方向使用刚才的操作，我们有
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{f(x)}{F(x)}
+  =
+  \lim\limits_{x \to 0^{+}} \frac{f(\phi(x))}{F(\phi(x))}
+\end{align*}
+
+综上，
+\begin{align*}
+  \lim\limits_{x \to +\infty} \frac{f(x)}{F(x)}
+  =
+  \lim\limits_{x \to \infty} \frac{f^\prime(x)}{F^\prime(x)}
+\end{align*}
+
+\section*{3 定理}
+
+\begin{zremark}
+
+  函数$f: \mathbb{R} \to \mathbb{R}$的函数，并且$\lim\limits_{x \to x_0} f(x) = L$，
+  函数$\phi: \mathbb{R} \to \mathbb{R}$，且$\lim\limits_{x \to a} \phi(x) = x_0$，
+  于是$\lim\limits_{x \to a} f\circ\phi(x) = L$成立。
+
+\end{zremark}
+
+\textbf{证明}：
+
+任意$\epsilon > 0$。
+
+由$\lim\limits_{x \to x_0} f(x) = L$可知，存在$\delta_0 > 0$，使得只要$|x - x_0| < \delta_0$，就有
+\begin{align*}
+  |f(x) - L| < \epsilon
+\end{align*}
+
+又因为$\lim\limits_{x \to a} \phi(x) = x_0$，存在$\delta > 0$，使得只要$|x - a| < \delta$，就有
+\begin{align*}
+  |\phi(x) - x_0| < \delta_0
+\end{align*}
+
+综上，只要$|x - a| < \delta_1$，就有
+\begin{align*}
+  |f(\phi(x)) - L| < \epsilon
+\end{align*}
+
+即：
+\begin{align*}
+  \lim\limits_{x \to a} f\circ\phi(x) = L
+\end{align*}
+
+
+\end{document}

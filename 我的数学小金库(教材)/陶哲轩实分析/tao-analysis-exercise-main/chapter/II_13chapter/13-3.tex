@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{13.3 习题}
+\author{张志聪}
+\maketitle
+
+\section*{13.3.1}
+
+设$(f(x^{(n)}))_{n = 1}^\infty$是$f(K)$中的任意序列，
+序列$(x^{(n)})_{n = 1}^\infty$是$K$中序列，且$f(x^{n})$是$(f(x^{(n)}))_{n = 1}^\infty$中的项。
+因为$K$是紧致的，那么存在一个收敛的子序列$(x^{(n_j)})_{j = 1}^\infty$，
+不妨设子序列收敛于$x_0 \in K$。
+
+又因为$f$是连续的，所以$f$在$x_0$处连续，由定理13.1.4(b)可知，
+序列$(f(x^{(n_j)}))_{j = 1}^\infty$依度量$d_Y$收敛于$f(x_0) \in f(K)$，
+又因为$(f(x^{(n_j)}))_{j = 1}^\infty$是$(f(x^{(n)}))_{n = 1}^\infty$的子序列，
+由定义12.5.1（紧致性）可知，$f(K)$是紧致的。
+
+\section*{13.3.2}
+
+（1）$f$是有界的。
+
+由定理13.3.1可知，$f(X)$是紧致的，由推论12.5.6可知，$f$是有界的。
+
+
+（2）$f$在某个点$x_{max} \in X$处取到最大值，并且在某个点$x_{min} \in X$处取到最小值。
+
+我们只证明$f$在某个点$x_{max} \in X$处取到最大值，最小值的证明类似。
+
+因为$f$是有界，那么，$\mathbb{R}$中存在一个包含$f(X)$的球$B(y_0, r), y_0 \in \mathbb{R}, r > 0$。
+现在设$E$表示集合
+\begin{align*}
+  E := \{f(x), x \in X\}
+\end{align*}
+（即： E := f(X)）。根据上述内容可知，这个集合是$B(y_0, r)$的子集，
+而且$E$还是非空集合。根据最小上界原理可知（$E$是$\mathbb{R}$的子集），
+它有一个实数上确界$sup(E)$。
+
+记$m := sup(E)$，根据上确界的定义可知，对所有的$y \in E$均有$y \leq m$。而根据$E$的定义可知，
+这意味着$f(x) \leq m$对所有的$x \in X$均成立。因此，为了证明$f$在某个点达到最大值，我们只需要
+找到一个$x_{max} \in X$使得$f(x_{max}) = m$即可。
+
+设$n \geq 1$是任意一个整数，那么$m - \frac{1}{n} < m = sup(E)$。因为$sup(E)$是$E$的最小上界，
+那么$m - \frac{1}{n}$不可能是$E$的上界，从而存在一个$y \in E$使得$m - \frac{1}{n} < y$。
+又由$E$的定义可知，这蕴含着存在一个$x \in X$使得$m - \frac{1}{n} < f(x)$。
+
+现在我们按照下面的方法选取一个序列$(x_n)_{n = 1}^\infty :$对于每一个$n$，选取$x_n$为$x \in X$中
+使得$m - \frac{1}{n} < f(x_n)$的元素。（这里需要用到选择公理）这是$X$中的一个序列，因为$X$是紧致的，
+我们可以找到一个收敛于某极限$x_{max} \in X$的子序列$(x_{nj})_{j = 1}^\infty$，其中$n_1 < n_2 < ...$。
+因为$(x_{nj})_{j = 1}^\infty$收敛于$x_{max}$并且$f$在$x_{max}$处连续,于是由定理13.1.4(b)可知
+\begin{align*}
+  \lim\limits_{j \to \infty}f(x_{n_j}) = f(x_{max})
+\end{align*}
+另外，根据该序列的构造过程可知，
+\begin{align*}
+  f(x_{n_j}) > m - \frac{1}{n_j} \geq m - \frac{1}{j}
+\end{align*}
+从而对上式两端同时取极限可得，
+\begin{align*}
+  f(x_{max}) = \lim\limits_{j \to \infty}f(x_{n_j}) \geq \lim\limits_{j \to \infty} m - \frac{1}{j} = m
+\end{align*}
+另外，$f(x) \leq m$对所有的$x \in X$均成立，从而$f(x_{max}) \leq m$。
+联合这两个不等式就得到$f(x_{max}) = m$，结论得证。
+
+\section*{13.3.3}
+
+（1）
+
+设$f : X \to Y$是从度量空间$(X, d_X)$到另一个度量空间$(Y, d_Y)$的映射，$f$是一致连续的，现在我们证明
+$f$也是连续的。
+
+对任意$x_0 \in X$，对任意$\epsilon > 0$，因为$f$是一致连续的，那么，存在$\delta > 0$使得只要
+$x, x^\prime \in X$满足$d_X(x, x^\prime) < \delta$，就有$d_Y(f(x), f(x^\prime)) < \epsilon$。
+不妨设$x^\prime = x_0$，
+那么只要满足$d_X(x, x_0) < \delta$，就有$d_Y(f(x), f(x_0)) < \epsilon$。
+
+综上，由定义13.1.1可得$f$是连续的。
+
+（2）举例，连续函数不一定是一致连续的。
+
+$f: \mathbb{R} \to \mathbb{R}, f(x) = \frac{1}{x}$。
+
+对任意$\delta > 0$，存在$n \in \mathbb{N}$，使得$\frac{1}{n} < \delta$，
+此时我们有
+\begin{align*}
+  |\frac{1}{n} - \frac{1}{n+1}| < \delta \\
+  |f(\frac{1}{n}) - f(\frac{1}{n + 1})| = |n - (n + 1)| = 1
+\end{align*}
+由此可知，$f$不是一致连续函数。
+
+\section*{13.3.4}
+
+对于任意的$\epsilon > 0$，因为$g: Y \to Z$是一致连续函数，
+那么，存在$\delta_Y > 0$使得只要$y, y^\prime \in Y$满足$d_Y(y, y^\prime) < \delta_Y$，
+就有$d_Z(g(y), g(y^\prime)) < \epsilon$。
+
+同理可得，存在$\delta_X > 0$使得只要$x, x^\prime \in X$满足$d_X(x, x^\prime) < \delta_X$，
+就有$d_Y(f(x), f(x^\prime)) < \delta_Y$。
+
+综上可得，对任意$\epsilon > 0$，存在$\delta = \delta_X$
+使得只要$x, x^\prime \in X$满足$d_X(x, x^\prime) < \delta$，
+就有$d_Z(g(f(x)), g(f(x^\prime))) < \epsilon$。
+
+所以，$g \circ f: X \to Z$也是一致连续的。
+
+\section*{13.3.5}
+
+对任意$\epsilon > 0$，因为$f: X \to R$是一致连续函数，
+那么，存在$\delta_f > 0$使得只要$x, x^\prime \in X$满足$d_X(x, x^\prime) < \delta_f$，
+就有$|f(x) - f(x^\prime)| < \frac{1}{2}\epsilon$（$\mathbb{R}$的默认度量是$d^{l^2}$）。
+
+类似的，存在$\delta_g > 0$使得只要$x, x^\prime \in X$满足$d_X(x, x^\prime) < \delta_g$，
+就有$|g(x) - g(x^\prime)| < \frac{1}{2}\epsilon$。
+
+综上，对于任意的$\epsilon > 0$，存在$\delta = min(\delta_f, \delta_g)$，
+使得只要$x, x^\prime \in X$满足$d_X(x, x^\prime) < \delta$，
+就有
+\begin{align*}
+  d_{l^2}(f \oplus g(x), f \oplus g(x^\prime)) & = d_{l^2}((f(x), g(x)), (f(x^\prime), g(x^\prime))) \\
+                                               & = \sqrt{|f(x) - f(x^\prime)|^2 + |g(x) - g(x^\prime)|^2} < \sqrt{\frac{1}{4}\epsilon^2 + \frac{1}{4}\epsilon^2} < \epsilon
+\end{align*}
+
+所以，$f \oplus g: X \to R^2$也是一致连续的。
+
+\section*{13.3.6}
+
+（1）证明：加法、减法是一致连续函数。
+
+对任意$\epsilon > 0$，存在$\delta = \frac{1}{2}\epsilon$，
+使得只要$d_{l^2}((x, y), (x^\prime, y^\prime)) = \sqrt{|x - x^\prime|^2 + |y - y^\prime|^2} < \delta$，
+就有
+\begin{align*}
+  |x - x^\prime| < \frac{1}{2}\epsilon, |y - y^\prime| < \frac{1}{2}\epsilon
+\end{align*}
+于是
+\begin{align*}
+  |(x + y) - (x^\prime + y^\prime)| & =  |(x - x^\prime) + (y - y^\prime)| < \epsilon \\
+  |(x - y) - (x^\prime - y^\prime)| & = |(x - x^\prime) - (y - y^\prime)| < \epsilon
+\end{align*}
+这意味着，$(x, y) \mapsto x + y$和$(x, y) \mapsto x - y$是一致连续函数。
+
+
+（2）证明：乘法不是一致连续函数。
+任意$n \in \mathbb{N}$，点$(n, n), (n + \frac{1}{n}, n)$间的距离
+\begin{align*}
+  d_{l^2}((n, n), (n + \frac{1}{n}, n)) = \frac{1}{n}
+\end{align*}
+可以任意小，
+此时
+\begin{align*}
+  |n \times n - (n + \frac{1}{n}) \times n| = 1
+\end{align*}
+可知，$(x, y) \mapsto xy$不是一致连续函数。
+
+（3）$f + g: X \to \mathbb{R}$和$f - g: X \to \mathbb{R}$也是一致连续函数。
+
+由习题13.3.5可知，$f \oplus g := (f(x), g(x))$的直和$f \oplus g: X \to R^2$是一致连续函数，
+另外由（1）可知，函数$(x, y) \mapsto x + y$和$(x, y) \mapsto x - y$是一致连续函数，
+那么，由习题13.3.4可知，把这两个函数复合在一起，
+此时$f + g = ((x, y) \mapsto x + y)(f \oplus g)$
+和$f - g = ((x, y) \mapsto x - y)(f \oplus g)$是一致连续的。
+
+（4）举例$fg: X \to \mathbb{R}$不一定是一致连续的。
+
+%todo
+
+（5）
+
+$max(f,g), min(f,g), cf$是一致连续的，$f/g$不是一致连续的，比如习题13.3.3中的举例。
+
+\end{document}
