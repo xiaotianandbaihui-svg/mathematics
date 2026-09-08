@@ -1,0 +1,311 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{8.2 习题}
+\author{张志聪}
+\maketitle
+
+\section*{8.2.1}
+
+令
+\begin{align*}
+  S = \left \{ \sum \limits_{x \in A} |f(x)|: A \subseteq X , A \text{是有限集} \right \}
+\end{align*}
+
+\begin{itemize}
+  \item $\Rightarrow$
+        如果$X$是有限集，这是命题是显然的；
+
+        如果$X$是可数集。
+        因为$X$是可数集，那么存在双射函数$g: \mathbb{N} \rightarrow X $，
+        又因为级数$\sum \limits_{x \in X}f(x)$绝对收敛，那么
+        \begin{align*}
+          \sum \limits_{x \in X} |f(x)| = \sum \limits_{n=0}^\infty |f(g(n))|
+        \end{align*}
+
+        任意元素$e \in S, e = \sum \limits_{x \in A} |f(x)|: A \subseteq X$，所以
+        有一个有限集$N^\prime \subseteq \mathbb{N}, A = g(N^\prime)$，
+        因为$N^\prime$是有限集，所有存在自然数$k$，使得$max(N^\prime) \leq k$，于是，
+        \begin{align*}
+          e = \sum \limits_{x \in A} |f(x)| = \sum \limits_{n \in N^\prime} |f(g(n))| \leq \sum \limits_{n=0}^k |f(g(n))| \leq \sum \limits_{n=0}^\infty |f(g(n))|
+        \end{align*}
+        所以，$e$是有限的，由$e$的任意性可知，集合$S$有上界，
+        所以，
+        \begin{align*}
+          \sup \left \{ \sum \limits_{x \in A} |f(x)|: A \subseteq X , A \text{是有限集} \right \} < \infty
+        \end{align*}
+  \item $\Leftarrow$
+        反证法，假设级数$\sum \limits_{x \in X}f(x)$绝对发散。
+
+        因为
+        \begin{align*}
+          \sup \left \{ \sum \limits_{x \in A} |f(x)|: A \subseteq X , A \text{是有限集} \right \} < \infty
+        \end{align*}
+        设$\sup S \leq M$。因为$\sum \limits_{x \in X}f(x)$绝对发散，
+        所以存在自然数$N$使得
+        \begin{align*}
+          \sum \limits_{n=0}^N |f(g(n))| > M
+        \end{align*}
+        令$A = g({n \in \mathbb{N}: 0 \leq n \leq N})$，因为$A$是有限集，且$A \in S$，
+        所以
+        \begin{align*}
+          \sum \limits_{x \in A} |f(x)| = \sum \limits_{n=0}^N |f(g(n))| \leq M
+        \end{align*}
+        存在矛盾。
+\end{itemize}
+
+\section*{8.2.2}
+
+这道题没有证明的必要了，提示就是一个简要的证明了。
+
+\section*{8.2.3}
+
+\begin{zremark}
+  当X是不可数集时，
+  由于$\sum \limits_{x \in X}f(x) := \sum \limits_{x \in X: f(x)\not = 0}f(x)$，
+  所以，由引理8.2.5 可知，$\{x \in X: f(x)\not = 0\}$是至多可数的，
+  于是证明时只需说明至多可数的情况即可。
+
+  只讨论$X$可数集，$X$是有限集，命题7.2.14已经覆盖。
+\end{zremark}
+
+因为$\sum \limits_{x \in X} f(x)$，$\sum \limits_{x \in X} g(x)$绝对收敛，
+所以存在某个双射$h: \mathbb{N} \rightarrow X$，使得
+$\sum \limits_{n=0}^\infty f(h(n))$与
+$\sum \limits_{n=0}^\infty g(h(n))$是绝对收敛点的，且
+\begin{align*}
+  \sum \limits_{x \in X} f(x) = \sum \limits_{n=0}^\infty f(h(n)) \\
+  \sum \limits_{x \in X} g(x) = \sum \limits_{n=0}^\infty g(h(n))
+\end{align*}
+
+\begin{itemize}
+  \item （a）
+        由定义8.2.1可知，$\sum \limits_{n=0}^\infty \big(f(h(n))+g(h(n))\big)$绝对收敛，
+        可以说明$\sum \limits_{x \in X} \big(f(x)+g(x)\big)$是绝对收敛的。
+
+        因为$\sum \limits_{n=0}^\infty f(h(n))$与$\sum \limits_{n=0}^\infty g(h(n))$绝对收敛，
+        由命题7.2.14（a）可知，$\sum \limits_{n=0}^\infty |f(h(n))|+|g(h(n))|$收敛，
+        设其收敛与$M$，又因为
+        \begin{align*}
+          |f(n) + g(n)| \leq |f(n)| + |g(n)|
+        \end{align*}
+        于是由命题7.3.1可知，$\sum \limits_{n=0}^\infty |f(h(n))+g(h(n))|$收敛，
+        所以$\sum \limits_{x \in X} \big(f(x)+g(x)\big)$是绝对收敛的。
+
+        \begin{align*}
+          \sum \limits_{x \in X} \big(f(x)+g(x)\big) = \sum \limits_{x \in X} f(x) + \sum \limits_{x \in X} g(x) \\
+        \end{align*}
+        该公式的所有项都是绝对收敛的，也就是说其也是条件条件收敛的，由命题7.2.14（a）保证了该公式的正确性。
+  \item （b）$\sum \limits_{x \in X} f(x)$绝对收敛，
+        可知$\sum \limits_{n=0}^\infty f(h(n))$绝对收敛于某个实数$M$。
+        $\sum \limits_{n=0}^\infty |cf(h(n))|$的部分和$S_{Nc} \leq |c|M$，命题7.3.1保证了该级数收敛。
+
+        \begin{align*}
+          \sum \limits_{x \in X} cf(x) = c \sum \limits_{x \in X} f(x)
+        \end{align*}
+        由命题7.2.14（b）可知保证。
+
+  \item （c）$\Rightarrow$：$X_1,X_2$一定有一个是可数集，不妨设$X_1$是可数集。
+        反证法，假设$\sum \limits_{x \in X_{1}} f(x)$绝对发散，
+        不妨设$\sum \limits_{x \in X} f(x)$绝对收敛于$M$。
+        因为$X_1$是可数集，所以存在某个双射$h_1: \mathbb{N} \rightarrow X_1$，
+        由于$\sum \limits_{x \in X_{1}} f(x)$绝对发散，所以存在一个整数$N$使得
+        \begin{align*}
+          \sum \limits_{n=0}^N |f(h_1(n))| > M
+        \end{align*}
+        因为$X_1$是$X$的子集，所以有限集$Y := \{x \in X_1, f(x) \leq N\}$也是$X$的子集，
+        取$m = max(h^{-1}(Y))$，此时，
+        \begin{align*}
+          \sum \limits_{n=0}^m |f(h(n))| > M
+        \end{align*}
+        存在矛盾。
+
+        至于等式，证明起来，不是那么简单，因为这里的集合是不一致的，接下来的证明注意对集合的处理。
+
+        $\circ$ 如果$X_2$也是可数集，那么存在双射
+        $h_1: \mathbb{N} \rightarrow X_1$，
+        $h_2: \mathbb{N} \rightarrow X_2$，
+        定义$h: \mathbb{N} \rightarrow X$如下：
+        \begin{equation}
+          \begin{cases*}
+            h(2n) = h_1(n) \\
+            h(2n+1) = h_2(n)
+          \end{cases*}
+        \end{equation}
+        以上定义的$h$是双射。因为
+        \begin{align*}
+           & \lim \limits_{N \rightarrow \infty} \sum \limits_{n=0}^N \big(f(h_1(n)) + f(h_2(n))\big) \\
+           & = \lim \limits_{N \rightarrow \infty} \sum \limits_{n=0}^N  f(h(n))                      \\
+          %  & = \lim \limits_{N \rightarrow \infty} \sum \limits_{n=0}^N f(h_1(n)) + \lim \limits_{N \rightarrow \infty} \sum \limits_{n=0}^N f(h_2(n)) \\
+        \end{align*}
+        于是，
+        \begin{align*}
+          \sum \limits_{x \in X_1} f(x) + \sum \limits_{x \in X_2} f(x) = \sum \limits_{x \in X} f(x)
+        \end{align*}
+
+        $\circ$如果$X_2$是有限集，设基数是$m$，定义$Y := \{i \in \mathbb{N} : i < m\}$，存在双射
+        $h_1: \mathbb{N} \setminus Y \rightarrow X_1$
+        \begin{zremark}
+          因为$X_1$是可数集，则存在双射$h_1: \mathbb{N} \rightarrow X_1$，
+          又因为$\sum \limits_{x \in X_1} f(x) $是绝对收敛的，所以
+          \begin{align*}
+             & \sum \limits_{x \in X_1} f(x)           \\
+             & = \sum \limits_{n=0}^\infty f(h_1(n))   \\
+             & = \sum \limits_{n=m}^\infty f(h_1(n-m)) \\
+          \end{align*}
+          第二个等式的成立可以通过部分和序列的相等证明，思路如下：
+          设$\sum \limits_{n=0}^\infty f(h_1(n))$、$\sum \limits_{n=m}^\infty f(h_1(n-m))$
+          的部分和分别为$S_N, S_{N}^\prime$。由$(S_N)_{N=0}^\infty$序列的收敛性，
+          并由命题7.2.5 可知，对任意$\epsilon > 0$，存在一个整数$K, n \geq K+m$，使得
+          \begin{align*}
+             & |S_n - S_{n}^\prime|                                                 \\
+             & = |\sum \limits_{n=p}^{p+m} f(h_1(n))| \leq \epsilon & \text{p大于等于K} \\
+          \end{align*}
+          这里的$n \geq K + m$的原因是，$S_0 = S_m^\prime$，所以$S_n$比$S_n^\prime$
+          多$m$个项，所以这$m$个项必须都是大于$K$的项，相加才会小于等于$\epsilon$，
+          所有两者的部分和是最终$-\epsilon$相等的，所以收敛于同一个值。
+        \end{zremark}
+
+        $h_2: Y \rightarrow X_2$，
+        定义$h: \mathbb{N} \rightarrow X$如下：
+        \begin{equation}
+          \begin{cases*}
+            h(n) = h_1(n-m) \text{  if  } n \geq m \\
+            h(n) = h_2(n) \text{  if  } n < m
+          \end{cases*}
+        \end{equation}
+
+        以上定义的$h$都是双射。因为
+        \begin{align*}
+           & = \sum \limits_{n=0}^{m-1} f(h_2(n)) + \lim \limits_{N \rightarrow \infty} \sum \limits_{n=m}^N f(h_1(n)) \\
+           & = \lim \limits_{N \rightarrow \infty} \sum \limits_{n=0}^N  f(h(n))
+        \end{align*}
+        于是，
+        \begin{align*}
+          \sum \limits_{x \in X_1} f(x) + \sum \limits_{x \in X_2} f(x) = \sum \limits_{x \in X} f(x)
+        \end{align*}
+        $\Leftarrow$ 绝对收敛的证明与上一个等式的等式一致（上个等式的证明不需要其是绝对收敛的），这里说一下思路：
+        因为，
+        \begin{align*}
+           & \sum \limits_{x \in X_1} |h(x)| + \sum \limits_{x \in X_2} |h(x)| = \sum \limits_{x \in X} |h(x)| \\
+        \end{align*}
+        证明方法与条件收敛的等式一致，因为，
+        $\sum \limits_{x \in X_1} |h(x)|,\sum \limits_{x \in X_2} |h(x)|$都是收敛的，所以
+        $\sum \limits_{x \in X} |h(x)|$也是收敛的。
+  \item （d）是命题7.1.11（c）的扩展，证明方式也是一致的，都是利用级数的值与双射的选取无关，具体证明略。
+        % 因为$X$是可数集，$\phi : Y \rightarrow X$是一个双射，所以$Y$与$X$的基数是相同的，
+        % 于是$Y$也是可数集。
+\end{itemize}
+
+\section*{8.2.4}
+\begin{zremark}
+  $\sum \limits_{n \in A_{+}} a_n$的含义是什么，因为$A_{+}$是一个集合，
+  也就意味着其中的元素是没有顺序的，那么，$\sum \limits_{n \in A_{+}} a_n$收敛，
+  是否任意顺序的求和都是收敛的？
+
+  回顾书中定义 8.2.1是没有明确说明的，我个人推测是任意顺序的收敛（如果能找到佐证，我会回来纠正）
+  。因为存在异议，所以接下来的证明，没有对顺序进行要求（或假设），
+  直观感受就是：你爱什么顺序就什么顺序，我们只利用收敛与发散的性质。
+
+  当然这里的$A_{+}$具有特殊性，因为$a_n: n \in A_{+}$都是非负数，
+  只要存在某个顺序的求和是收敛的，
+  也就意味着是绝对收敛的，命题7.4.3（级数的重排列）进而保证了，任意顺序求和也是收敛的。
+
+  $A_{-}$也具有特殊性，有命题7.2.14（b）也能保证，其是绝对收敛的，从而再次利用命题7.4.3（级数的重排列），
+  可以说明其任意顺序求和也是收敛的。
+\end{zremark}
+
+通过说明可知，这里的条件收敛与绝对收敛是一致的。
+
+\begin{itemize}
+  \item  如果两个级数都是收敛的，则由命题8.2.6（绝对收敛级数的定律）可知，
+        $\sum \limits_{n=0}^\infty a_n$也是绝对收敛的，与题设矛盾。
+  \item  如果只有一个是收敛的，也就意味着另一个是发散的。
+        这里不妨设$\sum \limits_{n \in A_{+}}$是收敛于$M$。
+        那么，对任意的$\epsilon > 0$，存在整数$N_{+}$使得$n \geq N_{+}$部分和
+        \begin{align*}
+          |S_{n}^{+} - M| \leq \epsilon
+        \end{align*}
+        也就是说$S_{n}^{+}$是一个有限值，
+        而$\sum \limits_{n \in A_{-}} a_n$是发散的，其部分和$S_{n}^{-}$可以小于任何实数。
+        即对任意实数$r$，存在$n$使得
+        \begin{align*}
+          |S_{n}^{-} + S_{n}^{+}| \geq r
+        \end{align*}
+        与题设$\sum \limits_{n=0}^\infty$收敛矛盾。
+\end{itemize}
+
+\section*{8.2.5}
+
+\begin{itemize}
+  \item 因为如果是有限集，则必定是条件收敛的，与命题8.2.7矛盾。
+  \item 与命题8.2.7矛盾。
+  \item 单射由$n_j$的定义保证的。【感觉没啥好说的啊，或者是我没读懂题】
+  \item 反证法，假设情形$I$出现了有限次，不妨设$K$后情形$I$不再满足，
+        即：$i = K$时，$\sum \limits_{0 \leq i < K} a_{n_i} = M \geq L$，
+        此时，$M = M_{+} + M_{-}$，其中$M_{+}$是$A_{+}$中元素$j$对应的$a_j$求和，
+        其中$M_{-}$是$A_{-}$中元素$j$对应的$a_j$求和。
+        因为$\sum \limits_{n \in A_{-}} a_{n}$是发散的，存在$N_{-}$，当$n \geq N_{-}$使得
+        其部分和$S_{n}^{-} < L - M^{+}$，此时，$M^{+} + S_{n}^{-} < L$，情形$II$不再满足。
+  \item 满射由$n_j$的定义保证的。【感觉没啥好说的啊，或者是我没读懂题】
+  \item 由推论7.2.6 可知 $\lim \limits_{n \rightarrow \infty} a_n = 0$，
+        即对任意$\epsilon > 0$，都存在整数$N, n \geq N$使得$|a_n - 0| \leq \epsilon$。
+
+        因为情形$I$与情形$II$的都是无限多次的，且在$A_{+},A_{-}$都是以递增的方式取出的，
+        所以$a_{j+}, a_{j-}$最终都会大于$N$，于是$\lim \limits_{j \rightarrow \infty} a_{n_j} = 0$。
+  \item 由$\lim \limits_{j \rightarrow \infty} a_{n_j} = 0$ 可知，
+        对任意$\epsilon > 0$，存在整数$N$，对所有的$j \geq N$都有
+        \begin{align*}
+          |a_{n_j}| \leq \frac{1}{2} \epsilon
+        \end{align*}
+        因为情形$I$与情形$II$都会出现无限次，也就是说在$N$之后，即$j \geq N, j \rightarrow \infty$，
+        \begin{align*}
+          \sum \limits_{0 \leq i < j} a_{n_i}
+        \end{align*}
+        会翻转无限次，设翻转的位置为$k_0,k_1,...$。设$(a_{n_i})_{i=0}^\infty$序列的部分和为$S_N$，
+        对任意$n_1, n_2 \geq N, n_1 \neq n_2$，因为$n_1, n_2$一定在两个翻转点之间（或正好在翻转点上），
+        而这些翻转点与$L$的距离都小于$\frac{1}{2}\epsilon$，由命题4.3.7（f）可知，
+        \begin{equation*}
+          \begin{cases*}
+            |S_{n_1} - L| \leq \frac{1}{2} \epsilon \\
+            |S_{n_2} - L| \leq \frac{1}{2} \epsilon
+          \end{cases*}
+        \end{equation*}
+        由上式可得，
+        \begin{align*}
+           & |S_{n_1} - S_{n_2}| \leq \epsilon
+        \end{align*}
+        由$\epsilon$的任意性可知其收敛于$L$。
+\end{itemize}
+
+\begin{zremark}
+  刚看到这个命题很反直觉，反驳的理由也很朴素：你怎么排序，还不是这些东西嘛。
+
+  看完证明过程，可以发现其证明思路是找到一个收敛序列，
+  虽然还是那些东西，但适当的顺序能使得序列最终$\epsilon-$接近于$L$，
+  举一个反例，把$A_{+}$放在序列的前面，就会发现最终$\epsilon-$接近于$L$的$N$就找不到了，
+  因为$A_{+}$是一个无限集，且是发散的，于是，我们无法跨越这个屏障，找到一个有限的值$N$。
+\end{zremark}
+
+\section*{8.2.6}
+
+$\sum \limits_{n \in A_{+}} a_n$就是发散的，所以其是发散到$+\infty$
+
+\end{document}

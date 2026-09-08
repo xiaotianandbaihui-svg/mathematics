@@ -1,0 +1,213 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{7.2 习题}
+\maketitle
+
+\section*{7.2.1}
+
+发散的。
+
+只需证明，级数的部分和序列$(S_N)_{N=1}^\infty$是发散的即可，证明如下：
+
+当$N$是奇数$S_N = -1$；
+
+当$N$是偶数$S_N = 0$；
+
+所以，该序列不是柯西序列，也就不会收敛，即是发散的。
+
+1.2.2的问题已解决，提到的答案都是不对的。
+
+\section*{7.2.2}
+
+$\bigstar \Rightarrow$
+
+因为$\sum \limits_{n=m} ^{\infty} a_n$收敛，
+那么这个级数的部分和序列$(S_N)_{N=m}^{\infty}$是收敛的，
+由定理6.4.18（实数的完备性）可知$(S_N)_{N=m}^{\infty}$也是柯西序列，
+于是，对任意的$\epsilon > 0$，存在$N \geq m$，$p,q \geq N$使得
+\begin{align}
+  |S_p - S_q|                & \leq \epsilon \\
+  |\sum \limits_{n=p}^q a_n| & \leq \epsilon
+\end{align}
+
+$\bigstar \Leftarrow$
+
+对任意$\epsilon > 0$都有$|\sum \limits_{n=p}^q a_n| \leq \epsilon$，
+可知级数的部分和序列$(S_N)_{N=m}^{\infty}$是柯西序列，
+由定理6.4.18（实数的完备性）可知其也是收敛的，
+由部分和收敛可知级数收敛。
+
+\section*{7.2.3}
+
+由命题7.2.5可知，$\sum \limits_{n=m} ^{\infty} a_n$收敛，
+对任意$\epsilon > 0$，都存在一个$N \geq m$使得$n \geq N$有
+\begin{align*}
+  |\sum \limits_{n=n}^n a_n| & \leq \epsilon \\
+  |a_n|                      & \leq \epsilon
+\end{align*}
+由$\epsilon$的任意性可知，$\lim \limits_{n \to \infty} a_n$收敛且收敛于$0$
+
+
+\section*{7.2.4}
+
+$\bigstar \text{绝对收敛} \Rightarrow \text{条件收敛}$
+
+$\sum \limits_{n=m} ^{\infty} a_n$是绝对收敛，
+即$\sum \limits_{n=m} ^{\infty} |a_n|$是收敛的，
+由命题7.2.5可知,对任意$\epsilon > 0$，都存在一个整数$N \geq m$，使得$q,p \geq N$，均有，
+\begin{align*}
+  |\sum \limits_{n=p}^q |a_n|| & \leq \epsilon
+\end{align*}
+由命题7.1.4（e）可知，
+\begin{align*}
+  |\sum \limits_{n=p}^q a_n| & \leq |\sum \limits_{n=p}^q |a_n|| \leq \epsilon \\
+  |\sum \limits_{n=p}^q a_n| & \leq \epsilon
+\end{align*}
+再次利用命题7.2.5可知，$\sum \limits_{n=m} ^{\infty} a_n$收敛
+
+$\bigstar \text{三角不等式}$
+
+不妨设$\sum \limits_{n=m} ^{\infty} |a_n|$的部分和序列为$(S_N^\prime)_{N=m}^{\infty}$，
+$|\sum \limits_{n=m} ^{\infty} a_n|$的部分和序列为$(S_N)_{N=m}^{\infty}$。
+显然，对任意$N \geq m$都有，
+\begin{align*}
+  S_N^\prime \geq S_N
+\end{align*}
+又因为两个序列的极限都存在，于是（推论5.4.10 的变形），
+\begin{align*}
+  \lim \limits_{N \rightarrow \infty} S_N^\prime
+  \geq \lim \limits_{N \rightarrow \infty} S_N
+\end{align*}
+即：
+\begin{align*}
+  \sum \limits_{n=m} ^{\infty} |a_n| \geq |\sum \limits_{n=m} ^{\infty} a_n|
+\end{align*}
+
+\section*{7.2.5}
+
+$\bigstar \text{（a）}$
+
+$\sum \limits_{n=m} ^{\infty} a_n$收敛于$x$，
+于是其部分和序列$(A_N)_{N=m}^{\infty}$收敛于$x$。
+
+同理，$\sum \limits_{n=m} ^{\infty} b_n$收敛于$y$，
+于是其部分和序列$(B_N)_{N=m}^{\infty}$收敛于$y$。
+
+由题设可知，$\sum \limits_{n=m} ^{\infty} a_n + b_n$的部分和$S_N = A_N + B_N$，
+由定理6.1.19（极限定律）可知，序列$(S_N)_{n=m}^\infty$收敛于$x + y$。
+
+$\bigstar \text{（b）}$
+
+略，与（a）证明步骤类似。
+
+$\bigstar \text{（c）}$
+
+不妨设$\sum \limits_{n=m} ^{\infty} a_n$、$\sum \limits_{n=m+k} ^{\infty} a_n$
+的部分和分别为$S_N, S_N^\prime$，
+并设$M = \sum \limits_{n=m} ^{m+k-1} a_n$。
+
+当$N \geq m+k-1$时，$S_N = M + S_N^\prime$。
+
+$\textbf{（1）}$ 如果$\sum \limits_{n=m} ^{\infty} a_n$收敛。
+
+设$\sum \limits_{n=m} ^{\infty} a_n$收敛于$x$。
+
+
+由于$\sum \limits_{n=m} ^{\infty} a_n$收敛$x$，所以对任意$\epsilon > 0$，
+存在$N_0 \geq m$使得$|S_N - x| \leq \epsilon$，对任意$N \geq N_0$均成立。
+取$N_0^\prime = max(N_0, m+k-1)$，此时$|S_N - x| \leq \epsilon$，对任意$N \geq N_0^\prime$均成立。
+
+反证法，假设$\sum \limits_{n=m+k} ^{\infty} a_n$是发散的，
+则序列$(S_N^\prime)_{N=m+k}^\infty$是发散的，那么，也就不会收敛于$x-M$。
+
+所以，对存在$\epsilon > 0, N \geq N_0^\prime$，使得，
+\begin{align*}
+  |S_N^\prime + M - x| & > \epsilon     \\
+  S_N^\prime + M       & > x + \epsilon \\
+                       & \textbf{或}     \\
+  S_N^\prime + M       & < x - \epsilon
+\end{align*}
+
+因为$S_N = M + S_N^\prime$，所以$S_N > x + \epsilon$或$S_N < x - \epsilon$，
+这与 $|S_N - x| \leq \epsilon$矛盾，所以$\sum \limits_{n=m+k} ^{\infty} a_n$是收敛的。
+
+$\textbf{（2）}$ 如果$\sum \limits_{n=m+k} ^{\infty} a_n$收敛。
+
+把$\sum \limits_{n=m} ^{m+k-1} a_n$，转换成一个新的序列$\sum \limits_{n=m} ^{\infty} b_n$，
+当$m \leq n \leq m + k - 1$时，$a_n = b_n$；当$n>m + k - 1$时，$b_n = 0$。
+
+此时新的序列$\sum \limits_{n=m} ^{\infty} b_n$收敛且收敛于$M$。
+
+设序列$\sum \limits_{n=m} ^{\infty} b_n$的部分和为$S_B$。
+
+那么，$S_N = S_B + S_N^\prime$，由极限定律（定理6.1.19）可知，
+序列$(S_N)_m^\infty$收敛，且收敛于$M + \sum \limits_{n=m+k} ^{\infty} a_n$。
+
+$\bigstar \text{（d）}$
+
+不妨设$\sum \limits_{n=m} ^{\infty} a_n$、$\sum \limits_{n=m+k} ^{\infty} a_{n-k}$
+的部分和分别为$S_N, S_{N^\prime}^\prime$。
+
+如果，序列$(S_{N^\prime}^\prime)_{N^\prime=m+k}^\infty$与$(S_N)_{N=N^\prime-k}^\infty$是等价的，
+则它们有相同的极限。
+
+对$N^\prime$进行归纳。
+
+$N^\prime = m+k$时，$S_N^\prime = a_m, S_N = S_{N^\prime - k} = S_m = a_m$，所以$S_N^\prime = S_N$。
+
+归纳假设，$N^\prime = q$时，$S_q^\prime = S_{q-k}$。
+
+当$N^\prime = q + 1$时，
+$S_{q+1}^\prime = S_q^\prime + a_{q+1-k}$；
+$S_{q+1-k} = S_{q-k} + a_{q+1-k}$，由归纳假设可知$S_q^\prime = S_{q-k}$，
+于是$S_{q+1}^\prime = S_{q+1-k}$。
+
+归纳完成。
+
+又由习题6.1.3可知，$(S_N)_{N=N^\prime-k}^\infty$与$(S_N)_{N=m}^\infty$收敛于同一个实数。
+
+于是序列$(S_{N^\prime}^\prime)_{N^\prime=m+k}^\infty$与$(S_N)_{N=m}^\infty$收敛于同一个实数。
+
+\section*{7.2.6}
+
+$\bigstar (a_n)_{n=0}^\infty \text{收敛于} 0$
+
+级数的部分和$S_N = a_0 - a_{N+1}$，由极限定律（定理6.1.19），以及$(a_n)_{n=0}^\infty$收敛于0，可知，
+序列$(S_N)_{N=0}^\infty$收敛于$a_0$。
+
+$\bigstar (a_n)_{n=0}^\infty \text{收敛于} L(L \neq 0) $
+
+同理可证，序列$(S_N)_{N=0}^\infty$收敛于$a_0 - L$。
+\end{document}

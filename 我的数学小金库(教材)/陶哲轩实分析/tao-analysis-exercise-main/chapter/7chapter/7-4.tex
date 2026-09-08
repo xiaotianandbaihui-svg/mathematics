@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{7.4 习题}
+\maketitle
+
+\section*{7.4.1}
+结论很明显，难度在于如何阐明清楚。
+
+要证明$\sum \limits_{n=0}^\infty |a_{f(n)}|$有收敛，只要证明其部分和序列有上界。
+
+证明过程可以参考命题7.4.3（级数的重排序），这里还是比较好处理的，因为这里只需考虑收敛性。
+
+对任意正整数$N$，序列$(f^{-1}(n))_{n=0}^N$是有限的，从而是有界的，
+于是存在一个$M$使得对所有的$0 \leq n \leq N$都有$f^{-1}(n) \leq M$。
+
+特别地，对任意的$M^\prime \geq M$，集合$A = \{f(m): m \in \mathbb{N}; m \leq M^\prime \}$
+是$B = \{n \in \mathbb{N}; n \leq M^\prime\}$的子集。
+
+于是根据命题7.1.11，对任意的$M^\prime \geq M$都有
+\begin{align*}
+  \sum \limits_{m=0}^{M^\prime} |a_{f(m)}| & = \sum \limits_{n \in A} |a_{f(m)}| \\
+                                           & \leq \sum \limits_{n \in B} |a_n|
+\end{align*}
+因为$\sum \limits_{n \in B} |a_n|$是有界的，所以
+$\sum \limits_{m=0}^{M^\prime} |a_{f(m)}|$也是有界的。
+由$M^\prime$的任意性可知其收敛。
+
+\end{document}

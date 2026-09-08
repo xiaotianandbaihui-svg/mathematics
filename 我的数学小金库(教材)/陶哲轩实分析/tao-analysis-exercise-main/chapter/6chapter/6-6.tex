@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  linewidth=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+]{zgraytheorem}{}
+% 定义说明环境样式
+\newtheoremstyle{mystyle}% 说明环境样式的名称
+  {1em}% 上方间距
+  {1em}% 下方间距
+  {\normalfont}% 说明内容的字体样式
+  {}% 缩进量
+  {\bfseries}% 说明标记的字体样式
+  {.}% 说明标记和说明内容之间的标点
+  {1em}% 说明标记后的水平空间
+  {}% 说明标记后的垂直空间
+% 使用新定义的样式创建说明环境
+\theoremstyle{mystyle}
+\newtheorem*{zremark}{说明}
+
+
+\begin{document}
+\title{6.6 习题}
+\maketitle
+
+\section*{6.6.1}
+
+（1）自反性
+
+定义$f(n)=n$的函数$f : \mathbb{N} \rightarrow \mathbb{N}$
+是从$\mathbb{N}$到$\mathbb{N}$的严格递增函数，使得
+\begin{align*}
+  a_n = a_{f(n)} = a_n \text{对所有的$n \in \mathbb{N}$均成立}
+\end{align*}
+由定义6.6.1 可知，此时$(a_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的一个子序列。
+
+（2）传递性
+
+因为$(b_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列，
+那么存在一个函数$f : \mathbb{N} \rightarrow \mathbb{N}$
+是从$\mathbb{N}$到$\mathbb{N}$的严格递增函数，使得
+\begin{align*}
+  b_n = a_{f(n)} \text{对所有的$n \in \mathbb{N}$均成立}
+\end{align*}
+
+因为$(c_n)_{n=0}^\infty$是$(b_n)_{n=0}^\infty$的子序列，
+那么存在一个函数$g : \mathbb{N} \rightarrow \mathbb{N}$
+是从$\mathbb{N}$到$\mathbb{N}$的严格递增函数，使得
+\begin{align*}
+  c_n = b_{g(n)} \text{对所有的$n \in \mathbb{N}$均成立}
+\end{align*}
+
+因为$f$的值域与$g$的定义域是同一个集合，我们可以把$g,f$复合，
+得到函数$g \circ f : \mathbb{N} \rightarrow \mathbb{N}$，
+该函数是从$\mathbb{N}$到$\mathbb{N}$的严格递增函数，使得
+\begin{align*}
+  c_n = a_{(g \circ f)(n)} \text{对所有的$n \in \mathbb{N}$均成立}
+\end{align*}
+
+由定义6.6.1 可知，此时$(c_n)_{n=0}^\infty$是$(a_n)_{n=0}^\infty$的子序列
+
+\section*{6.6.2}
+
+略
+
+\section*{6.6.3}
+
+证明存在性。这里采用的方法，是先构造出目标对象。
+这里需要考察的是，构造的目标是否满足要求。
+具体来说，对于本习题，需要确定构造的序列是存在的，并确定构造的序列的倒数是收敛于$0$的（习题6.6.5与本题类似）。
+
+（1）证明序列的每一项都是存在的
+
+归纳法证明。
+
+$j=0$，因为序列$(a_n)_{n=0}^\infty$是无界的，所以肯定存在$|a_n| \geq 0$，取第一个满足要求的$n$即可。
+
+\begin{zgraytheorem}
+  \begin{zremark}
+    $j=0$时，如果$a_{n_0}=0$，会导致错误，所以$b_0$应该是要限制为非零的。
+  \end{zremark}
+\end{zgraytheorem}
+
+归纳假设，$j-1$时，项是存在的。
+
+$j$时，由于序列$(a_n)_{n=0}^\infty$是无界的，所以肯定存在$|a_n| \geq j$，此时满足条件的$n$至少有一个，
+可以看做是一个集合，使用公理3.5（分类公理），可以得到所有元素都大于$n_{j-1}$的集合$A$，
+取该集合的下确界作为$n_j$（这个下确界肯定是存在的，因为集合是有下界的。定理 5.5.9的推论）。
+
+（2）$\lim\limits_{n \rightarrow \infty}1/b_n$存在且等于$0$。
+
+对任意$\epsilon > 0$，都存在$\epsilon \geq 1/j$（因为$1/j$递增且极限为$0$），
+由$(b_n)_{n=0}^\infty$的构造方式，可知，取$n_j$时，$|b_j| = |a_{n_j}| \geq j$，
+且由序列$(b_n)_{n=0}^\infty$是递增的，可知，当$n \geq n_j$时，$|b_n| \geq j$均成立，
+于是$|1/b_n| \leq 1/j \leq \epsilon$对$n \geq n_j$均成立。
+
+由$\epsilon$的任意性，可知，$\lim\limits_{n \rightarrow \infty}1/b_n$存在且等于$0$。
+
+\section*{6.6.4}
+
+\textbf{（a）$\Rightarrow$ （b）}
+
+序列$(a_n)_{n=0}^\infty$收敛于$L$，
+那么，对任意$\epsilon > 0$，存在$N \geq 0$，
+使得$|a_n - L| \leq \epsilon$对$n \geq N$均成立。
+
+由子序列的定义（定义 6.6.1）可知，
+序列$(a_n)_{n=0}^\infty$的任意子序列$(b_n)_{n=0}^\infty$，
+都会存在一个严格递增的函数$f : \mathbb{N} \rightarrow \mathbb{N}$使得
+\begin{align*}
+  b_n = a_{f(n)} \text{对所有的$n \in \mathbb{N}$均成立}
+\end{align*}
+由$f$的定义可知$f(n) \geq n$，所以$n \geq N$时，$f(n) \geq N$，
+所以$|b_n - L| = |a_{f(n)} - L | \leq \epsilon$对$n \geq N$均成立。
+所以，序列$(b_n)_{n=0}^\infty$收敛于$L$。
+
+由于$(b_n)_{n=0}^\infty$是任意的子序列，所以命题得证。
+
+\textbf{（b）$\Rightarrow$ （a）}
+
+由自反性 可知$(a_n)_{n=0}^\infty$也是$(a_n)_{n=0}^\infty$的子序列，
+题设已经说明$(a_n)_{n=0}^\infty$收敛于$L$。
+
+\section*{6.6.5}
+
+\textbf{（a）$\Rightarrow$ （b）}
+
+（1）证明序列的每一项都是存在的
+
+归纳法证明。
+
+$j=0$时，定义$a_{n_0}=a_0$。
+
+归纳假设，$j-1$时，项是存在的。
+
+$j$时，现在要证明$b_j:=a_{n_j}$是存在的。
+由$L$是极限点，所以取$\epsilon = 1/j > 0$，对$N=n_{j-1}$（归纳假设，保证了$n_{j-1}$存在），
+存在$n \geq N$使得$|a_n - L| \leq \epsilon$，满足该条件的$n$是一个非空集合，任取一个作为$n_j$。
+
+（2）序列的收敛性
+
+对任意实数$\epsilon > 0$，存在$1/j \leq \epsilon$（存在的原因是$1/j$收敛于$0$）。
+通过序列$(a_{n_j})_{j=0}^\infty$的构造方式，
+可知，只要证明存在$N, n = N$有$|a_n - L| \leq 1/j$，那么，就有$n > N$有$|a_n - L| < 1/j$，
+即：$n \geq N$有$|a_n - L| \leq 1/j$。接下来只要证明这个$N$是存在的即可。
+由构造方式可知$|a_{n_j} - L | \leq 1/j \leq \epsilon$，
+所以，可取$N = n_j$，即$N$是存在的。
+
+
+\textbf{（b）$\Rightarrow$ （a）}
+
+设收敛于$L$的子序列是$(b_n)_{n=0}^\infty$，
+因为是子序列，存在一个严格递增的函数$f : \mathbb{N} \rightarrow \mathbb{N}$使得
+\begin{align*}
+  b_m = a_{f(n)} \text{对所有的$n \in \mathbb{N}$均成立}
+\end{align*}
+（注意：这里为了讨论的方便，把子序列的下标改为$m$）
+因为收敛于$L$，那么，对任意$\epsilon > 0$，存在$M \geq 0$，
+$|b_m - L| \leq \epsilon$对$m \geq M$均成立，
+因为$f$是严格递增的函数，且没有上界，
+对每一个$N$，都存在$n$使得$f(n) \geq max(M, N)$，
+因为$f(n) \geq M$，所以，
+\begin{align*}
+  |b_m - L|      & \leq \epsilon \\
+  |a_{f(n)} - L| & \leq \epsilon
+\end{align*}
+由$\epsilon$的任意性，可知，$L$是$(a_n)_{n=0}^\infty$的极限点。
+
+\end{document}

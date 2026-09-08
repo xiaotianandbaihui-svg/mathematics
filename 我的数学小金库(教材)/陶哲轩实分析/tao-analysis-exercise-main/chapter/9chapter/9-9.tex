@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{9.9 习题}
+\author{张志聪}
+\maketitle
+
+\section*{9.9.1}
+
+\begin{itemize}
+  \item $\Rightarrow$
+
+        对于任意$\epsilon > 0$，
+        因为序列$(a_n)_{n=1}^\infty, (b_n)_{n=1}^\infty$是等价的，
+        由定义9.9.5两者是最终$\epsilon -$接近的，即存在
+        正整数$N \geq 1$使得$|a_n - b_n| \leq \epsilon$对任意$n \geq N$均成立，
+        即序列$(a_n - b_n)_{n=1}^\infty$是最终$\epsilon -$接近于$0$，
+        由定义6.1.5（序列的收敛）可知序列$(a_n - b_n)_{n=1}^\infty$收敛于$0$，
+        即$\lim\limits_{n \rightarrow \infty}(a_n - b_n) = 0$。
+
+  \item $\Leftarrow$
+
+        $\lim\limits_{n \rightarrow \infty}(a_n - b_n) = 0$，那么，
+        对于任意$\epsilon > 0$，都存在
+        正整数$N \geq 1$使得$|a_n - b_n| \leq \epsilon$对任意$n \geq N$均成立，
+        于是可得，序列$(a_n)_{n=1}^\infty, (b_n)_{n=1}^\infty$是最终$\epsilon-$接近的。
+        由定义9.9.5可知，序列$(a_n)_{n=1}^\infty, (b_n)_{n=1}^\infty$是等价的。
+\end{itemize}
+
+\section*{9.9.2}
+
+\begin{itemize}
+  \item $(a) \implies (b)$
+
+        $f$在$X$是一致连续的，则对任意$\epsilon > 0$都存在$\delta > 0$使得
+        $|f(x) - f(y)| \leq \epsilon$对任意$x, y \in X, |x - y| \leq \delta$均成立。
+
+        因为$(x_n)_{n=0}^\infty$和$(y_n)_{n=0}^\infty$是由$X$中元素构成的等价序列，
+        那么，存在正整数$N$使得
+        \begin{align*}
+          |x_n - y_n| \leq \delta
+        \end{align*}
+        此时
+        \begin{align*}
+          | f(x_n) - f(y_n) | \leq \epsilon
+        \end{align*}
+
+        由定义9.9.5可知
+        $(f(x_n))_{n=0}^\infty$和$(f(y_n))_{n=0}^\infty$是等价的。
+
+
+  \item $(b) \implies (a)$
+
+        反证法，假设$f$在$X$上不是一致连续的。那么，存在$\epsilon_0 > 0$，
+        对任意$n \in \mathbb{N}$存在$x_n, y_n \in X$当$|x_n - y_n| < 1/n$都有$|f(x_n) - f(y_n)| > \epsilon_0$。
+
+        由定义9.9.5可知，$(x_n)_{n=1}^\infty, (y_n)_{n=1}^\infty$是等价的，
+        但因为对任意$n$都有$|f(x_n) - f(y_n)| > \epsilon_0$可知，
+        $(f(x_n))_{n=1}^\infty,(f(y_n))_{n=0}^\infty$不是等价的。
+        这与题设$(b)$矛盾。
+\end{itemize}
+
+\section*{9.9.3}
+
+$f$在$X$是一致连续的，则对任意$\epsilon > 0$都存在$\delta > 0$使得
+$|f(x) - f(y)| \leq \epsilon$对任意$x, y \in X, |x - y| \leq \delta$均成立。
+
+因为$(x_n)_{n=0}^\infty$是柯西序列，即存在$N$使得对任意$n,m \geq N$都有
+\begin{align*}
+  |x_n - x_m| \leq \delta
+\end{align*}
+此时
+\begin{align*}
+  |f(x_n) - f(x_m)| \leq \epsilon
+\end{align*}
+于是可得$(f(x_n))_{n=0}^\infty$是柯西序列。
+
+\section*{9.9.4}
+
+$x_0$是$X$的附着点，由引理9.1.14可知，存在一个完全由$X$中元素构成的序列$(a_n)_{n=0}^\infty$收敛于$x_0$。
+由定理6.4.18可得收敛序列是柯西序列，则由命题9.9.12可知，$(f(x_n))_{n=0}^\infty$是柯西序列，
+再次利用定理6.4.18可得柯西序列收敛，于是
+$\lim\limits_{x \to x_0; x \in X} f(x)$存在。
+
+例9.9.10另一种证明：
+
+序列$(1/n)_{n=1}^\infty$是$(0,2)$中的柯西序列，但是序列$f(1/n)_{n=1}^\infty$发散（不是柯西序列），
+所以根据命题9.9.12可知，$f$不是一致连续的。
+
+\section*{9.9.5}
+
+反证法，假设$f(E)$是无界的，那么对任意的实数$M$都存在一个元素$x \in E$使得$f(x) \geq M$.
+
+特别地，对于每一个自然数$n$，集合$\{x \in E: |f(x)| \geq n\}$都是非空的。所以我们可以使用选择公理
+选取$E$中的一个序列$(x_n)_{n=0}^\infty$使得$|f(x_n)| \geq n$对所有的$n$均成立。
+由于这个序列属于有界子集$E$，由定理6.6.8可知，$(x_n)_{n=0}^\infty$有一个收敛的子序列$(x_{n_j})_{j=0}^\infty$，
+其中$n_0 < n_1 < n_2 < ...$是一个递增的自然数序列。特别地，对于所有的$j \in N$均有$n_j \geq j$。
+
+由定理6.4.18可得收敛序列是柯西序列，则由命题9.9.12可知，$(f(x_{n_j}))_{n=0}^\infty$是柯西序列，再次利用定理6.4.18可得
+$(f(x_{n_j}))_{n=0}^\infty$是收敛序列。
+
+另外，我们从序列的构造过程中看出$|f(x_{n_j})| \geq n_j \geq j$对所有的$j$均成立，从而序列$(f(x_{n_j}))_{n=0}^\infty$是无界的，
+这是一个矛盾。
+
+
+\section*{9.9.6}
+
+任意$\epsilon > 0$，因为函数$g: Y \to Z$是$Y$上的一致连续函数，
+存在一个$\delta_g > 0$使得
+\begin{align*}
+  |g(x) - g(y)| \leq \epsilon 
+\end{align*}
+对任意$x, y \in Y, |x - y| \leq \delta_g$均成立。
+
+因为函数$f: X \to Y$是$X$上的一致连续函数，
+存在一个$\delta_f > 0$使得
+\begin{align*}
+  |f(x) - f(y)| \leq \delta_g
+\end{align*}
+对任意$x, y \in X, |x - y| \leq \delta_f$均成立。
+
+综上，
+
+\begin{align*}
+  |(g \circ f)(x) - (g \circ f)(y)| \leq \epsilon
+\end{align*}
+对任意$x, y \in X, |x - y| \leq \delta_f$均成立。
+
+所以，$g \circ f$是$X$上的一致连续函数。
+
+\end{document}

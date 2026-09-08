@@ -1,0 +1,448 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{9.1 习题}
+\author{张志聪}
+\maketitle
+
+\section*{9.1.1}
+
+$\overline{X} = \overline{Y}$等价于$\overline{X} \subseteq \overline{Y}, \overline{Y} \subseteq \overline{X}$。
+
+\begin{itemize}
+      \item $\overline{X} \subseteq \overline{Y}$。
+
+            任意$x \in \overline{X}$，因为$x$是附着点，所以对任意$\epsilon > 0$，都存在$y \in X$
+            使得$|x - y| \leq \epsilon$。
+
+            由题设$X \subseteq Y$可知，$y \in Y$，于是由定义9.1.8（附着点）可得，
+            $x$也是$\overline{Y}$的附着点，即$x \in \overline{Y}$。
+
+            由$x$的任意性可知$\overline{X} \subseteq \overline{Y}$。
+      \item $\overline{Y} \subseteq \overline{X}$。
+
+            任意$x \in \overline{Y}$，因为$x$是附着点，所以对任意$\frac{1}{2}\epsilon > 0$，
+            都存在$y \in Y$使得$|x - y| \leq \frac{1}{2}\epsilon$。
+
+            由题设$Y \subseteq \overline{X}$可知，$y \in \overline{X}$，所以$y$是$X$的附着点，
+            于是存在$y_x \in X$使得$|y - y_x| \leq \frac{1}{2}\epsilon$。
+
+            于是由命题4.3.7（c）可知$|x - y_x| \leq \epsilon$，所以$x$也是$X$的附着点。
+
+            由$x$的任意性可知$\overline{Y} \subseteq \overline{X}$。
+\end{itemize}
+
+\section*{9.1.2}
+
+\begin{itemize}
+      \item $X \subseteq  \overline{X}$。
+
+            任意$x \in X$，对于任意的$\epsilon > 0$，有$|x - x| \leq \epsilon$，所以$x$是$X$的附着点。
+
+            由$x$的任意性可知$X \subseteq \overline{X}$。
+
+      \item $\overline{X \cup Y} = \overline{X} \cup \overline{Y}$。
+            \begin{itemize}
+                  \item[$\circ$] $\overline{X \cup Y} \subseteq \overline{X} \cup \overline{Y}$。
+
+                        任意$x \in \overline{X \cup Y}$，因为$x$是附着点，所以对任意$\epsilon > 0$，
+                        都存在$y \in X \cup Y$使得$|x - y| \leq \epsilon$。
+
+                        如果$y \in X$则由定义9.1.8（附着点）可得，
+                        $x$也是$X$的附着点。
+
+                        如果$y \in Y$则由定义9.1.8（附着点）可得，
+                        $x$也是$Y$的附着点。
+
+                        综上$x \in \overline{X} \cup \overline{Y}$。
+
+                  \item[$\circ$] $\overline{X} \cup \overline{Y} \subseteq \overline{X \cup Y}$。
+
+                        任意$x \in \overline{X} \cup \overline{Y}$，于是要么$x \in \overline{X}$，要么$x \in \overline{Y}$（或者两个皆成立）。
+
+                        以$x \in \overline{X}$为例，因为$x$是$X$的附着点，所以对任意$\epsilon > 0$，
+                        存在$y \in X$使得$|x - y| \leq \epsilon$。
+
+                        因为$y \in X \cup Y$则由定义9.1.8（附着点）可得，
+                        $x$也是$X \cup Y$的附着点。
+
+                        同理，$x \in \overline{Y}$时也成立。
+
+                        综上$x \in \overline{X \cup Y}$。
+
+            \end{itemize}
+      \item $\overline{X \cap Y} \subseteq \overline{X} \cap \overline{Y}$。
+
+            任意$x \in \overline{X \cap Y}$，因为$x$是$X \cap Y$的附着点，
+            所以对任意的$\epsilon > 0$，存在$y \in X \cap Y$，使得$|x - y| \leq \epsilon$。
+
+            因为$y \in X \cap Y$，所以$y \in X$且$y \in Y$，则由定义9.1.8（附着点）可得
+            $x$是$X$的附着点且是$Y$的附着点，即$x \in \overline{X} \cap \overline{Y}$
+
+      \item 如果$X \subseteq Y$，那么$\overline{X} \subseteq \overline{Y}$。
+
+            任意$x \in \overline{X}$，因为$x$是$X$的附着点，
+            所以对任意的$\epsilon > 0$，存在$y \in X$，使得$|x - y| \leq \epsilon$。
+
+            因为$X \subseteq Y$，所以$y \in Y$则由定义9.1.8（附着点）可得
+            $x$也是$Y$的附着点，即$x \in \overline{Y}$。
+
+\end{itemize}
+
+\section*{9.1.3}
+
+\begin{itemize}
+      \item $\mathbb{N}$的闭包是$\mathbb{N}$。
+
+            由引理9.1.11可得$\mathbb{N} \subseteq \overline{\mathbb{N}}$。
+
+            现在证明附着于$\mathbb{N}$的点只能是$\mathbb{N}$的元素。
+
+            假设实数$x$是$\mathbb{N}$的附着点且$x \notin \mathbb{N}$，
+            由命题5.4.12（有理数对实数的界定）与命题4.4.1（由有理数确定的整数散布）可得，
+            存在唯一的整数$n$使得$n < x < n + 1$（即：$x$在两个自然数之间）。
+
+            设$\epsilon = \frac{1}{2}min(x - n, n + 1 - x )$，
+            此时不存在$y \in \mathbb{N}$使得$|x - y| \leq \epsilon$，与$x$是附着点矛盾。
+
+      \item $\mathbb{Z}$的闭包是$\mathbb{Z}$。
+
+            由引理9.1.11可得$\mathbb{Z} \subseteq \overline{\mathbb{Z}}$。
+
+            现在证明附着于$\mathbb{Z}$的点只能是$\mathbb{Z}$的元素。
+
+            证明过程与$\mathbb{N}$一致，这里不做赘述。
+
+      \item $\mathbb{Q}$的闭包是$\mathbb{R}$。
+
+            即任意实数$x$都是$\mathbb{Q}$的附着点。
+            对任意$\epsilon > 0$，取$y = x + \epsilon$，由命题5.4.14可知，存在有理数$q \in \mathbb{Q}$使得
+            $x < q < y$，此时$|x - q| \leq \epsilon$。
+
+      \item $\mathbb{R}$的闭包是$\mathbb{R}$。
+
+            由引理9.1.11可得$\mathbb{R} \subseteq \overline{\mathbb{R}}$。
+
+            而有定义9.1.8可知，不存在$\mathbb{R}$外的附着点，否则不满足定义了。
+
+      \item $\varnothing$的闭包是$\varnothing$。
+
+            因为$\varnothing$中没有元素，也就没有$x \in R$能够满足定义9.1.8（附着点）的定义。
+\end{itemize}
+
+\section*{9.1.4}
+
+\begin{align*}
+      X := [0, 1) \\
+      Y := (1, 2] \\
+\end{align*}
+此时，
+\begin{align*}
+      \overline{X \cap Y}            & = \varnothing \\
+      \overline{X} \cap \overline{Y} & = \{1\}
+\end{align*}
+
+\section*{9.1.5}
+
+\begin{itemize}
+      \item $\Rightarrow$
+
+            任意$\alpha \in \overline{X}$，
+            对任意的正自然数$n$，设$X_n$表示集合
+            \begin{align*}
+                  X_n := \{ x \in X, |x - \alpha| \leq 1/n \}
+            \end{align*}
+            由于$\alpha$是附着点，所以$X_n$是非空集合。
+
+            利用选择公理，能够找到一个序列$(a_n)_{n=1}^\infty$使得$a_n \in X_n$对所有的$n \geq 1$均成立。
+
+            以上构造的序列$(a_n)_{n=1}^\infty$是收敛于$x$且每一个元素都属于$X$。
+
+      \item $\Leftarrow$
+
+            对任意$\epsilon > 0$，由$(a_n)_{n=0}^\infty$收敛于$x$可知，
+            存在$N$使得$n \geq N$时，
+            \begin{align*}
+                  |a_n - x| \leq \epsilon
+            \end{align*}
+            因为序列中的完全是由$X$中的元素构成的，于是可得$x$是附着点。
+\end{itemize}
+
+\section*{9.1.6}
+
+\begin{zremark}
+      这里所说的闭集，应该是和定义9.1.15对应的，所以应该是$\overline{\overline{X}} = \overline{X}$
+\end{zremark}
+
+\begin{itemize}
+      \item $\overline{X}$是闭集（即$\overline{\overline{X}} = \overline{X}$）
+
+            由引理9.1.11可知$\overline{X} \subseteq \overline{\overline{X}}$，
+            现在需要证明$\overline{\overline{X}} \subseteq \overline{X}$。
+
+            设任意$x^{\prime\prime} \in \overline{\overline{X}}$，
+            对任意$\epsilon > 0$，都存在$y^\prime \in \overline{X}$，使得
+            \begin{align*}
+                  |x^{\prime\prime} - y^\prime| \leq \frac{1}{2} \epsilon
+            \end{align*}
+
+            因为$y^\prime$也是$X$的附着点，所以存在$y \in X$使得
+            \begin{align*}
+                  |y - y^\prime| \leq \frac{1}{2} \epsilon
+            \end{align*}
+            于是由命题4.3.7（c）可知，
+            \begin{align*}
+                  |x^{\prime\prime} - y| \leq \epsilon
+            \end{align*}
+
+            所以$x^{\prime\prime}$也是$X$的附着点，即$x^{\prime\prime} \in \overline{X}$。
+
+      \item 换个表达方式：$X \subseteq Y, \overline{Y} = Y$，那么$\overline{X} \subseteq Y$（即：$\overline{X} \subseteq \overline{Y}$）。
+
+            任意$x \in \overline{X}$，所以对于任意$\epsilon > 0$，都存在$y \in Y$使得
+            \begin{align*}
+                  |x - y| \leq \epsilon
+            \end{align*}
+            因为$X \subseteq Y$，
+            于是$y \in Y$，所以$x$也是$Y$的附着点，即$x \in \overline{Y}$。
+\end{itemize}
+
+\section*{9.1.7}
+设
+\begin{align*}
+      X := X_1 \cup X_2 \cup \cdots \cup X_n = \bigcup_{i \in \{1,2,...,n\}} X_i
+\end{align*}
+换句话说，要证明$\overline{X} = X$。
+
+由引理9.1.11可知，$X \subseteq \overline{X}$，接下来我们需要证明$\overline{X} \subseteq X$。
+
+任意$x \in \overline{X}$，对任意$\epsilon > 0$，都存在$y \in X$使得
+\begin{align*}
+      |x - y| \leq \epsilon
+\end{align*}
+
+因为$y \in X$，由公理3.11（并集）可知存在$X_i$使得$y \in X_i$，
+于是$x \in \overline{X_i}$，由题设可知$X_i = \overline{X_i}$，
+所以$x \in X_i$，于是$x \in X$。
+
+\section*{9.1.8}
+
+设
+\begin{align*}
+      X := \bigcap \limits_{\alpha \in I} X_{\alpha}
+\end{align*}
+换句话说，要证明$\overline{X} = X$。
+
+由引理9.1.11可知，$X \subseteq \overline{X}$，接下来我们需要证明$\overline{X} \subseteq X$。
+
+任意$x \in \overline{X}$，对任意$\epsilon > 0$，都存在$y \in X$使得
+\begin{align*}
+      |x - y| \leq \epsilon
+\end{align*}
+
+因为$y \in X$，由式（3.4）可知对任意$X_{\alpha}$都有$y \in X_{\alpha}$，
+于是$x \in \overline{X_{\alpha}}$，由题设可知$X_{\alpha} = \overline{X_{\alpha}}$，
+再次由式（3.4）可知$x \in X$。
+
+\section*{9.1.9}
+
+\begin{itemize}
+      \item $\Rightarrow$
+
+            任意$x \in \overline{X}$，对任意$\epsilon > 0$，都有存在$y \in X$使得
+            \begin{align*}
+                  |x - y| \leq \epsilon
+            \end{align*}
+
+            即$W_x :=\{y: y \in X, |x-y| \leq \epsilon \}$是非空集；
+
+            \begin{itemize}
+                  \item[$\circ$] $W_x \setminus \{x\} \neq \varnothing$，则$x$
+                        也是$X \setminus \{x\}$的附着点，所以$x$是极限点。
+                  \item[$\circ$] $W_x \setminus \{x\} = \varnothing$，可知$x \in X$，
+                        且因为$W_x \setminus \{x\}$是空集，
+                        所以任意$y \in X \setminus \{x\}$都满足$|x-y| > \epsilon$
+                        （特别地$X \setminus \{x\} = \varnothing$空虚的成立），
+                        所以$x$是$X$的孤立点。
+            \end{itemize}
+      \item $\Leftarrow$
+
+            观察定义，如果$x$是$X$的极限点，无法说明$x \in X$，如果是孤立点却能保证$x \in X$
+            （定义9.1.18孤立点是按蕴含关系定义的，应该是表述的不准确应是当且仅当的关系，
+            否则无法推出$x \in X$），
+            而根据引理9.1.11可知$X \subseteq \overline{X}$，所以孤立点肯定是附着点。
+
+            接下来要对极限点进行说明。
+            按照定义9.1.18可知，$X$的任意极限点$x$是$X \setminus \{x\}$的附着点，
+            因为$X \setminus \{x\} \subseteq X$，所以$x$是$X$的附着点。
+\end{itemize}
+
+
+\begin{zremark}
+      错误推论：$X$是实直线的一个子集，对于任意实数$x$，要么是$X$的极限点，要么是$X$的孤立点。
+
+      按照定义9.1.8可知，一个实数$x$要么是$X$的附着点，要么不是。
+
+      习题9.1.9中已经证明，当$x$是附着点，则$x$要么是$X$的极限点，要么是孤立点。
+
+      当$x$不是附着点，则$x \notin X$（否则肯定是附着点），按照定义9.1.18可知$x$不会是孤立点；
+      $x$也不会极限点，因为$X \setminus \{x\} = X$（因为$x \notin X$），
+      所以如果是极限点，则是附着点（习题9.1.10的反推），与假设矛盾。至此可知，此时的$x$既不是孤立点也不是极限点。
+
+\end{zremark}
+
+\section*{9.1.10}
+
+\begin{itemize}
+      \item $\Rightarrow$ $X$是有界的，按照定义9.1.22可知，存在某个实数$M > 0$使得
+            $X \subset [-M, M]$，即任意$x \in X$都满足$|x| \leq M$，那么由定义5.5.1（上界）可知
+            $M$是$X$的一个上界，由定理5.5.9（最小上界的存在性）可知$sup(X)$是存在，且由定义5.5.5（最小上界）
+            可知$sup(X) \leq M$；
+            同理可得最大下界$inf(X)$且$-M \leq inf(X)$；
+
+            又因为$inf(X) \leq sup(X)$可得（可以直接通过定义证明，但不能直接使用引理6.4.13，因为实数子集可能不是至多可数的）
+            \begin{align*}
+                  -M \leq inf(X) \leq sup(X) \leq M
+            \end{align*}
+
+      \item $\Leftarrow$ 设$M := max(|inf(X)|, |sup(X)|)$，有最小上界的定义可知，
+            对任意$x \in X$都有
+            \begin{align*}
+                  -M \leq  inf(X) \leq x \leq sup(X) \leq M
+            \end{align*}
+
+            所以$X \subset [-M, M]$，由此可知$X$是有界的。
+\end{itemize}
+
+\section*{9.1.11}
+
+反证法，假设$\overline{X}$不是有界的。
+
+因为$X$是有界，那么存在$M > 0$使得$X \subset [-M, M]$，即任意$x \in X$都满足$-M \leq x \leq M$；
+
+因为$\overline{X}$不是有界的，
+那么对任意实数$M + \epsilon, \epsilon > 0$，
+存在$x \in \overline{X}$，$x > M + \epsilon$或$x < -M - \epsilon$，这里以$x > M + \epsilon$为例；
+
+因为$x$是$X$的附着点，都存在$y \in X$使得
+\begin{align*}
+      |x - y|           & \leq \epsilon       \\
+                        & \Rightarrow         \\
+      y - \epsilon \leq & x \leq y + \epsilon
+\end{align*}
+因为$y \in X$，所以$-M \leq y \leq M$，于是可得
+\begin{align*}
+      -M - \epsilon \leq x \leq M + \epsilon
+\end{align*}
+这与$x > M + \epsilon$矛盾。
+
+\section*{9.1.12}
+
+\begin{itemize}
+      \item 有限个；
+
+            不妨设集合个数为$n, n \in \mathbb{N}$，设每个有界子集的找到$M$分别为
+            $M_1, M_2, \dots, M_n$，
+            那么定义$M := max(M_1, M_2, \dots, M_n)$（对$n$进行归纳，就可以确定该$M$是可以得到的，
+            参照引理5.1.14的证明），
+            可证并集$X \subset [-M, M]$（证明略）
+
+      \item 无限个；
+            \begin{zremark}
+                  这里无法使用归纳原理进行证明，因为实数子集可能不是至多可数的。
+            \end{zremark}
+
+
+            反证法，假设并集$X$不是有界的。
+
+            那么，存在$x \in X$大于任意实数；
+            由公理3.11（并集）可知，存在某个子集$S \in X \text{使得}x \in S$，
+            由题设子集$S$是由上界的，即存在$M$使得$S \subset [-M, M]$，所以$-M < x < M$；
+            存在矛盾。
+\end{itemize}
+
+\section*{9.1.13}
+
+\begin{itemize}
+      \item （a） $\Rightarrow$ （b）
+
+            由题设（a）$X$是有界的可知，序列$(a_n)_{n=0}^\infty$是有界序列，利用定理6.6.8可知，
+            $(a_n)_{n=0}^\infty$至少有一个收敛的子序列$(a_{n_j})_{j=0}^\infty$，
+            不妨设子序列收敛于$L$。
+
+            由引理9.1.14可知，$L$是$X$的一个附着点，由题设（a）$X$是闭的可知，任意附着点$x \in X$，
+            所以$L \in X$
+
+      \item （b）$\Rightarrow$ （a）
+
+            由题设（b）和推论9.1.17可知，$X$是闭的。
+
+            反证法，假设$X$不是有界的，那么，对任意的正自然数$n$，设$X_n$表示集合
+            \begin{align*}
+                  X_n := \{x \in X : |x| > n\}
+            \end{align*}
+            是非空的。利用选择公理，能够找到一个序列$(a_n)_{n=0}^\infty$使得$a_n \in X_n$对所有的$n \geq 1$均成立
+            （特别的，$a_0$可以任取$X$中的元素）。
+            设序列$(a_n)_{n=0}^\infty$的任意子序列为$(a_{n_j})_{j=0}^\infty$，
+            由定义6.6.1（子序列）可知$n_j \geq j$，于是$j>0$时$|a_{n_j}| > j$，可得子序列是无界的，
+            所以该子序列发散，与题设矛盾。
+\end{itemize}
+
+\section*{9.1.14}
+证明框架：
+
+设有限子集为$X$，因为是有限集，所以肯定是有界的（可以通过元素个数$n$进行归纳，这里不做赘述）。
+
+$X$有界且$X$是有限集，可得满足定理9.1.24（b）前置条件，于是可得$X$是闭的。
+
+\section*{9.1.15}
+
+\begin{itemize}
+      \item $S$是$E$的附着点。
+
+            反证法，假设$S$不是$E$的附着点，即存在$\epsilon > 0$，使得
+            \begin{align*}
+                  |S - y| > \epsilon
+            \end{align*}
+            对所有的$y \in E$均成立。
+
+            由上式可得，
+            如果$y > S + \epsilon$，则$S$不是上界，这与$S$是$E$的最小上界矛盾；
+            如果$y < S - \epsilon$，则$S - \epsilon$也是上界且比$S$小，这与$S$是$E$的最小下界矛盾。
+
+      \item $S$是$\mathbb{R} \setminus E$的附着点。
+
+            由集合公理可得，一个实数$x$要么属于$E$要么属于$\mathbb{R} \setminus E$。
+
+            反证法，假设$S$不是$\mathbb{R} \setminus E$的附着点，即存在$\epsilon > 0$，使得
+            \begin{align*}
+                  |S - y| > \epsilon
+            \end{align*}
+            对所有的$y \in \mathbb{R} \setminus E$均成立。
+
+            由上式可得，
+            如果 $y > S + \epsilon$，那么存在实数$x \in (S, S+\epsilon]$
+                  则既不属于$E$也属于$\mathbb{R} \setminus E$，与事实矛盾；
+                  同理如果$y < S - \epsilon$，那么存在实数$x \in [S-\epsilon, S)$
+            则既不属于$E$也属于$\mathbb{R} \setminus E$，与事实矛盾；
+\end{itemize}
+
+
+\end{document}

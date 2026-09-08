@@ -1,0 +1,202 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\begin{document}
+
+\title{8.2 注释}
+\author{张志聪}
+\maketitle
+
+$\bigstar \textbf{定义}8.2.1 \textbf{定义明确性}$
+
+假设双射函数$h: \mathbb{N} \rightarrow X$。
+需要证明：
+\begin{align*}
+    \sum \limits_{n=0}^\infty f(g(n)) = \sum \limits_{m=0}^\infty f(h(m))
+\end{align*}
+
+可以定义$a_n$为
+\begin{align*}
+    a_n := f(g(n))
+\end{align*}
+现在，根据命题7.4.3只需要找到一个双射。
+
+定义$w: \mathbb{N} \rightarrow \mathbb{N}$为
+\begin{align*}
+    w(m) := h^{-1} \circ g(m)
+\end{align*}
+
+因为$g$是$\mathbb{N} \rightarrow X$的双射，且
+$h$是$\mathbb{N} \rightarrow X$的双射，那么$h^{-1}$是$\mathbb{N} \rightarrow X$的双射，
+所以，这两个函数的复合函数$w$是双射函数。又因为
+\begin{align*}
+    \sum \limits_{m=0}^\infty f(h(m)) = \sum \limits_{m=0}^\infty a_{w(m)}
+\end{align*}
+由命题7.4.3可知
+\begin{align*}
+    \sum \limits_{n=0}^\infty a_n                 & = \sum \limits_{m=0}^\infty a_{w(m)} \\
+    \Rightarrow \sum \limits_{n=0}^\infty f(g(n)) & = \sum \limits_{m=0}^\infty f(h(m))
+\end{align*}
+
+
+$\bigstar \textbf{定理}8.2.2$
+
+（1）书中
+\begin{align*}
+    \sum \limits_{n=0}^N \sum \limits_{m=0}^M \leq \sum \limits_{(n,m) \in X}f(n,m)
+\end{align*}
+应该是错的，这里应该是相等的，即：
+\begin{align*}
+    \sum \limits_{n=0}^N \sum \limits_{m=0}^M = \sum \limits_{(n,m) \in X}f(n,m)
+\end{align*}
+
+（3）证明：$\sum \limits_{(n,m) \in \mathbb{N} \times \mathbb{N}}f(n,m)$是绝对收敛的，那么
+$\sum \limits_{(n,m) \in \mathbb{N} \times \mathbb{N}}f_{+}(n,m)$
+和$\sum \limits_{(n,m) \in \mathbb{N} \times \mathbb{N}}f_{-}(n,m)$也都是绝对收敛的。
+
+反证法，假设$f_{+}$是发散的，
+由$\sum \limits_{(n,m) \in \mathbb{N} \times \mathbb{N}}f(n,m)$的部分和$S_N$等于
+$\sum \limits_{(n,m) \in \mathbb{N} \times \mathbb{N}}f_{+}(n,m)$的部分和$S_{N+}$，
+$\sum \limits_{(n,m) \in \mathbb{N} \times \mathbb{N}}f_{-}(n,m)$的部分和$S_{N-}$相加，
+即：
+\begin{align*}
+    S_N = S_{N+} + S_{N-}
+\end{align*}
+（注意：这里的部分和都是序列每项取绝对值的部分和）。
+
+由于$(S_N)_{N=0}^\infty$收敛，所以，对任意$\epsilon > 0$，都存在一个整数$M^\prime$，
+当$N \geq M^\prime$使得
+\begin{align}
+    |S_N - L| \leq \epsilon
+\end{align}
+
+当如果$f_{+}$是发散的，那个，存在一个整数$M^{\prime\prime}$，
+当$N \geq M^{\prime\prime}$使得
+\begin{align*}
+     & S_{N+} > L + \epsilon
+\end{align*}
+又因为$S_{N-} \geq 0$，所以，取$M = max(M^\prime, M^{\prime\prime})$，
+当$N \geq M$使得
+\begin{align*}
+    |S_N - L| & = |S_{N+} + S_{N-} - L | \\
+              & > \epsilon
+\end{align*}
+显然，与（1）式存在矛盾。所以$f_{+}$是收敛的。同理可证$f_{-}$收敛。
+
+$\textbf{（4）最后一句话，有个需要证明的部分。}$
+\begin{align*}
+    \sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f(n,m)
+    = \sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f_{+}(n,m)
+    +
+    \sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f_{-}(n,m)
+\end{align*}
+其中，$\sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f_{+}(n,m)$与
+$ \sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f_{-}(n,m)$绝对收敛的。
+
+感觉是结论是明显的，但这里有以下问题：
+\begin{itemize}
+    \item 书中没有明确定义双重级数。
+    \item 回到定义7.2.2（级数的收敛），部分和$S_N = \sum \limits_{n=0}^N \sum \limits_{m=0}^\infty f(n,m)$
+          因为其包含一个无限级数，处理起来没有想象中那么简单。
+\end{itemize}
+不妨设$\sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f_{+}(n,m)$与
+$ \sum \limits_{n=0}^\infty \sum \limits_{m=0}^\infty f_{-}(n,m)$的部分和分别是$S_{N+}$，$S_{N-}$。
+那么，如果能证明：
+\begin{align*}
+    S_N = S_{N+} + S_{N-}
+\end{align*}
+则利用极限定律，可以完成证明。
+
+对$m$进行归纳，$m = 0$时，由命题7.1.11（b）可知
+\begin{align*}
+    S_N    & = \sum \limits_{n=0}^N \sum \limits_{m=0}^0 f(n,m)          \\
+           & = \sum \limits_{n=0}^N f(n,0)                               \\
+    S_{N+} & = \sum \limits_{n=0}^\infty \sum \limits_{m=0}^0 f_{+}(n,m) \\
+           & = \sum \limits_{n=0}^N f_{+}(n,0)                           \\
+    S_{N-} & = \sum \limits_{n=0}^\infty \sum \limits_{m=0}^0 f_{-}(n,m) \\
+           & = \sum \limits_{n=0}^N f_{-}(n,0)                           \\
+\end{align*}
+因为$f(n,0) = f_{+}(n,0) + f_{-}(n,0)$，由引理7.1.4（c）可知
+\begin{align*}
+    S_N = S_{N+} + S_{N-}
+\end{align*}
+
+归纳假设$m=k$时，命题成立。
+
+$m = k+1$时，由引理7.1.4（a）可知
+\begin{align*}
+    S_N & = \sum \limits_{n=0}^N \sum \limits_{m=0}^{k+1} f(n,m)                       \\
+        & = \sum \limits_{n=0}^N \big (\sum \limits_{m=0}^{k} f(n,m) + f(n,k+1) \big )
+\end{align*}
+同理可知
+\begin{align*}
+    S_{N+} & = \sum \limits_{n=0}^N \big (\sum \limits_{m=0}^{k} f_{+}(n,m) + f_{+}(n,k+1) \big ) \\
+    S_{N-} & = \sum \limits_{n=0}^N \big (\sum \limits_{m=0}^{k} f_{-}(n,m) + f_{-}(n,k+1) \big )
+\end{align*}
+因为$k \in \mathbb{N}$（即：是有限值），所以
+\begin{align*}
+    S_N & = \sum \limits_{n=0}^N \big (\sum \limits_{m=0}^{k} f(n,m) + f(n,k+1) \big )         \\
+        & = \sum \limits_{n=0}^N \sum \limits_{m=0}^{k} f(n,m) + \sum \limits_{n=0}^N f(n,k+1) \\
+\end{align*}
+同理$S_{N+},S_{N-}$同样成立。
+
+利用归纳假设，可以证得$S_N = S_{N+} + S_{N-}$。
+
+至此，归纳完成。
+
+然后利用极限定律，即可完成证明。
+
+$\textbf{（5）前提一定要是绝对收敛么？} $
+
+是的。首先第二个等式用到了命题7.4.3，而该命题的前提就是要求级数是绝对收敛的。
+
+对于第一个等式，在刚刚（3）中，$f$是绝对收敛，则$f_{+},f_{-}$也是绝对收敛的。
+而在$f$是条件收敛的情况下，是没有这个性质的，这里举一个反例
+\begin{align*}
+    \sum \limits_{n=1}^\infty (-1)^n / n
+\end{align*}
+
+由命题7.2.12（交错级数判别法）可知，该级数收敛。
+而级数$f_{+} := \sum \limits_{n=1}^\infty 1 / n$是调和函数，是发散的（推论7.3.7）。
+
+% \textbf{（6）
+%     两个绝对收敛的无限级数：$\sum\limits_{j = 0}^\infty a_j = A, \sum\limits_{k = 0}^\infty b_k = B$，
+%     且$a_j, b_k \geq 0$，
+%     则：
+%     \begin{align*}
+%       \sum\limits_{j = 0}^\infty \sum\limits_{k = 0}^\infty  a_j b_k = \sum\limits_{j = 0}^\infty  a_j \sum\limits_{k = 0}^\infty  b_k = AB
+%     \end{align*}
+%   }
+
+%   我们的任务是证明级数$\sum\limits_{j = 0}^\infty \sum\limits_{k = 0}^\infty  a_j b_k$收敛$AB$。
+
+%   对任意的有限集$X \subset \mathbb{N} \times \mathbb{N}$都有
+%   $\sum\limits_{(j, k) \in X}  a_j b_k \leq AB$，
+%   （此时相关代数法则还是我们熟知的有限个）。
+%   特别地，对每一个$n \in \mathbb{N}$和$m \in \mathbb{N}$都有
+%   $\sum\limits_{k = 0}^m a_{n} b_k \leq AB$，由命题6.3.8可知
+%   $\sum\limits_{k = 0}^\infty a_{n} b_k$收敛。
+
+% 对任意的$N \in \mathbb{N}$和$M \in \mathbb{N}$都有
+% \begin{align*}
+%     \sum\limits_{n = 0}^N \sum\limits_{m = 0}^M f(n, m) \leq L
+% \end{align*}
+% 当$M \to \infty$时，对上面的式子取上确界可得（对$N$使用归纳法），
+% \begin{align*}
+%     \sum\limits_{n = 0}^N \sum\limits_{m = 0}^\infty f(n, m) \leq L
+% \end{align*}
+% 由单调有界序列收敛可知，这表明$\sum\limits_{n = 0}^\infty \sum\limits_{m = 0}^\infty f(n, m)$
+% 收敛以及
+% \begin{align*}
+%     \sum\limits_{n = 0}^\infty \sum\limits_{m = 0}^\infty f(n, m) \leq L
+% \end{align*}
+
+
+
+\end{document}

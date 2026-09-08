@@ -1,0 +1,151 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+
+\begin{document}
+\title{8.3 习题}
+\author{张志聪}
+\maketitle
+
+\section*{8.3.1}
+
+对$n$进行归纳。
+
+归纳基始，$n=0$，此时，$X$是空集，$\#(X) = 0$，$2^0=1$，这与空集的子集只有它本身是一致的。
+
+归纳假设，$n=k$时，$\#(2^{X}) = 2^k$。
+
+当$n=k+1$时， 在$X$中任取一个元素$x_0$，此时，设$X^\prime = X \setminus \{x_0\}$。
+对$2^{X}$的任意子集$A$：
+\begin{itemize}
+  \item 如果$x_0 \not \in A$，此时$A \subseteq 2^{X^\prime}$，由归纳假设可知，这样的子集有$2^k$个。
+  \item 如果$x_0 \in A$，定义$A^\prime := A \setminus \{x_0\}$，显然$A^\prime \subseteq 2^{X^\prime}$，
+        因为$A^\prime$有$2^k$个，所以$A^\prime \cup \{x_0\}$有$2^k$。
+\end{itemize}
+综上，$2^k + 2^k = 2^{k+1}$。
+
+\section*{8.3.2}
+
+\begin{zremark}
+  一开始，觉得题目不对！
+  理由如下：由题设，$A \subseteq C$且单射$f: C \rightarrow A$可知，
+  $f(C)$与$C$是双射，而$f(C) \subseteq A$，所以只有$C=A$才能满足题设，进而$A=B=C$。
+  那么，$D_0 = B \setminus A = \varnothing$，就没有证明的必要了。
+
+  问题出在对习题3.6.7的理解上了，这里只能证明$\#(A) = \#(B) = \#(C)$，而无法证明$A = B = C$，
+  举一个反例，自然数$N$与偶数集合的基数相等，也可以构建一个单射，
+  但不妨碍偶数集合是自然数子集这一事实。
+\end{zremark}
+
+（1）命题与$D_{n} \cap D_{n+1} = \varnothing$等价。对$n$进行归纳。
+
+归纳基始，$n = 0$时，$D_0 := B \setminus A, D_1 := f(D_0)$。
+反证法，假设$D_0 \cap D_1 \neq \varnothing $，由题设可知$D_1 \subseteq A$，
+因为$D_0 \cap D_1 \neq \varnothing $，所以存在元素$x \in D_0, D_1, A$，
+这与$D_0 := B \setminus A$矛盾。
+
+归纳假设，$n = k$时，命题$D_{k} \cap D_{k+1} = \varnothing$成立。
+
+当$n = k+1$时，$D_{k+2} := f(D_{k+1})$。
+反证法，假设$D_{k+2} \cap D_{k+1} \neq \varnothing$，
+即存在$d_0 \in D_{k+2}, D_{k+1}$，又因为$D_{k+1} = f(D_k)$，
+于是，存在$x_0, x_1$使得
+\begin{equation*}
+  \begin{cases*}
+    d_0 = f(x_0) \text{ 其中} x_0 \in D_k, f(x_0) \in D_{k+1} \\
+    d_0 = f(x_{1}) \text{ 其中}  x_{1} \in D_{k+1}, f(x_1) \in D_{k+2}
+  \end{cases*}
+\end{equation*}
+由归纳假设可知$x_0 \neq x_1$，这与$f$是单射的矛盾。
+
+（2）
+\begin{itemize}
+  \item 单射；函数$g$的定义域被定义成两个部分，各自显然是单射的，现在要证明两个部分的值域没有交集。
+        反证法，假设存在$x_0 \in \bigcup \limits_{n=0}^\infty D_n, x_1 \not \in \bigcup \limits_{n=0}^\infty D_n, x_0 \neq x_1$，
+        使得$g(x_0) = g(x_1)$，即：$f^{-1}(x_0) = x_1$，$f(x_1) = x_0$。
+
+        因为$x_0 \in \bigcup \limits_{n=0}^\infty D_n$，
+        所以存在$x^\prime \in \bigcup \limits_{n=0}^\infty D_n$使得$f(x^\prime) = x_0$。
+        因为$x_1 \not \in \bigcup \limits_{n=0}^\infty D_n$，所以$x^\prime \neq x_1$，
+        于是$f(x^\prime) = f(x_1)$，这与$f$是单射矛盾。
+
+
+  \item 满射；对任意$y \in B$，
+        如果$y \in \bigcup \limits_{n=0}^\infty D_n$，由$f$的定义可知，
+        $f(y) \in A, f(y) \in \bigcup \limits_{n=0}^\infty D_n$，
+        满足$g$的定义，于是$f^{-1}(f(y)) = y$；
+        如果$y \not \in \bigcup \limits_{n=0}^\infty D_n$，有$g(y) = y$；
+\end{itemize}
+
+\section*{8.3.3}
+
+\begin{zremark}
+  这个习题，容易觉得无需证明，
+  \begin{equation*}
+    \begin{cases*}
+      \#(A) \leq \#(B) \\
+      \#(A) \geq \#(B)
+    \end{cases*}
+  \end{equation*}
+  得到$\#(A) = \#(B)$是显然。
+  但是，这里是把基数看做自然数了
+  （满足三歧性，但本书中$+\infty,+\infty + 1$的排序是没有定义的，
+  即无穷值间的比较是未定义的，书中只定义了$+\infty = +\infty$，命题6.2.5），
+  这个假设不成立的。
+
+  既然存在不确定的地方，我们只能老老实实利用基数相等的定义证明了。
+\end{zremark}
+
+目标是构造一个双射函数$g: A \rightarrow B$。利用习题8.3.2，只需找到满足条件的$A,B,C$与$f$即可。
+不妨设$f_1: A \rightarrow B$的单射，$f_2: B \rightarrow A$的单射。
+显然，$A,f_1(A)$的基数相同，$f_1(A) \subseteq B$,于是，如下定义，即可满足条件：
+\begin{equation*}
+  \begin{cases*}
+    A := f_1(A) \\
+    B := B      \\
+    C := B      \\
+    f := f_2
+  \end{cases*}
+\end{equation*}
+
+\section*{8.3.4}
+
+（1）
+由$2^X$的定义可知，任意$x \in X$都有$x \in 2^X$，于是定义$f: X \rightarrow 2^X$如下，
+\begin{align*}
+  f(x) := x
+\end{align*}
+显然，$f$是单射，根据习题3.6.7可知，$X$的基数小于或等于$2^X$的基数，
+由定理8.3.1可知，他们的基数不相等，由此可知，$X$基数严格小于$2^X$的基数。
+
+（2）
+由题设可知，存在单射$f_1: A \rightarrow B$，且$\#(A) \neq \#(B)$，
+单射$f_2: B \rightarrow C$，且$\#(B) \neq \#(C)$。
+于是定义函数$f: f_2 \circ f_1: A \rightarrow C$，
+显然，$f$是单射，在逻辑学中相等具有传递性（附录A.7），于是，
+$A$基数严格小于$C$的基数。
+
+\section*{8.3.5}
+
+\begin{zremark}
+  这道题没太看懂。我是这样理解的：
+  “$X$是可数的无限集，则幂集$2^X$不是可数的无限集”，
+  由定理8.3.1可知，这个命题是显然的。
+\end{zremark}
+
+\end{document}
